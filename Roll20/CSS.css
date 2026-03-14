@@ -159,7 +159,7 @@
 .charsheet .sheet-rtfg .sheet-skill-table {
   display: grid;
   grid-template-columns: 2fr 90px 100px;
-  gap: 6px 8px;
+  gap: 12px 8px;
   align-items: center;
 }
 
