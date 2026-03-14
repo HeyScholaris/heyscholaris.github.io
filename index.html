@@ -135,9 +135,10 @@
 
         .layout {
           display: grid;
-          grid-template-columns: 300px minmax(0, 1fr);
+          grid-template-columns: minmax(260px, 300px) minmax(0, 1fr);
           gap: 18px;
           align-items: start;
+          min-width: 0;
         }
 
         .toc,
@@ -196,6 +197,7 @@
         .content {
           display: grid;
           gap: 18px;
+          min-width: 0;
         }
 
         section.panel {
@@ -309,13 +311,17 @@
 
         table {
           width: 100%;
+          max-width: 100%;
           border-collapse: collapse;
           font-size: 14px;
         }
 
         .table-wrap {
-          overflow: hidden;
+          overflow-x: auto;
+          overflow-y: hidden;
+          max-width: 100%;
           padding: 0;
+          -webkit-overflow-scrolling: touch;
         }
 
         thead {
@@ -441,6 +447,67 @@
           td {
             padding: 9px 10px;
             font-size: 13px;
+          }
+        }
+        html,
+        body {
+          max-width: 100%;
+          overflow-x: hidden;
+        }
+
+        .page,
+        .banner-grid,
+        .layout,
+        .content,
+        section.panel,
+        .card,
+        .callout,
+        .note,
+        details,
+        .toc,
+        .grid-2 > *,
+        .grid-3 > *,
+        .grid-4 > *,
+        .grid-auto > *,
+        .stat-grid > * {
+          min-width: 0;
+        }
+
+        .section-header {
+          flex-wrap: wrap;
+        }
+
+        p,
+        li,
+        td,
+        th,
+        a,
+        .rule,
+        .stat-value,
+        .quick-link,
+        .pill,
+        .tag {
+          overflow-wrap: anywhere;
+          word-break: break-word;
+        }
+
+        .table-wrap table {
+          min-width: 640px;
+        }
+
+        @media (max-width: 720px) {
+          .page {
+            width: calc(100% - 16px);
+            max-width: 100%;
+            padding-top: 10px;
+          }
+
+          .two-column-text {
+            columns: 1;
+          }
+
+          .table-wrap table {
+            min-width: 560px;
           }
         }
     </style>
