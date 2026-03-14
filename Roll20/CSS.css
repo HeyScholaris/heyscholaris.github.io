@@ -1,0 +1,309 @@
+.charsheet .sheet-rtfg {
+  --bg: #171a20;
+  --panel: #232833;
+  --panel2: #2b3140;
+  --line: #4e5c74;
+  --text: #ecedf0;
+  --muted: #b6becc;
+  --accent: #9bc3ff;
+  --accent2: #d8b36a;
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  padding: 10px;
+}
+
+.charsheet .sheet-rtfg *,
+.charsheet .sheet-rtfg *:before,
+.charsheet .sheet-rtfg *:after {
+  box-sizing: border-box;
+}
+
+.charsheet .sheet-rtfg .sheet-banner {
+  background: linear-gradient(135deg, #1f2632, #30394a);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+
+.charsheet .sheet-rtfg .sheet-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.charsheet .sheet-rtfg .sheet-subtitle {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 3px;
+  letter-spacing: 0.08em;
+}
+
+.charsheet .sheet-rtfg .sheet-panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.charsheet .sheet-rtfg h3 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent2);
+}
+
+.charsheet .sheet-rtfg label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.charsheet .sheet-rtfg label > span {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  letter-spacing: 0.06em;
+}
+
+.charsheet .sheet-rtfg input[type="text"],
+.charsheet .sheet-rtfg input[type="number"],
+.charsheet .sheet-rtfg select,
+.charsheet .sheet-rtfg textarea {
+  width: 100%;
+  background: #10141b;
+  color: var(--text);
+  border: 1px solid #60708e;
+  border-radius: 6px;
+  padding: 7px 8px;
+  font-size: 13px;
+  margin: 0;
+}
+
+.charsheet .sheet-rtfg input[disabled] {
+  background: #151a22;
+  color: #d8dee9;
+}
+
+.charsheet .sheet-rtfg textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.charsheet .sheet-rtfg button[type="roll"] {
+  width: 100%;
+  background: #36527f;
+  color: #fff;
+  border: 1px solid #89a6d7;
+  border-radius: 6px;
+  padding: 7px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.charsheet .sheet-rtfg button[type="roll"]:hover {
+  background: #42649a;
+}
+
+.charsheet .sheet-rtfg .sheet-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.charsheet .sheet-rtfg .sheet-grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.charsheet .sheet-rtfg .sheet-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.charsheet .sheet-rtfg .sheet-grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.charsheet .sheet-rtfg .sheet-grid-6 {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.charsheet .sheet-rtfg .sheet-columns {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+}
+
+.charsheet .sheet-rtfg .sheet-col-main,
+.charsheet .sheet-rtfg .sheet-col-side {
+  min-width: 0;
+}
+
+.charsheet .sheet-rtfg .sheet-pair {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.charsheet .sheet-rtfg .sheet-pair span {
+  color: var(--muted);
+}
+
+.charsheet .sheet-rtfg .sheet-skill-table {
+  display: grid;
+  grid-template-columns: 2fr 90px 100px;
+  gap: 6px 8px;
+  align-items: center;
+}
+
+.charsheet .sheet-rtfg .sheet-skill-head {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--accent);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 4px;
+  margin-bottom: 2px;
+}
+
+.charsheet .sheet-rtfg .sheet-skill-name {
+  padding: 6px 8px;
+  background: var(--panel2);
+  border: 1px solid #3a4457;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.charsheet .sheet-rtfg fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.charsheet .sheet-rtfg .repcontainer .repitem {
+  margin-bottom: 10px;
+}
+
+.charsheet .sheet-rtfg .sheet-repeat-row,
+.charsheet .sheet-rtfg .sheet-datalog-entry {
+  background: var(--panel2);
+  border: 1px solid #3a4457;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 8px;
+}
+
+.charsheet .sheet-rtfg .sheet-repeat-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.charsheet .sheet-rtfg .sheet-wide {
+  grid-column: 1 / -1;
+}
+
+/* Tabs */
+.charsheet .sheet-rtfg .sheet-tab {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.charsheet .sheet-rtfg .sheet-tab-label {
+  display: inline-block;
+  background: #202633;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-bottom: 3;
+  border-radius: 8px 8px 8px 8px;
+  padding: 8px 12px;
+  margin-right: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.charsheet .sheet-rtfg .sheet-tab-wrap {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.charsheet .sheet-rtfg .sheet-tab-content {
+  display: none;
+}
+
+.charsheet .sheet-rtfg .sheet-tab1:checked + .sheet-tab-label1,
+.charsheet .sheet-rtfg .sheet-tab2:checked + .sheet-tab-label2,
+.charsheet .sheet-rtfg .sheet-tab3:checked + .sheet-tab-label3,
+.charsheet .sheet-rtfg .sheet-tab4:checked + .sheet-tab-label4 {
+  background: #2b3140;
+  color: #ffffff;
+  border-color: #89a6d7;
+}
+
+.charsheet .sheet-rtfg .sheet-tab1:checked ~ .sheet-tab-wrap .sheet-character-tab {
+  display: block;
+}
+
+.charsheet .sheet-rtfg .sheet-tab2:checked ~ .sheet-tab-wrap .sheet-bio-tab {
+  display: block;
+}
+
+.charsheet .sheet-rtfg .sheet-tab3:checked ~ .sheet-tab-wrap .sheet-ship-tab {
+  display: block;
+}
+
+.charsheet .sheet-rtfg .sheet-tab4:checked ~ .sheet-tab-wrap .sheet-datalog-tab {
+  display: block;
+}
+
+
+/* Roll template */
+.charsheet .sheet-rolltemplate-rtfg .sheet-template {
+  background: #232833;
+  border: 1px solid #4e5c74;
+  border-radius: 10px;
+  overflow: hidden;
+  color: #ecedf0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.charsheet .sheet-rolltemplate-rtfg .sheet-template-header {
+  background: #36527f;
+  color: #fff;
+  padding: 8px 10px;
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.charsheet .sheet-rolltemplate-rtfg .sheet-template-sub {
+  background: #2a3445;
+  color: #d8b36a;
+  padding: 6px 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.charsheet .sheet-rolltemplate-rtfg .sheet-template-roll {
+  padding: 12px 10px;
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 1px solid #4e5c74;
+}
+
+.charsheet .sheet-rolltemplate-rtfg .sheet-template-row {
+  padding: 7px 10px;
+  border-top: 1px solid #394556;
+  font-size: 12px;
+}

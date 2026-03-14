@@ -1,0 +1,538 @@
+<div class="sheet-rtfg">
+    <input type="hidden" name="attr_sheet_version" value="2" />
+
+    <div class="sheet-banner">
+        <div class="sheet-title">Remnants of the Far Galaxy</div>
+        <div class="sheet-subtitle">Roll20 Character Sheet</div>
+    </div>
+
+    <!-- Tab Controls -->
+    <input type="radio" id="rtfg-tab-character" name="attr_sheet_tab" class="sheet-tab sheet-tab1" value="character" checked="checked">
+    <label for="rtfg-tab-character" class="sheet-tab-label sheet-tab-label1">Character</label>
+
+    <input type="radio" id="rtfg-tab-bio" name="attr_sheet_tab" class="sheet-tab sheet-tab2" value="bio">
+    <label for="rtfg-tab-bio" class="sheet-tab-label sheet-tab-label2">Bio / Details</label>
+
+    <input type="radio" id="rtfg-tab-ship" name="attr_sheet_tab" class="sheet-tab sheet-tab3" value="ship">
+    <label for="rtfg-tab-ship" class="sheet-tab-label sheet-tab-label3">Ship</label>
+
+    <input type="radio" id="rtfg-tab-datalog" name="attr_sheet_tab" class="sheet-tab sheet-tab4" value="datalog">
+    <label for="rtfg-tab-datalog" class="sheet-tab-label sheet-tab-label4">Datalog</label>
+
+
+    <div class="sheet-tab-wrap">
+
+        <!-- CHARACTER TAB -->
+        <div class="sheet-tab-content sheet-character-tab">
+
+            <div class="sheet-panel">
+                <div class="sheet-grid sheet-grid-4">
+                    <label>
+                        <span>Character Name</span>
+                        <input type="text" name="attr_character_name" />
+                    </label>
+                    <label>
+                        <span>Player</span>
+                        <input type="text" name="attr_player_name" />
+                    </label>
+                    <label>
+                        <span>Calling</span>
+                        <input type="text" name="attr_calling" />
+                    </label>
+                    <label>
+                        <span>Path</span>
+                        <input type="text" name="attr_path" />
+                    </label>
+
+                    <label>
+                        <span>Background</span>
+                        <input type="text" name="attr_background" />
+                    </label>
+                    <label>
+                        <span>Species</span>
+                        <input type="text" name="attr_species" />
+                    </label>
+                    <label>
+                        <span>Level</span>
+                        <input type="number" name="attr_level" value="1" />
+                    </label>
+                    <label>
+                        <span>Armor Bonus</span>
+                        <select name="attr_armor">
+                            <option value="0" selected="selected">0</option>
+                            <option value="1">1 Light</option>
+                            <option value="2">2 Medium</option>
+                            <option value="3">3 Heavy</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+
+            <div class="sheet-columns">
+                <div class="sheet-col-main">
+
+                    <div class="sheet-panel">
+                        <h3>Attributes</h3>
+                        <div class="sheet-grid sheet-grid-6">
+                            <label><span>Body</span><input type="number" name="attr_body" value="0" /></label>
+                            <label><span>Agility</span><input type="number" name="attr_agility" value="0" /></label>
+                            <label><span>Mind</span><input type="number" name="attr_mind" value="0" /></label>
+                            <label><span>Tech</span><input type="number" name="attr_tech" value="0" /></label>
+                            <label><span>Presence</span><input type="number" name="attr_presence" value="0" /></label>
+                            <label><span>Will</span><input type="number" name="attr_will" value="0" /></label>
+                        </div>
+                    </div>
+
+                    <div class="sheet-panel">
+                        <h3>Resources</h3>
+                        <div class="sheet-grid sheet-grid-4">
+                            <label>
+                                <span>Health</span>
+                                <div class="sheet-pair">
+                                    <input type="number" name="attr_health" value="11" />
+                                    <span>/</span>
+                                    <input type="number" name="attr_health_max" value="10+@{body}+@{level}" disabled="true" />
+                                </div>
+                            </label>
+
+                            <label>
+                                <span>Resolve</span>
+                                <div class="sheet-pair">
+                                    <input type="number" name="attr_resolve" value="3" />
+                                    <span>/</span>
+                                    <input type="number" name="attr_resolve_max" value="3+@{will}" disabled="true" />
+                                </div>
+                            </label>
+
+                            <label>
+                                <span>Defense</span>
+                                <input type="number" name="attr_defense" value="10+@{agility}+@{armor}" disabled="true" />
+                            </label>
+
+                            <label>
+                                <span>Initiative</span>
+                                <button type="roll" name="roll_initiative" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Initiative}} {{roll=[[1d20+@{agility}]]}} {{detail=Agility}}">Roll</button>
+                            </label>
+
+                            <label>
+                                <span>Cyber Load</span>
+                                <div class="sheet-pair">
+                                    <input type="number" name="attr_cyber_load_total" value="0" />
+                                    <span>/</span>
+                                    <input type="number" name="attr_cyber_load_max" value="2+@{tech}" disabled="true" />
+                                </div>
+                            </label>
+
+                            <label>
+                                <span>Overload</span>
+                                <input type="number" name="attr_cyber_overload" value="0" />
+                            </label>
+
+                            <label>
+                                <span>Force Cyber Penalty</span>
+                                <input type="number" name="attr_force_cyber_penalty" value="0" />
+                            </label>
+
+                            <label>
+                                <span>Strain</span>
+                                <input type="number" name="attr_strain" value="0" />
+                            </label>
+
+                            <label>
+                                <span>Heat</span>
+                                <input type="number" name="attr_heat" value="0" />
+                            </label>
+
+                            <label>
+                                <span>Credits</span>
+                                <input type="number" name="attr_credits" value="0" />
+                            </label>
+                        </div>
+
+                        <div class="sheet-grid sheet-grid-3">
+                            <label><span>Wound 1</span><input type="checkbox" name="attr_wound_1" value="1" /></label>
+                            <label><span>Wound 2</span><input type="checkbox" name="attr_wound_2" value="1" /></label>
+                            <label><span>Wound 3</span><input type="checkbox" name="attr_wound_3" value="1" /></label>
+                        </div>
+                    </div>
+
+
+                    <div class="sheet-panel">
+                        <h3>Skills</h3>
+                        <div class="sheet-skill-table">
+                            <div class="sheet-skill-head">Skill</div>
+                            <div class="sheet-skill-head">Rank</div>
+                            <div class="sheet-skill-head">Roll</div>
+
+                            <div class="sheet-skill-name">Athletics (Body)</div>
+                            <select name="attr_skill_athletics"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <button type="roll" name="roll_athletics" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Athletics}} {{roll=[[1d20+@{body}+@{skill_athletics}]]}} {{detail=Body + Skill}}">Roll</button>
+
+                            <div class="sheet-skill-name">Melee (Body/Agility)</div>
+                            <select name="attr_skill_melee"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <button type="roll" name="roll_melee" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Melee}} {{roll=[[1d20+?{Use which attribute?|Body,@{body}|Agility,@{agility}}+@{skill_melee}]]}} {{detail=Chosen Attribute + Skill}}">Roll</button>
+
+                            <div class="sheet-skill-name">Ranged (Agility)</div>
+                            <select name="attr_skill_ranged"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <button type="roll" name="roll_ranged" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Ranged}} {{roll=[[1d20+@{agility}+@{skill_ranged}]]}} {{detail=Agility + Skill}}">Roll</button>
+
+                            <div class="sheet-skill-name">Stealth (Agility)</div>
+                            <select name="attr_skill_stealth"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <button type="roll" name="roll_stealth" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Stealth}} {{roll=[[1d20+@{agility}+@{skill_stealth}]]}} {{detail=Agility + Skill}}">Roll</button>
+
+                            <div class="sheet-skill-name">Pilot (Agility)</div>
+                            <select name="attr_skill_pilot"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <button type="roll" name="roll_pilot" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Pilot}} {{roll=[[1d20+@{agility}+@{skill_pilot}]]}} {{detail=Agility + Skill}}">Roll</button>
+
+                            <div class="sheet-skill-name">Notice (Mind)</div>
+                            <select name="attr_skill_notice"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <button type="roll" name="roll_notice" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Notice}} {{roll=[[1d20+@{mind}+@{skill_notice}]]}} {{detail=Mind + Skill}}">Roll</button>
+
+                            <div class="sheet-skill-name">Lore (Mind)</div>
+                            <select name="attr_skill_lore"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <button type="roll" name="roll_lore" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Lore}} {{roll=[[1d20+@{mind}+@{skill_lore}]]}} {{detail=Mind + Skill}}">Roll</button>
+
+                            <div class="sheet-skill-name">Medicine (Mind)</div>
+                            <select name="attr_skill_medicine"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <button type="roll" name="roll_medicine" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Medicine}} {{roll=[[1d20+@{mind}+@{skill_medicine}]]}} {{detail=Mind + Skill}}">Roll</button>
+
+                            <div class="sheet-skill-name">Hacking (Tech)</div>
+                            <select name="attr_skill_hacking"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <button type="roll" name="roll_hacking" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Hacking}} {{roll=[[1d20+@{tech}+@{skill_hacking}]]}} {{detail=Tech + Skill}}">Roll</button>
+
+                            <div class="sheet-skill-name">Engineering (Tech)</div>
+                            <select name="attr_skill_engineering"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <button type="roll" name="roll_engineering" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Engineering}} {{roll=[[1d20+@{tech}+@{skill_engineering}]]}} {{detail=Tech + Skill}}">Roll</button>
+
+                            <div class="sheet-skill-name">Charm (Presence)</div>
+                            <select name="attr_skill_charm"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <button type="roll" name="roll_charm" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Charm}} {{roll=[[1d20+@{presence}+@{skill_charm}]]}} {{detail=Presence + Skill}}">Roll</button>
+
+                            <div class="sheet-skill-name">Deceive (Presence)</div>
+                            <select name="attr_skill_deceive"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <button type="roll" name="roll_deceive" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Deceive}} {{roll=[[1d20+@{presence}+@{skill_deceive}]]}} {{detail=Presence + Skill}}">Roll</button>
+
+                            <div class="sheet-skill-name">Command (Presence)</div>
+                            <select name="attr_skill_command"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <button type="roll" name="roll_command" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Command}} {{roll=[[1d20+@{presence}+@{skill_command}]]}} {{detail=Presence + Skill}}">Roll</button>
+
+                            <div class="sheet-skill-name">Discipline (Will)</div>
+                            <select name="attr_skill_discipline"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <button type="roll" name="roll_discipline" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Discipline}} {{roll=[[1d20+@{will}+@{skill_discipline}-@{cyber_overload}]]}} {{detail=Will + Skill - Overload}}">Roll</button>
+
+                            <div class="sheet-skill-name">Force (Will)</div>
+                            <select name="attr_skill_force"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <button type="roll" name="roll_force" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Force}} {{roll=[[1d20+@{will}+@{skill_force}-@{strain}-@{force_cyber_penalty}]]}} {{detail=Will + Skill - Strain - Cyber Penalty}}">Roll</button>
+                        </div>
+                    </div>
+
+                    <div class="sheet-panel">
+                        <h3>Weapons</h3>
+                        <fieldset class="repeating_weapons">
+                            <div class="sheet-repeat-row">
+                                <label>
+                                    <span>Name</span>
+                                    <input type="text" name="attr_weapon_name" />
+                                </label>
+                                <label>
+                                    <span>Type</span>
+                                    <select name="attr_weapon_type">
+                                        <option value="Melee" selected="selected">Melee</option>
+                                        <option value="Ranged">Ranged</option>
+                                        <option value="Force">Force</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    <span>Range</span>
+                                    <input type="text" name="attr_weapon_range" placeholder="Engaged / Short / Medium" />
+                                </label>
+                                <label>
+                                    <span>Attack Bonus</span>
+                                    <input type="number" name="attr_weapon_attack" value="0" />
+                                </label>
+                                <label>
+                                    <span>Damage</span>
+                                    <input type="text" name="attr_weapon_damage" placeholder="1d8+2" />
+                                </label>
+                                <label class="sheet-wide">
+                                    <span>Tags / Notes</span>
+                                    <input type="text" name="attr_weapon_notes" />
+                                </label>
+                                <button type="roll" name="roll_weapon" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=@{weapon_name}}} {{roll=[[1d20+@{weapon_attack}]]}} {{damage=[[@{weapon_damage}]]}} {{detail=@{weapon_type} | @{weapon_range}}} {{notes=@{weapon_notes}}}">Attack</button>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="sheet-panel">
+                        <h3>Force Powers</h3>
+                        <fieldset class="repeating_powers">
+                            <div class="sheet-repeat-row">
+                                <label>
+                                    <span>Power</span>
+                                    <input type="text" name="attr_power_name" />
+                                </label>
+                                <label>
+                                    <span>Cost</span>
+                                    <input type="number" name="attr_power_cost" value="1" />
+                                </label>
+                                <label>
+                                    <span>Range</span>
+                                    <input type="text" name="attr_power_range" />
+                                </label>
+                                <label class="sheet-wide">
+                                    <span>Effect / Notes</span>
+                                    <input type="text" name="attr_power_notes" />
+                                </label>
+                                <button type="roll" name="roll_power" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=@{power_name}}} {{roll=[[1d20+@{will}+@{skill_force}-@{strain}-@{force_cyber_penalty}]]}} {{detail=Force check | Cost @{power_cost} Resolve | @{power_range}}} {{notes=@{power_notes}}}">Use</button>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                </div>
+
+                <div class="sheet-col-side">
+
+                    <div class="sheet-panel">
+                        <h3>Talents & Features</h3>
+                        <textarea name="attr_talents" rows="8"></textarea>
+                    </div>
+
+                    <div class="sheet-panel">
+                        <h3>Cyberware</h3>
+                        <fieldset class="repeating_cyberware">
+                            <div class="sheet-repeat-row">
+                                <label>
+                                    <span>Implant</span>
+                                    <input type="text" name="attr_cyber_name" />
+                                </label>
+                                <label>
+                                    <span>Load</span>
+                                    <input type="number" name="attr_cyber_load" value="1" />
+                                </label>
+                                <label class="sheet-wide">
+                                    <span>Effect / Notes</span>
+                                    <input type="text" name="attr_cyber_notes" />
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="sheet-panel">
+                        <h3>Equipment</h3>
+                        <fieldset class="repeating_gear">
+                            <div class="sheet-repeat-row">
+                                <label>
+                                    <span>Item</span>
+                                    <input type="text" name="attr_gear_name" />
+                                </label>
+                                <label>
+                                    <span>Qty</span>
+                                    <input type="number" name="attr_gear_qty" value="1" />
+                                </label>
+                                <label class="sheet-wide">
+                                    <span>Notes</span>
+                                    <input type="text" name="attr_gear_notes" />
+                                </label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- BIO TAB -->
+        <div class="sheet-tab-content sheet-bio-tab">
+            <div class="sheet-panel">
+                <div class="sheet-grid sheet-grid-2">
+                    <label>
+                        <span>Age / Era</span>
+                        <input type="text" name="attr_age" />
+                    </label>
+                    <label>
+                        <span>Homeworld / Origin</span>
+                        <input type="text" name="attr_homeworld" />
+                    </label>
+                    <label>
+                        <span>Faction Ties</span>
+                        <input type="text" name="attr_factions" />
+                    </label>
+                    <label>
+                        <span>Obligation / Oath / Debt</span>
+                        <input type="text" name="attr_obligation" />
+                    </label>
+                </div>
+            </div>
+
+            <div class="sheet-panel">
+                <h3>Appearance</h3>
+                <textarea name="attr_appearance" rows="5"></textarea>
+            </div>
+
+            <div class="sheet-panel">
+                <h3>Backstory</h3>
+                <textarea name="attr_backstory" rows="8"></textarea>
+            </div>
+
+            <div class="sheet-panel">
+                <h3>Contacts & Reputation</h3>
+                <textarea name="attr_reputation_notes" rows="8"></textarea>
+            </div>
+
+            <div class="sheet-panel">
+                <h3>Traits, Beliefs, and Goals</h3>
+                <textarea name="attr_personality" rows="8"></textarea>
+            </div>
+        </div>
+
+        <!-- SHIP TAB -->
+        <div class="sheet-tab-content sheet-ship-tab">
+            <div class="sheet-panel">
+                <div class="sheet-grid sheet-grid-3">
+                    <label>
+                        <span>Ship Name</span>
+                        <input type="text" name="attr_ship_name" />
+                    </label>
+                    <label>
+                        <span>Role</span>
+                        <input type="text" name="attr_ship_role" placeholder="Courier / Fighter / Corvette" />
+                    </label>
+                    <label>
+                        <span>Crew</span>
+                        <input type="text" name="attr_ship_crew" />
+                    </label>
+
+                    <label>
+                        <span>Hull</span>
+                        <div class="sheet-pair">
+                            <input type="number" name="attr_ship_hull" value="0" />
+                            <span>/</span>
+                            <input type="number" name="attr_ship_hull_max" value="0" />
+                        </div>
+                    </label>
+
+                    <label>
+                        <span>Shields</span>
+                        <div class="sheet-pair">
+                            <input type="number" name="attr_ship_shields" value="0" />
+                            <span>/</span>
+                            <input type="number" name="attr_ship_shields_max" value="0" />
+                        </div>
+                    </label>
+
+                    <label>
+                        <span>Defense</span>
+                        <input type="number" name="attr_ship_defense" value="0" />
+                    </label>
+
+                    <label>
+                        <span>Handling</span>
+                        <input type="number" name="attr_ship_handling" value="0" />
+                    </label>
+
+                    <label>
+                        <span>Speed</span>
+                        <input type="number" name="attr_ship_speed" value="0" />
+                    </label>
+
+                    <label>
+                        <span>System Strain</span>
+                        <input type="number" name="attr_ship_strain" value="0" />
+                    </label>
+                </div>
+            </div>
+
+            <div class="sheet-panel">
+                <h3>Ship Actions</h3>
+                <div class="sheet-grid sheet-grid-4">
+                    <button type="roll" name="roll_ship_pilot" value="&{template:rtfg} {{title=@{ship_name}}} {{subtitle=Pilot / Maneuver}} {{roll=[[1d20+@{agility}+@{skill_pilot}+@{ship_handling}]]}} {{detail=Agility + Pilot + Handling}}">Pilot</button>
+                    <button type="roll" name="roll_ship_attack" value="&{template:rtfg} {{title=@{ship_name}}} {{subtitle=Ship Attack}} {{roll=[[1d20+@{agility}+@{skill_pilot}+@{ship_handling}]]}} {{detail=Pilot + Handling + Weapon Bonus if applicable}}">Attack</button>
+                    <button type="roll" name="roll_ship_evade" value="&{template:rtfg} {{title=@{ship_name}}} {{subtitle=Evade}} {{roll=[[1d20+@{agility}+@{skill_pilot}+@{ship_handling}]]}} {{detail=Pilot + Handling}}">Evade</button>
+                    <button type="roll" name="roll_ship_reroute" value="&{template:rtfg} {{title=@{ship_name}}} {{subtitle=Reroute Power}} {{roll=[[1d20+@{tech}+@{skill_engineering}]]}} {{detail=Tech + Engineering}}">Reroute</button>
+                </div>
+            </div>
+
+            <div class="sheet-panel">
+                <h3>Ship Weapons & Modules</h3>
+                <fieldset class="repeating_shipsystems">
+                    <div class="sheet-repeat-row">
+                        <label>
+                            <span>Name</span>
+                            <input type="text" name="attr_system_name" />
+                        </label>
+                        <label>
+                            <span>Type</span>
+                            <input type="text" name="attr_system_type" placeholder="Weapon / Module / Trait" />
+                        </label>
+                        <label>
+                            <span>Attack Bonus</span>
+                            <input type="number" name="attr_system_attack" value="0" />
+                        </label>
+                        <label>
+                            <span>Damage / Effect</span>
+                            <input type="text" name="attr_system_damage" />
+                        </label>
+                        <label class="sheet-wide">
+                            <span>Notes</span>
+                            <input type="text" name="attr_system_notes" />
+                        </label>
+                        <button type="roll" name="roll_system" value="&{template:rtfg} {{title=@{ship_name}}} {{subtitle=@{system_name}}} {{roll=[[1d20+@{agility}+@{skill_pilot}+@{ship_handling}+@{system_attack}]]}} {{damage=@{system_damage}}} {{notes=@{system_notes}}}">Use</button>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="sheet-panel">
+                <h3>Ship Notes</h3>
+                <textarea name="attr_ship_notes" rows="8"></textarea>
+            </div>
+        </div>
+
+        <!-- DATALOG TAB -->
+        <div class="sheet-tab-content sheet-datalog-tab">
+            <div class="sheet-panel">
+                <h3>Datalog Entries</h3>
+                <fieldset class="repeating_datalog">
+                    <div class="sheet-datalog-entry">
+                        <div class="sheet-grid sheet-grid-3">
+                            <label>
+                                <span>Title</span>
+                                <input type="text" name="attr_log_title" />
+                            </label>
+                            <label>
+                                <span>Date / Session</span>
+                                <input type="text" name="attr_log_date" />
+                            </label>
+                            <label>
+                                <span>Tags</span>
+                                <input type="text" name="attr_log_tags" placeholder="mission, contact, clue" />
+                            </label>
+                        </div>
+                        <label>
+                            <span>Entry</span>
+                            <textarea name="attr_log_entry" rows="8"></textarea>
+                        </label>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="sheet-panel">
+                <h3>Loose Notes</h3>
+                <textarea name="attr_notes" rows="10"></textarea>
+            </div>
+        </div>
+
+    </div>
+
+    <rolltemplate class="sheet-rolltemplate-rtfg">
+        <div class="sheet-template">
+            <div class="sheet-template-header">{{title}}</div>
+            {{#subtitle}}<div class="sheet-template-sub">{{subtitle}}</div>{{/subtitle}}
+            {{#roll}}<div class="sheet-template-roll">{{roll}}</div>{{/roll}}
+            {{#damage}}<div class="sheet-template-row"><strong>Damage:</strong> {{damage}}</div>{{/damage}}
+            {{#detail}}<div class="sheet-template-row"><strong>Detail:</strong> {{detail}}</div>{{/detail}}
+            {{#notes}}<div class="sheet-template-row"><strong>Notes:</strong> {{notes}}</div>{{/notes}}
+        </div>
+    </rolltemplate>
+
+
+</div>
