@@ -129,8 +129,8 @@
                             </label>
 
                             <label>
-                                <span>Force Cyber Penalty</span>
-                                <input type="number" name="attr_force_cyber_penalty" value="0" />
+                                <span>Psionic Cyber Penalty</span>
+                                <input type="number" name="attr_psionic_cyber_penalty" value="0" />
                             </label>
 
                             <label>
@@ -220,9 +220,9 @@
                             <select name="attr_skill_discipline"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
                             <button type="roll" name="roll_discipline" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Discipline}} {{roll=[[1d20+@{will}+@{skill_discipline}-@{cyber_overload}]]}} {{detail=Will + Skill - Overload}}">Roll</button>
 
-                            <div class="sheet-skill-name">Force (Will)</div>
-                            <select name="attr_skill_force"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
-                            <button type="roll" name="roll_force" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Force}} {{roll=[[1d20+@{will}+@{skill_force}-@{strain}-@{force_cyber_penalty}]]}} {{detail=Will + Skill - Strain - Cyber Penalty}}">Roll</button>
+                            <div class="sheet-skill-name">Psionic (Will)</div>
+                            <select name="attr_skill_psionic"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <button type="roll" name="roll_psionic" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Psionic}} {{roll=[[1d20+@{will}+@{skill_psionic}-@{strain}-@{psionic_cyber_penalty}]]}} {{detail=Will + Skill - Strain - Cyber Penalty}}">Roll</button>
                         </div>
                     </div>
 
@@ -239,7 +239,7 @@
                                     <select name="attr_weapon_type">
                                         <option value="Melee" selected="selected">Melee</option>
                                         <option value="Ranged">Ranged</option>
-                                        <option value="Force">Force</option>
+                                        <option value="Psionic">Psionic</option>
                                     </select>
                                 </label>
                                 <label>
@@ -264,7 +264,7 @@
                     </div>
 
                     <div class="sheet-panel">
-                        <h3>Force Powers</h3>
+                        <h3>Psionic Powers</h3>
                         <fieldset class="repeating_powers">
                             <div class="sheet-repeat-row">
                                 <label>
@@ -283,7 +283,7 @@
                                     <span>Effect / Notes</span>
                                     <input type="text" name="attr_power_notes" />
                                 </label>
-                                <button type="roll" name="roll_power" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=@{power_name}}} {{roll=[[1d20+@{will}+@{skill_force}-@{strain}-@{force_cyber_penalty}]]}} {{detail=Force check | Cost @{power_cost} Resolve | @{power_range}}} {{notes=@{power_notes}}}">Use</button>
+                                <button type="roll" name="roll_power" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=@{power_name}}} {{roll=[[1d20+@{will}+@{skill_psionic}-@{strain}-@{psionic_cyber_penalty}]]}} {{detail=Psionic check | Cost @{power_cost} Resolve | @{power_range}}} {{notes=@{power_notes}}}">Use</button>
                             </div>
                         </fieldset>
                     </div>
