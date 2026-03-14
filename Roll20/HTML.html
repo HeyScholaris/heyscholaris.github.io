@@ -1,5 +1,5 @@
 <div class="sheet-rtfg">
-    <input type="hidden" name="attr_sheet_version" value="2" />
+    <input type="hidden" name="attr_sheet_version" value="3" />
 
     <div class="sheet-banner">
         <div class="sheet-title">Remnants of the Far Galaxy</div>
@@ -165,63 +165,63 @@
                             <div class="sheet-skill-head">Roll</div>
 
                             <div class="sheet-skill-name">Athletics (Body)</div>
-                            <select name="attr_skill_athletics"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <select name="attr_skill_athletics"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
                             <button type="roll" name="roll_athletics" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Athletics}} {{roll=[[1d20+@{body}+@{skill_athletics}]]}} {{detail=Body + Skill}}">Roll</button>
 
                             <div class="sheet-skill-name">Melee (Body/Agility)</div>
-                            <select name="attr_skill_melee"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <select name="attr_skill_melee"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
                             <button type="roll" name="roll_melee" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Melee}} {{roll=[[1d20+?{Use which attribute?|Body,@{body}|Agility,@{agility}}+@{skill_melee}]]}} {{detail=Chosen Attribute + Skill}}">Roll</button>
 
                             <div class="sheet-skill-name">Ranged (Agility)</div>
-                            <select name="attr_skill_ranged"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <select name="attr_skill_ranged"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
                             <button type="roll" name="roll_ranged" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Ranged}} {{roll=[[1d20+@{agility}+@{skill_ranged}]]}} {{detail=Agility + Skill}}">Roll</button>
 
                             <div class="sheet-skill-name">Stealth (Agility)</div>
-                            <select name="attr_skill_stealth"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <select name="attr_skill_stealth"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
                             <button type="roll" name="roll_stealth" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Stealth}} {{roll=[[1d20+@{agility}+@{skill_stealth}]]}} {{detail=Agility + Skill}}">Roll</button>
 
                             <div class="sheet-skill-name">Pilot (Agility)</div>
-                            <select name="attr_skill_pilot"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <select name="attr_skill_pilot"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
                             <button type="roll" name="roll_pilot" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Pilot}} {{roll=[[1d20+@{agility}+@{skill_pilot}]]}} {{detail=Agility + Skill}}">Roll</button>
 
                             <div class="sheet-skill-name">Notice (Mind)</div>
-                            <select name="attr_skill_notice"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <select name="attr_skill_notice"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
                             <button type="roll" name="roll_notice" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Notice}} {{roll=[[1d20+@{mind}+@{skill_notice}]]}} {{detail=Mind + Skill}}">Roll</button>
 
                             <div class="sheet-skill-name">Lore (Mind)</div>
-                            <select name="attr_skill_lore"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <select name="attr_skill_lore"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
                             <button type="roll" name="roll_lore" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Lore}} {{roll=[[1d20+@{mind}+@{skill_lore}]]}} {{detail=Mind + Skill}}">Roll</button>
 
                             <div class="sheet-skill-name">Medicine (Mind)</div>
-                            <select name="attr_skill_medicine"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <select name="attr_skill_medicine"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
                             <button type="roll" name="roll_medicine" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Medicine}} {{roll=[[1d20+@{mind}+@{skill_medicine}]]}} {{detail=Mind + Skill}}">Roll</button>
 
                             <div class="sheet-skill-name">Hacking (Tech)</div>
-                            <select name="attr_skill_hacking"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <select name="attr_skill_hacking"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
                             <button type="roll" name="roll_hacking" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Hacking}} {{roll=[[1d20+@{tech}+@{skill_hacking}]]}} {{detail=Tech + Skill}}">Roll</button>
 
                             <div class="sheet-skill-name">Engineering (Tech)</div>
-                            <select name="attr_skill_engineering"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <select name="attr_skill_engineering"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
                             <button type="roll" name="roll_engineering" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Engineering}} {{roll=[[1d20+@{tech}+@{skill_engineering}]]}} {{detail=Tech + Skill}}">Roll</button>
 
                             <div class="sheet-skill-name">Charm (Presence)</div>
-                            <select name="attr_skill_charm"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <select name="attr_skill_charm"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
                             <button type="roll" name="roll_charm" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Charm}} {{roll=[[1d20+@{presence}+@{skill_charm}]]}} {{detail=Presence + Skill}}">Roll</button>
 
                             <div class="sheet-skill-name">Deceive (Presence)</div>
-                            <select name="attr_skill_deceive"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <select name="attr_skill_deceive"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
                             <button type="roll" name="roll_deceive" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Deceive}} {{roll=[[1d20+@{presence}+@{skill_deceive}]]}} {{detail=Presence + Skill}}">Roll</button>
 
                             <div class="sheet-skill-name">Command (Presence)</div>
-                            <select name="attr_skill_command"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <select name="attr_skill_command"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
                             <button type="roll" name="roll_command" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Command}} {{roll=[[1d20+@{presence}+@{skill_command}]]}} {{detail=Presence + Skill}}">Roll</button>
 
                             <div class="sheet-skill-name">Discipline (Will)</div>
-                            <select name="attr_skill_discipline"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <select name="attr_skill_discipline"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
                             <button type="roll" name="roll_discipline" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Discipline}} {{roll=[[1d20+@{will}+@{skill_discipline}-@{cyber_overload}]]}} {{detail=Will + Skill - Overload}}">Roll</button>
 
                             <div class="sheet-skill-name">Psionic (Will)</div>
-                            <select name="attr_skill_psionic"><option value="0" selected="selected">0</option><option value="2">2</option><option value="4">4</option></select>
+                            <select name="attr_skill_psionic"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
                             <button type="roll" name="roll_psionic" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Psionic}} {{roll=[[1d20+@{will}+@{skill_psionic}-@{strain}-@{psionic_cyber_penalty}]]}} {{detail=Will + Skill - Strain - Cyber Penalty}}">Roll</button>
                         </div>
                     </div>
