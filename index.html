@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Remnants of the Far Galaxy — Open Rules</title>
+    <title>Remnants of the Far Galaxy — Home</title>
     <style>
         :root {
           --bg: #171a20;
@@ -18,8 +18,7 @@
           --good: #8fd5aa;
           --shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
           --radius: 14px;
-          --radius-sm: 10px;
-          --content-width: 1360px;
+          --content-width: 1320px;
         }
 
         * { box-sizing: border-box; }
@@ -56,7 +55,7 @@
           background: linear-gradient(135deg, #1f2632, #30394a);
           border: 1px solid var(--line);
           border-radius: 18px;
-          padding: 26px 28px;
+          padding: 28px 30px;
           box-shadow: var(--shadow);
           margin-bottom: 18px;
           position: relative;
@@ -67,8 +66,8 @@
           content: "";
           position: absolute;
           inset: auto -100px -100px auto;
-          width: 280px;
-          height: 280px;
+          width: 300px;
+          height: 300px;
           background: radial-gradient(circle, rgba(155, 195, 255, 0.18), transparent 65%);
           pointer-events: none;
         }
@@ -104,20 +103,22 @@
 
         .banner-grid {
           display: grid;
-          grid-template-columns: 2.2fr 1fr;
+          grid-template-columns: 2.1fr 1fr;
           gap: 18px;
           align-items: start;
         }
 
         .hero-pills,
-        .quick-links {
+        .quick-links,
+        .tag-row,
+        .button-row {
           display: flex;
           flex-wrap: wrap;
           gap: 8px;
         }
 
         .pill,
-        .quick-link {
+        .tag {
           background: rgba(14, 18, 24, 0.7);
           border: 1px solid var(--line);
           border-radius: 999px;
@@ -126,11 +127,32 @@
           color: var(--text);
         }
 
-        .quick-link {
+        .quick-link,
+        .button-link {
+          display: inline-block;
+          background: rgba(14, 18, 24, 0.78);
+          border: 1px solid var(--line);
+          border-radius: 999px;
+          padding: 10px 14px;
+          font-size: 12px;
           color: var(--accent);
           text-transform: uppercase;
           letter-spacing: 0.06em;
           font-weight: 700;
+          transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+        }
+
+        .button-link {
+          border-radius: 10px;
+          padding: 10px 14px;
+        }
+
+        .quick-link:hover,
+        .button-link:hover {
+          text-decoration: none;
+          transform: translateY(-1px);
+          background: rgba(30, 37, 49, 0.95);
+          border-color: rgba(155, 195, 255, 0.45);
         }
 
         .layout {
@@ -145,9 +167,7 @@
         .panel,
         .callout,
         .card,
-        .table-wrap,
-        .note,
-        details {
+        .note {
           background: var(--panel);
           border: 1px solid var(--line);
           border-radius: var(--radius);
@@ -162,8 +182,7 @@
 
         .toc h2,
         .section-header h2,
-        .mini-title,
-        details > summary {
+        .mini-title {
           margin: 0;
           font-size: 14px;
           text-transform: uppercase;
@@ -212,6 +231,7 @@
           padding-bottom: 12px;
           margin-bottom: 16px;
           border-bottom: 1px solid rgba(78, 92, 116, 0.75);
+          flex-wrap: wrap;
         }
 
         .section-number {
@@ -228,12 +248,11 @@
         }
 
         p { margin: 0 0 12px; }
-        ul, ol { margin: 0 0 14px 18px; padding: 0; }
+        ul { margin: 0 0 14px 18px; padding: 0; }
         li + li { margin-top: 5px; }
 
         .grid-2,
         .grid-3,
-        .grid-4,
         .grid-auto {
           display: grid;
           gap: 12px;
@@ -241,13 +260,11 @@
 
         .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-        .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-        .grid-auto { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+        .grid-auto { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 
         .card,
         .callout,
-        .note,
-        details {
+        .note {
           padding: 14px;
         }
 
@@ -260,26 +277,14 @@
         }
 
         .callout strong,
-        .note strong,
-        .rule strong { color: var(--accent); }
-
-        .tag-row {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-          margin-bottom: 10px;
-        }
+        .note strong { color: var(--accent); }
 
         .tag {
-          display: inline-block;
           padding: 4px 9px;
-          background: rgba(13, 16, 22, 0.7);
-          border: 1px solid rgba(155, 195, 255, 0.22);
-          border-radius: 999px;
-          color: var(--muted);
           font-size: 11px;
           text-transform: uppercase;
           letter-spacing: 0.08em;
+          color: var(--muted);
         }
 
         .gm-tag {
@@ -287,71 +292,38 @@
           color: #efc0c0;
         }
 
-        .list-tight { margin-bottom: 0; }
-        .list-plain { list-style: none; margin-left: 0; }
-
-        .rule {
-          padding: 10px 12px;
-          background: rgba(16, 20, 27, 0.45);
-          border: 1px solid rgba(78, 92, 116, 0.55);
-          border-radius: 10px;
+        .player-tag {
+          border-color: rgba(143, 213, 170, 0.35);
+          color: #cfeedd;
         }
 
-        .rule + .rule { margin-top: 8px; }
-
-        .rule-title {
-          display: block;
-          color: var(--accent);
-          font-size: 13px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
-          margin-bottom: 6px;
+        .doc-card {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          min-height: 100%;
         }
 
-        table {
-          width: 100%;
-          max-width: 100%;
-          border-collapse: collapse;
-          font-size: 14px;
+        .doc-card h3 {
+          margin: 0;
+          color: var(--text);
+          font-size: 1.1rem;
         }
 
-        .table-wrap {
-          overflow-x: auto;
-          overflow-y: hidden;
-          max-width: 100%;
-          padding: 0;
-          -webkit-overflow-scrolling: touch;
+        .doc-card p {
+          color: var(--muted);
+          margin: 0;
         }
 
-        thead {
-          background: linear-gradient(180deg, rgba(54, 82, 127, 0.95), rgba(44, 61, 90, 0.95));
+        .doc-meta {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
         }
-
-        th,
-        td {
-          padding: 10px 12px;
-          border-bottom: 1px solid rgba(78, 92, 116, 0.68);
-          vertical-align: top;
-          text-align: left;
-        }
-
-        th {
-          color: #fff;
-          font-size: 12px;
-          text-transform: uppercase;
-          letter-spacing: 0.08em;
-        }
-
-        tbody tr:nth-child(even) {
-          background: rgba(43, 49, 64, 0.72);
-        }
-
-        tbody tr:last-child td { border-bottom: 0; }
 
         .stat-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
           gap: 10px;
         }
 
@@ -379,37 +351,6 @@
           line-height: 1.1;
         }
 
-        .two-column-text {
-          columns: 2 260px;
-          column-gap: 18px;
-        }
-
-        details > summary {
-          cursor: pointer;
-          list-style: none;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-
-        details > summary::-webkit-details-marker { display: none; }
-
-        details > summary::before {
-          content: "+";
-          display: inline-grid;
-          place-items: center;
-          width: 22px;
-          height: 22px;
-          border-radius: 999px;
-          background: rgba(16, 20, 27, 0.72);
-          border: 1px solid rgba(155, 195, 255, 0.28);
-          color: var(--accent);
-          font-weight: 700;
-        }
-
-        details[open] > summary::before { content: "−"; }
-        details > div { margin-top: 14px; }
-
         .footer-note {
           margin-top: 18px;
           color: var(--muted);
@@ -417,38 +358,6 @@
           text-align: center;
         }
 
-        @media (max-width: 1080px) {
-          .layout,
-          .banner-grid,
-          .grid-4,
-          .grid-3,
-          .grid-2 {
-            grid-template-columns: 1fr;
-          }
-
-          .toc {
-            position: static;
-          }
-        }
-
-        @media (max-width: 720px) {
-          .page {
-            width: min(100% - 18px, var(--content-width));
-            padding-top: 10px;
-          }
-
-          .banner,
-          section.panel,
-          .toc {
-            padding: 16px;
-          }
-
-          th,
-          td {
-            padding: 9px 10px;
-            font-size: 13px;
-          }
-        }
         html,
         body {
           max-width: 100%;
@@ -463,36 +372,37 @@
         .card,
         .callout,
         .note,
-        details,
         .toc,
         .grid-2 > *,
         .grid-3 > *,
-        .grid-4 > *,
         .grid-auto > *,
         .stat-grid > * {
           min-width: 0;
         }
 
-        .section-header {
-          flex-wrap: wrap;
-        }
-
         p,
         li,
-        td,
-        th,
         a,
-        .rule,
-        .stat-value,
-        .quick-link,
         .pill,
-        .tag {
+        .tag,
+        .button-link,
+        .quick-link,
+        .stat-value {
           overflow-wrap: anywhere;
           word-break: break-word;
         }
 
-        .table-wrap table {
-          min-width: 640px;
+        @media (max-width: 1080px) {
+          .layout,
+          .banner-grid,
+          .grid-3,
+          .grid-2 {
+            grid-template-columns: 1fr;
+          }
+
+          .toc {
+            position: static;
+          }
         }
 
         @media (max-width: 720px) {
@@ -502,45 +412,61 @@
             padding-top: 10px;
           }
 
-          .two-column-text {
-            columns: 1;
-          }
-
-          .table-wrap table {
-            min-width: 560px;
+          .banner,
+          section.panel,
+          .toc {
+            padding: 16px;
           }
         }
     </style>
 </head>
 <body>
+<!--
+    Hidden build notes:
+    Root -> index.html
+    Root -> website -> playtest.html
+    Root -> website -> worldinfo_player.html
+    Root -> website -> worldinfo_gm.html
+
+    All document links are set to open in a new tab.
+-->
+
 <div class="page">
     <header class="banner" id="top">
         <div class="banner-grid">
             <div>
-                <div class="eyebrow">Open Access Player Rules</div>
+                <div class="eyebrow">System Home • Open Access Hub</div>
                 <h1>Remnants of the Far Galaxy</h1>
-                <p class="subtitle">A compact sci-fantasy tabletop roleplaying game of rebellion, bounty hunting, smuggling, espionage, and Psionics.</p>
+                <p class="subtitle">
+                    Welcome to the primary reference hub for the system. Use this page to access playtest rules,
+                    world canon, player-facing setting material, and DM-facing campaign documents.
+                </p>
                 <div class="hero-pills">
-                    <span class="pill">d20 + modifiers</span>
-                    <span class="pill">Advantage / Disadvantage</span>
-                    <span class="pill">Edge &amp; Threat</span>
-                    <span class="pill">Callings &amp; Paths</span>
-                    <span class="pill">Cyberware</span>
-                    <span class="pill">Starships</span>
+                    <span class="pill">Playtest Rules</span>
+                    <span class="pill">World Canon</span>
+                    <span class="pill">Player Facing</span>
+                    <span class="pill">DM Facing</span>
+                    <span class="pill">Living Reference</span>
                 </div>
             </div>
+
             <div>
                 <div class="callout">
                     <div class="tag-row">
-                        <span class="tag">Player Guide</span>
-                        <span class="tag gm-tag">Includes GM Section</span>
+                        <span class="tag">Root Index</span>
+                        <span class="tag player-tag">Player Safe Sections</span>
+                        <span class="tag gm-tag">GM Material Marked</span>
                     </div>
-                    <p><strong>Use this page as a readable reference document</strong> for character building, combat, Psionic powers, gear, cyberware, ships, and quick rules lookups.</p>
+                    <p>
+                        <strong>Use this page as the landing point for your whole system.</strong>
+                        Players can safely start with the playtest rules and player-facing world pages,
+                        while GMs can branch into campaign-facing canon and hidden setting material.
+                    </p>
                     <div class="quick-links" style="margin-top:12px;">
-                        <a class="quick-link" href="#core-rules">Core Rules</a>
-                        <a class="quick-link" href="#character-creation">Create a Character</a>
-                        <a class="quick-link" href="#callings">Callings</a>
-                        <a class="quick-link" href="#reference-sheets">Quick Reference</a>
+                        <a class="quick-link" href="#start-here">Start Here</a>
+                        <a class="quick-link" href="#playtest-material">Playtest Material</a>
+                        <a class="quick-link" href="#world-canon">World Canon</a>
+                        <a class="quick-link" href="#how-to-use">How to Use</a>
                     </div>
                 </div>
             </div>
@@ -551,1381 +477,174 @@
         <aside class="toc">
             <h2>Contents</h2>
             <ol class="toc-list">
-                <li><a href="#what-this-game-is">1. What This Game Is</a></li>
-                <li><a href="#core-rules">2. Core Rules</a></li>
-                <li><a href="#character-creation">3. Character Creation</a></li>
-                <li><a href="#attributes-skills">4. Attributes, Skills, and Derived Stats</a></li>
-                <li><a href="#combat-rules">5. Combat Rules</a></li>
-                <li><a href="#Psionic-rules">6. Psionic Rules</a></li>
-                <li><a href="#cyberware-rules">7. Cyberware Rules</a></li>
-                <li><a href="#callings">8. Callings</a></li>
-                <li><a href="#talents">9. Talents</a></li>
-                <li><a href="#equipment">10. Weapons, Armor, and Equipment</a></li>
-                <li><a href="#cyberware-list">11. Cyberware List</a></li>
-                <li><a href="#vehicles-ships">12. Vehicles and Ships</a></li>
-                <li><a href="#npcs-enemies">13. Common NPCs and Enemies</a></li>
-                <li><a href="#gm-guide">14. GM Guide</a></li>
-                <li><a href="#species-identity">15. Species and Character Identity</a></li>
-                <li><a href="#reference-sheets">16. Reference Sheets</a></li>
-                <li><a href="#final-guidance">17. Final Guidance for Play</a></li>
+                <li><a href="#start-here">1. Start Here</a></li>
+                <li><a href="#playtest-material">2. Playtest Material</a></li>
+                <li><a href="#world-canon">3. World Canon</a></li>
+                <li><a href="#how-to-use">4. How to Use This Site</a></li>
             </ol>
         </aside>
 
         <main class="content">
-            <section class="panel">
-                <p><a id="what-this-game-is"> </a></p>
+            <section class="panel" id="start-here">
                 <div class="section-header">
                     <div class="section-title-wrap">
                         <div class="section-number">Section 1</div>
-                        <h2>What This Game Is</h2>
-                        <p>A familiar d20 chassis built for fast, cinematic sci-fantasy play.</p>
+                        <h2>Start Here</h2>
+                        <p>The main entry point for players, GMs, and ongoing development.</p>
                     </div>
                 </div>
 
                 <div class="grid-2">
                     <div class="card">
-                        <h3 class="mini-title">This game is about</h3>
+                        <h3 class="mini-title">What this page is for</h3>
                         <ul>
-                            <li>dangerous jobs in a fractured galaxy</li>
-                            <li>small crews making a big difference</li>
-                            <li>blasters, starships, and relic blades</li>
-                            <li>rebellion cells and bounty contracts</li>
-                            <li>cyberware, syndicates, and black markets</li>
-                            <li>rare, dangerous users of Psionics</li>
+                            <li>quick access to current rules documents</li>
+                            <li>clear separation between player-safe and GM-only material</li>
+                            <li>a clean homepage for the entire system</li>
+                            <li>a stable front page for future expansion</li>
                         </ul>
                     </div>
+
                     <div class="card">
-                        <h3 class="mini-title">This ruleset uses</h3>
+                        <h3 class="mini-title">Recommended reading order</h3>
                         <ul>
-                            <li>d20 + modifiers for almost everything</li>
-                            <li>Advantage / Disadvantage for simple bonuses and penalties</li>
-                            <li>Edge and Threat to make rolls cinematic</li>
-                            <li>Callings and Paths for character identity</li>
-                            <li>Talents for customization</li>
-                            <li>Heat and Reputation to drive campaigns</li>
+                            <li><strong>New players:</strong> read the playtest rules, then the player-facing world canon</li>
+                            <li><strong>Returning players:</strong> check the latest playtest pages first</li>
+                            <li><strong>GMs:</strong> read both the rules and the GM-facing lore documents</li>
                         </ul>
+                    </div>
+                </div>
+
+                <div class="stat-grid" style="margin-top:12px;">
+                    <div class="stat">
+                        <span class="stat-label">Primary Purpose</span>
+                        <span class="stat-value">System Hub</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Player Access</span>
+                        <span class="stat-value">Safe Links Marked</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">GM Access</span>
+                        <span class="stat-value">Separate Materials</span>
                     </div>
                 </div>
             </section>
 
-            <section class="panel" >
-                <p><a id="core-rules"> </a></p>
+            <section class="panel" id="playtest-material">
                 <div class="section-header">
                     <div class="section-title-wrap">
                         <div class="section-number">Section 2</div>
-                        <h2>Core Rules</h2>
-                        <p>The basic roll, advantage, cinematic momentum, and contested actions.</p>
+                        <h2>Playtest Material</h2>
+                        <p>Rules documents, reference pages, and playtest-ready system material.</p>
                     </div>
                 </div>
 
                 <div class="callout">
-                    <span class="rule-title">The Basic Roll</span>
-                    <p>When an action matters, roll <strong>1d20 + Attribute + Skill</strong>. If the total meets or beats the target number, you succeed. You roll against either a <strong>Difficulty</strong> or an enemy's <strong>Defense</strong>.</p>
+                    <p>
+                        <strong>Playtest materials are the mechanical heart of the system.</strong>
+                        These pages cover rules, character creation, combat flow, gear, and the working framework of play.
+                    </p>
                 </div>
 
-                <div class="grid-2" style="margin-top:12px;">
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                            <tr><th>Difficulty</th><th>Benchmark</th></tr>
-                            </thead>
-                            <tbody>
-                            <tr><td>10</td><td>Easy</td></tr>
-                            <tr><td>12</td><td>Standard</td></tr>
-                            <tr><td>15</td><td>Hard</td></tr>
-                            <tr><td>18</td><td>Extreme</td></tr>
-                            <tr><td>22</td><td>Legendary</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Advantage and Disadvantage</h3>
-                        <ul class="list-tight">
-                            <li><strong>Advantage:</strong> roll 2d20 and keep the higher.</li>
-                            <li><strong>Disadvantage:</strong> roll 2d20 and keep the lower.</li>
-                            <li>If both apply, they cancel each other out.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="grid-2" style="margin-top:12px;">
-                    <div class="card">
-                        <h3 class="mini-title">Edge</h3>
-                        <p>Gain <strong>Edge</strong> when you succeed by 5 or more, or when you roll a natural 20.</p>
-                        <div class="rule"><strong>Spend 1 Edge</strong> to deal +1d6 damage, move an extra short distance, disarm/shove/trip/pin a target, gain or improve cover, help an ally gain Advantage, reduce task time, avoid collateral damage, spot a useful detail, or keep a weapon from overheating or running dry.</div>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Threat</h3>
-                        <p>The GM gains <strong>Threat</strong> when you fail by 5 or more, or when you roll a natural 1.</p>
-                        <div class="rule"><strong>Use 1 Threat</strong> to introduce reinforcements, alarms, target repositioning, weapon failure, lockdowns, social suspicion, ship strain, or civilian danger. Threat should intensify scenes, not shut them down.</div>
-                    </div>
-                </div>
-
-                <div class="card" style="margin-top:12px;">
-                    <h3 class="mini-title">Contested Rolls</h3>
-                    <p>If two characters directly oppose each other, both roll <strong>1d20 + relevant Attribute + relevant Skill</strong>. The higher result wins.</p>
-                    <div class="tag-row" style="margin-top:10px;">
-                        <span class="tag">Hiding vs Notice</span>
-                        <span class="tag">Deceive vs Discipline</span>
-                        <span class="tag">Command vs Discipline</span>
-                        <span class="tag">Psionic vs Discipline</span>
-                        <span class="tag">Pilot vs Pilot</span>
+                <div class="grid-auto" style="margin-top:12px;">
+                    <div class="card doc-card">
+                        <div class="doc-meta">
+                            <span class="tag player-tag">Player Facing</span>
+                            <span class="tag">Core Rules</span>
+                        </div>
+                        <h3>Open Playtest Rules</h3>
+                        <p>
+                            The current rules reference for character creation, core mechanics,
+                            combat, Psionics, equipment, and quick rules lookup at the table.
+                        </p>
+                        <div class="button-row">
+                            <a class="button-link" href="/website/playtest.html" target="_blank" rel="noopener noreferrer">Open playtest Materials</a>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section class="panel" >
-                <p><a id="character-creation"> </a></p>
+            <section class="panel" id="world-canon">
                 <div class="section-header">
                     <div class="section-title-wrap">
                         <div class="section-number">Section 3</div>
-                        <h2>Character Creation</h2>
-                        <p>Create a character in six steps.</p>
+                        <h2>World Canon</h2>
+                        <p>Setting material divided into player-facing and DM-facing references.</p>
                     </div>
                 </div>
 
-                <div class="grid-auto">
-                    <div class="card">
-                        <span class="rule-title">Step 1 — Assign Attributes</span>
-                        <p>Assign these modifiers across the six Attributes:</p>
-                        <div class="tag-row"><span class="tag">+2</span><span class="tag">+2</span><span class="tag">+1</span><span class="tag">+1</span><span class="tag">0</span><span class="tag">−1</span></div>
+                <div class="grid-2">
+                    <div class="card doc-card">
+                        <div class="doc-meta">
+                            <span class="tag player-tag">Player Facing</span>
+                            <span class="tag">Common Knowledge</span>
+                        </div>
+                        <h3>World Canon — Player Guide</h3>
+                        <p>
+                            A player-safe overview of the sector, major powers, common beliefs,
+                            public history, social reality, and useful character context.
+                        </p>
+                        <div class="button-row">
+                            <a class="button-link" href="/website/worldinfo_player.html" target="_blank" rel="noopener noreferrer">Open Player World Info</a>
+                        </div>
                     </div>
-                    <div class="card">
-                        <span class="rule-title">Step 2 — Choose a Background</span>
-                        <p>A Background tells the group who you were before the campaign. It grants <strong>2 trained skills</strong>, <strong>1 contact</strong>, and <strong>1 useful item or perk</strong>.</p>
-                    </div>
-                    <div class="card">
-                        <span class="rule-title">Step 3 — Choose a Calling</span>
-                        <p>Your Calling is your main role. At level 1 it gives trained skills, starting features, and starting gear suggestions.</p>
-                    </div>
-                    <div class="card">
-                        <span class="rule-title">Step 4 — Choose Trained Skills</span>
-                        <p>You begin with <strong>2 trained skills from Background</strong> and <strong>4 trained skills from Calling</strong>. If a skill would be gained twice, choose another from the same list.</p>
-                    </div>
-                    <div class="card">
-                        <span class="rule-title">Step 5 — Choose Starting Equipment</span>
-                        <p>Take one primary weapon, one backup weapon or tool, one armor set, a field kit tied to your role, and one signature item from your background.</p>
-                    </div>
-                    <div class="card">
-                        <span class="rule-title">Step 6 — Record Derived Stats</span>
-                        <div class="stat-grid">
-                            <div class="stat"><span class="stat-label">Health</span><span class="stat-value">10 + Body + Level</span></div>
-                            <div class="stat"><span class="stat-label">Resolve</span><span class="stat-value">3 + Will</span></div>
-                            <div class="stat"><span class="stat-label">Defense</span><span class="stat-value">10 + Agility + armor</span></div>
-                            <div class="stat"><span class="stat-label">Initiative</span><span class="stat-value">1d20 + Agility</span></div>
-                            <div class="stat"><span class="stat-label">Cyber Load Limit</span><span class="stat-value">2 + Tech</span></div>
+
+                    <div class="card doc-card">
+                        <div class="doc-meta">
+                            <span class="tag gm-tag">GM Facing</span>
+                            <span class="tag">Spoilers / Deep Lore</span>
+                        </div>
+                        <h3>World Canon — GM Guide</h3>
+                        <p>
+                            GM-facing truth, hidden history, faction motives, campaign secrets,
+                            deeper lore, and scenario-building material for the Far Sector.
+                        </p>
+                        <div class="button-row">
+                            <a class="button-link" href="/website/worldinfo_gm.html" target="_blank" rel="noopener noreferrer">Open GM world Info</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="card" style="margin-top:12px;">
-                    <h3 class="mini-title">Sample Backgrounds</h3>
-                    <p class="two-column-text">Drifter, Soldier, Smuggler, Mechanic, Investigator, Ex-Imperial, Rebel Cell Agent, Bounty Hunter, Temple Acolyte, Street Kid, Noble, Corporate Defector, Dockworker, Scavenger, Mercenary, Spacer.</p>
-                </div>
-
-                <div class="card" style="margin-top:12px;">
-                    <h3 class="mini-title">Resources</h3>
-                    <a href="/website/rtfg_google_docs_printable.pdf" download>Printable Character Sheet PDF (Landscape)</a>
-                </div>
-
-                <div class="card" style="margin-top:12px;">
-                    <h3 class="mini-title">Core Callings</h3>
-                    <div class="tag-row">
-                        <span class="tag">Hunter</span>
-                        <span class="tag">Operative</span>
-                        <span class="tag">Marshal</span>
-                        <span class="tag">Gearhead</span>
-                        <span class="tag">Ace</span>
-                        <span class="tag">Adept</span>
-                    </div>
+                <div class="note" style="margin-top:12px;">
+                    <strong>Keep GM-facing material separate from player-facing canon.</strong>
+                    Mystery, propaganda, hidden history, and revelation all work better when the site preserves the distinction.
                 </div>
             </section>
 
-            <section class="panel" >
-                <p><a id="attributes-skills"> </a></p>
+            <section class="panel" id="how-to-use">
                 <div class="section-header">
                     <div class="section-title-wrap">
                         <div class="section-number">Section 4</div>
-                        <h2>Attributes, Skills, and Derived Stats</h2>
-                        <p>The six core attributes and the skills they support.</p>
-                    </div>
-                </div>
-
-                <div class="grid-3">
-                    <div class="card"><span class="rule-title">Body</span><p>Strength, endurance, carrying, climbing, resisting pain.</p></div>
-                    <div class="card"><span class="rule-title">Agility</span><p>Reflexes, stealth, balance, speed, ranged aim.</p></div>
-                    <div class="card"><span class="rule-title">Mind</span><p>Awareness, deduction, memory, tactical reasoning, education.</p></div>
-                    <div class="card"><span class="rule-title">Tech</span><p>Hacking, repair, cyberware, mechanical systems, electronics.</p></div>
-                    <div class="card"><span class="rule-title">Presence</span><p>Charm, intimidation, social influence, command, reading a room.</p></div>
-                    <div class="card"><span class="rule-title">Will</span><p>Courage, focus, spiritual discipline, resistance to fear and Psionic effects.</p></div>
-                </div>
-
-                <div class="table-wrap" style="margin-top:12px;">
-                    <table>
-                        <thead>
-                        <tr><th>Skill</th><th>Attribute</th><th>Use</th></tr>
-                        </thead>
-                        <tbody>
-                        <tr><td>Athletics</td><td>Body</td><td>Climb, swim, leap, shove, break, grapple, resist restraint.</td></tr>
-                        <tr><td>Melee</td><td>Body or Agility</td><td>Fight with blades, clubs, staffs, shock weapons, improvised melee weapons.</td></tr>
-                        <tr><td>Ranged</td><td>Agility</td><td>Shoot pistols, carbines, rifles, repeaters, bows, and some mounted guns.</td></tr>
-                        <tr><td>Stealth</td><td>Agility</td><td>Move quietly, hide, shadow, pick approach lines.</td></tr>
-                        <tr><td>Pilot</td><td>Agility</td><td>Fly ships, drive speeders, navigate hazards, handle chases.</td></tr>
-                        <tr><td>Notice</td><td>Mind</td><td>Spot danger, ambushes, clues, tracks, lies, hidden threats.</td></tr>
-                        <tr><td>Lore</td><td>Mind</td><td>History, galactic knowledge, religion, factions, laws, relics.</td></tr>
-                        <tr><td>Medicine</td><td>Mind</td><td>Stabilize, treat wounds, identify toxins, basic surgery.</td></tr>
-                        <tr><td>Hacking</td><td>Tech</td><td>Bypass locks, slice systems, break encryptions, seize devices.</td></tr>
-                        <tr><td>Engineering</td><td>Tech</td><td>Repair gear, mod weapons, patch armor, handle mechanics.</td></tr>
-                        <tr><td>Charm</td><td>Presence</td><td>Negotiate, persuade, calm, gain trust.</td></tr>
-                        <tr><td>Deceive</td><td>Presence</td><td>Lie, bluff, forge impressions, conceal intent.</td></tr>
-                        <tr><td>Command</td><td>Presence</td><td>Lead, coordinate, inspire, intimidate with authority.</td></tr>
-                        <tr><td>Discipline</td><td>Will</td><td>Resist fear, torture, coercion, mind tricks, panic.</td></tr>
-                        <tr><td>Psionic</td><td>Will</td><td>Sense and shape Psionics.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="grid-3" style="margin-top:12px;">
-                    <div class="stat"><span class="stat-label">Untrained</span><span class="stat-value">+0</span></div>
-                    <div class="stat"><span class="stat-label">Trained</span><span class="stat-value">+2</span></div>
-                    <div class="stat"><span class="stat-label">Expert</span><span class="stat-value">+4</span></div>
-                </div>
-                <p style="margin-top:12px; color: var(--muted);">No starting character begins as Expert unless the GM allows a special rule.</p>
-            </section>
-
-            <section class="panel" >
-                <p><a id="combat-rules"> </a></p>
-                <div class="section-header">
-                    <div class="section-title-wrap">
-                        <div class="section-number">Section 5</div>
-                        <h2>Combat Rules</h2>
-                        <p>Fast rounds, simple movement, and cinematic tactical choices.</p>
-                    </div>
-                </div>
-
-                <div class="stat-grid">
-                    <div class="stat"><span class="stat-label">Each Round</span><span class="stat-value">1 Action</span></div>
-                    <div class="stat"><span class="stat-label">Each Round</span><span class="stat-value">1 Move</span></div>
-                    <div class="stat"><span class="stat-label">Each Round</span><span class="stat-value">1 Reaction</span></div>
-                </div>
-
-                <div class="grid-2" style="margin-top:12px;">
-                    <div class="card">
-                        <h3 class="mini-title">Movement</h3>
-                        <ul>
-                            <li>across a small room</li>
-                            <li>between pieces of cover</li>
-                            <li>up a corridor segment</li>
-                            <li>into melee with a nearby target</li>
-                            <li>If using a grid, Move is <strong>6 squares</strong>.</li>
-                        </ul>
-                    </div>
-                    <div class="card" style="margin-top:12px;">
-                        <h3 class="mini-title">Equipping and Using Weapons</h3>
-                        <ul>
-                            <li><strong>Light weapons:</strong> You may equip or draw the weapon and use it as part of the same Action.</li>
-                            <li><strong>Non-Light weapons:</strong> Equipping or readying the weapon takes your Action. Attacking or firing with it takes a separate Action.</li>
-                            <li><strong>Heavy weapons:</strong> Heavy weapons follow the non-light rule unless a feature says otherwise.</li>
-                            <li>If a weapon is already in hand and ready, using it only takes the normal attack Action.</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Common Actions</h3>
-                        <div class="tag-row">
-                            <span class="tag">Attack</span>
-                            <span class="tag">Dash</span>
-                            <span class="tag">Aim</span>
-                            <span class="tag">Hide</span>
-                            <span class="tag">Assist</span>
-                            <span class="tag">Use Item</span>
-                            <span class="tag">Hack</span>
-                            <span class="tag">Stabilize</span>
-                            <span class="tag">Use Psionics</span>
-                            <span class="tag">Ready</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="rule" style="margin-top:12px;"><strong>Attack Roll:</strong> roll <strong>1d20 + relevant Attribute + combat Skill</strong> and compare the result to the target's Defense. Melee uses <strong>Body or Agility + Melee</strong>. Ranged uses <strong>Agility + Ranged</strong>.</div>
-
-                <div class="grid-2" style="margin-top:12px;">
-                    <div class="card">
-                        <h3 class="mini-title">Damage and Critical Hits</h3>
-                        <ul>
-                            <li>On a hit, roll the weapon's damage.</li>
-                            <li>On a natural 20, deal maximum normal damage, then roll the weapon damage dice again and add the result.</li>
-                            <li>Optional critical effects: disarm target, knock target prone, shove target into cover, destroy carried gear, or inflict 1 extra Wound on a Downed target.</li>                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Cover</h3>
-                        <ul>
-                            <li><strong>Half cover:</strong> +2 Defense</li>
-                            <li><strong>Full cover:</strong> +5 Defense</li>
-                            <li>Targets behind full cover usually cannot be hit unless the attack can arc, explode, pierce, or ignore cover.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="table-wrap" style="margin-top:12px;">
-                    <table>
-                        <thead>
-                        <tr><th>Range Band</th><th>Meaning</th></tr>
-                        </thead>
-                        <tbody>
-                        <tr><td>Engaged</td><td>close enough for melee  - (1-2 Grid)</td></tr>
-                        <tr><td>Short</td><td>same room or close lane  - (6-12 Grid)</td></tr>
-                        <tr><td>Medium</td><td>across a street, hangar, or long hall - (12-24 Grid)</td></tr>
-                        <tr><td>Long</td><td>rooftop to rooftop, sniper line, open field - (>30 Grid)</td></tr>
-                        <tr><td>Extreme</td><td>specialized weapons or ship scale - (>100 Grid)</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="grid-2" style="margin-top:12px;">
-                    <div class="card">
-                        <h3 class="mini-title">Aiming, Hiding, and Helping</h3>
-                        <ul>
-                            <li><strong>Aim:</strong> If you spend your Action aiming, your next ranged attack before the end of your next turn has Advantage.</li>
-                            <li><strong>Hide:</strong> Roll Stealth against enemy Notice. If you stay hidden, enemies may lose track of you or suffer Disadvantage to attack you.</li>
-                            <li><strong>Assist:</strong> As an Action, make a clear effort to help an ally. If the GM agrees the help matters, that ally gains Advantage on one related roll.</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Grappling</h3>
-                        <p>To grapple, roll Athletics vs the target's Athletics or Agility. On success, the target is <strong>Restrained</strong> until they break free, you move away, you are forced off, or you release them.</p>
-                        <ul class="list-tight">
-                            <li>Restrained targets cannot move freely.</li>
-                            <li>They have Disadvantage on Agility-based actions.</li>
-                            <li>They are easier to capture.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="grid-2" style="margin-top:12px;">
-                    <div class="card">
-                        <h3 class="mini-title">Downed, Wounds, and Death</h3>
-                        <ul>
-                            <li>At <strong>0 Health</strong>, you are <strong>Downed</strong>.</li>
-                            <li>At the start of each of your turns, roll 1d20.</li>
-                            <li><strong>10+</strong>: you hold on.</li>
-                            <li><strong>9 or less</strong>: mark 1 Wound.</li>
-                            <li>At <strong>3 Wounds</strong>, you die.</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Healing</h3>
-                        <ul>
-                            <li>An ally can stabilize you with Medicine 12, a medkit and a successful Medicine check, or a feature or Psionic power that restores Health.</li>
-                            <li>Once stabilized, you remain unconscious until healed.</li>
-                            <li>Medkits restore Health outside combat and may stabilize during combat.</li>
-                            <li>Psionic healing restores Health directly.</li>
-                            <li>A Full Rest restores all Health unless the GM rules a severe injury needs care.</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <section class="panel">
-                <p><a id="Psionic-rules"> </a></p>
-                <div class="section-header">
-                    <div class="section-title-wrap">
-                        <div class="section-number">Section 6</div>
-                        <h2>Psionic Rules</h2>
-                        <p>Resolve, Psionic powers, strain, and optional moral pressure.</p>
+                        <h2>How to Use This Site</h2>
+                        <p>A clean reading flow for table use, campaign prep, and future expansion.</p>
                     </div>
                 </div>
 
                 <div class="grid-2">
                     <div class="card">
-                        <h3 class="mini-title">Who Can Use Psionics</h3>
-                        <p>Only characters with Psionic training may take Psionics skill and use Psionic powers. In the core rules, that is normally the <strong>Adept</strong> Calling, though the GM may allow rare training or special talents for others.</p>
+                        <h3 class="mini-title">For Players</h3>
+                        <p>
+                            Start with the playtest rules, then move to the player-facing world canon.
+                            Those pages should be enough to build characters and understand the setting.
+                        </p>
                     </div>
+
                     <div class="card">
-                        <h3 class="mini-title">Resolve</h3>
-                        <p>Resolve measures focus, spiritual control, and inner reserves. You spend Resolve to use Psionic powers and some special Calling features.</p>
-                        <div class="stat-grid" style="margin-top:10px;">
-                            <div class="stat"><span class="stat-label">Starting Resolve</span><span class="stat-value">3 + Will</span></div>
-                        </div>
+                        <h3 class="mini-title">For GMs</h3>
+                        <p>
+                            Use the GM-facing world page to frame campaigns, reveal hidden truths,
+                            and anchor the larger political and mystical structure of the setting.
+                        </p>
                     </div>
                 </div>
 
-                <div class="callout" style="margin-top:12px;">
-                    <span class="rule-title">Using a Psionic Power</span>
-                    <p>Choose the power, spend the listed Resolve cost (usually 1), then roll <strong>1d20 + Will + Psionic</strong> and compare to a target's Defense or a set Difficulty.</p>
-                </div>
-
-                <div class="grid-2" style="margin-top:12px;">
-                    <div class="card">
-                        <h3 class="mini-title">Psionic Strain</h3>
-                        <p>If you use a Psionic power while at 0 Resolve, you may still use it, but you take <strong>1 Strain</strong>.</p>
-                        <ul>
-                            <li>Each point of Strain gives <strong>−1 to Psionic rolls</strong>.</li>
-                            <li>Strain remains until a Full Rest.</li>
-                            <li>At 3 Strain, the GM may trigger a backlash.</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Possible Backlash</h3>
-                        <ul>
-                            <li>a visible aura</li>
-                            <li>emotional overflow</li>
-                            <li>objects shaking or breaking</li>
-                            <li>attracting hostile attention</li>
-                            <li>local electronics glitching</li>
-                            <li>revealing your location through Psionics</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <details open style="margin-top:12px;">
-                    <summary>Psionic Powers</summary>
-                    <div class="grid-2">
-                        <div class="rule"><strong>Push / Pull — Cost 1 Resolve:</strong> Move a nearby creature or object a short distance. Attack use: roll vs Defense. On a hit, deal 1d6 Psionic damage and push the target.</div>
-                        <div class="rule"><strong>Heighten — Cost 1 Resolve:</strong> Gain Advantage on one Initiative, Notice, Agility, or Athletics roll this scene.</div>
-                        <div class="rule"><strong>Sense — Cost 1 Resolve:</strong> Ask one question Psionics might answer, such as: Is danger near? Is there life nearby? Is someone hiding hostile intent? Has Psionics been used here recently? The GM should answer truthfully, though not always completely.</div>                        <div class="rule"><strong>Leap — Cost 1 Resolve:</strong> Make an impossible jump or fall safely this turn.</div>
-                        <div class="rule"><strong>Bind — Cost 1 Resolve:</strong> Roll Psionic vs target Defense or Discipline. On a success, the target is restrained until the end of your next turn.</div>
-                        <div class="rule"><strong>Deflect — Cost 1 Resolve, Reaction:</strong> Reduce incoming ranged damage by 1d8 + Will. If damage is reduced to 0, you may redirect the shot at a valid target within Short range.</div>
-                        <div class="rule"><strong>Mind Trick — Cost 1 Resolve:</strong> Roll Psionic vs target Discipline. On success, plant a short, plausible suggestion. The request cannot obviously compel self-destruction unless the GM allows a powerful narrative moment.</div>                        <div class="rule"><strong>Surge — Cost 1 Resolve:</strong> Deal 1d8 energy damage to a nearby target, or add +1d8 to a melee attack this turn.</div>
-                        <div class="rule"><strong>Heal — Cost 1 Resolve:</strong> Restore 1d8 + Will Health to a touched target. Each target can benefit from Heal once per Short Rest unless a feature says otherwise.</div>
-                        <div class="rule"><strong>Cloak — Cost 1 Resolve:</strong> Gain Advantage on Stealth and become difficult to track until you attack, shout, or take obvious hostile action.</div>
-                    </div>
-                </details>
-
-                <div class="note" style="margin-top:12px;">
-                    <strong>Psionic and Morality:</strong> This game does not require a fixed morality chart, but cruel, reckless, or fear-fueled Psionic use should feel dangerous. Optional rule: when a Psionic user acts through cruelty, domination, or rage, they gain <strong>1 extra Strain</strong> after the power resolves.
-                </div>
-            </section>
-
-            <section class="panel">
-                <p><a id="cyberware-rules"> </a></p>
-                <div class="section-header">
-                    <div class="section-title-wrap">
-                        <div class="section-number">Section 7</div>
-                        <h2>Cyberware Rules</h2>
-                        <p>Powerful implants with social and spiritual tradeoffs.</p>
-                    </div>
-                </div>
-
-                <div class="grid-3">
-                    <div class="stat"><span class="stat-label">Cyber Load Limit</span><span class="stat-value">2 + Tech</span></div>
-                    <div class="stat"><span class="stat-label">Over Limit Penalty</span><span class="stat-value">−1 Presence</span></div>
-                    <div class="stat"><span class="stat-label">Over Limit Penalty</span><span class="stat-value">−1 Discipline</span></div>
-                </div>
-
-                <div class="grid-2" style="margin-top:12px;">
-                    <div class="card">
-                        <h3 class="mini-title">Cyber Load</h3>
-                        <p>Each implant has a Load value. If your total Load exceeds your safe Cyber Load, for every point over the limit you suffer:</p>
-                        <ul>
-                            <li>−1 Presence</li>
-                            <li>−1 Discipline</li>
-                        </ul>
-                        <p>The GM may also rule that some NPCs distrust heavily altered characters on sight.</p>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Installing Cyberware</h3>
-                        <p>Installing cyberware requires access to the implant, proper tools, a qualified installer or facility, and time and money or barter. The GM may turn installation into downtime, a mission reward, or a black-market scene.</p>
-                    </div>
-                </div>
-
-                <div class="note" style="margin-top:12px;"><strong>Cyberware and Psionics:</strong> Psionics still works through cybernetic bodies, but severe overload can disrupt emotional control. If a Psionic user is over their Cyber Load limit, they also take <strong>−1 Psionic for every 2 points over the limit, rounded down</strong>.</div>
-            </section>
-
-            <section class="panel">
-                <p><a id="callings"> </a></p>
-                <div class="section-header">
-                    <div class="section-title-wrap">
-                        <div class="section-number">Section 8</div>
-                        <h2>Callings</h2>
-                        <p>Characters advance from level 1 to level 10.</p>
-                    </div>
-                </div>
-
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                        <tr><th>Level</th><th>Advancement</th></tr>
-                        </thead>
-                        <tbody>
-                        <tr><td>1</td><td>Calling features</td></tr>
-                        <tr><td>2</td><td>Talent</td></tr>
-                        <tr><td>3</td><td>Path feature</td></tr>
-                        <tr><td>4</td><td>+1 Attribute or Talent</td></tr>
-                        <tr><td>5</td><td>Calling feature</td></tr>
-                        <tr><td>6</td><td>Talent</td></tr>
-                        <tr><td>7</td><td>Path feature</td></tr>
-                        <tr><td>8</td><td>+1 Attribute or Talent</td></tr>
-                        <tr><td>9</td><td>Calling feature</td></tr>
-                        <tr><td>10</td><td>Path capstone</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <details open style="margin-top:12px;">
-                    <summary>Hunter</summary>
-                    <div class="grid-2">
-                        <div class="card">
-                            <div class="tag-row">
-                                <span class="tag">Bounty hunters</span>
-                                <span class="tag">Trackers</span>
-                                <span class="tag">Mercenaries</span>
-                                <span class="tag">Pursuit specialists</span>
-                            </div>
-                            <p><strong>Trained Skills:</strong> Ranged, Notice, Athletics, and one of Melee, Pilot, or Stealth.</p>
-                            <ul>
-                                <li><strong>Level 1 — Marked Target:</strong> As a bonus action, mark one visible target. Once per turn, deal +2 damage to that target.</li>
-                                <li><strong>Level 1 — Track Quarry:</strong> Gain Advantage on checks to locate, identify, follow, or profile a chosen target.</li>
-                                <li><strong>Level 5 — Relentless Pursuit:</strong> Your mark cannot gain the benefit of Half Cover against your attacks, and you ignore normal penalties for tracking through crowds, bad weather, or clutter.</li>
-                                <li><strong>Level 9 — No Escape:</strong> Once per scene, when your marked target moves away, you may immediately move after them or make a ranged attack as a Reaction.</li>
-                            </ul>
-                        </div>
-                        <div class="card">
-                            <h3 class="mini-title">Hunter Paths</h3>
-                            <div class="rule"><strong>Gunslinger — Level 3 Fast Hands:</strong> Draw, reload, or switch weapons for free once each turn.</div>
-                            <div class="rule"><strong>Gunslinger — Level 7 Twin Shot:</strong> When using a Light pistol, you may make one off-hand shot at -2 as part of the same Action.</div>
-                            <div class="rule"><strong>Gunslinger — Level 10 Dead Run Duelist:</strong> Once per scene, move, attack with Advantage, and then move again without provoking reactions.</div>
-
-                            <div class="rule"><strong>Tracker — Level 3 Snare Expert:</strong> You carry or improvise traps. Once per scene, set a trap as an Action. A creature entering it must pass Athletics or Agility 14 or become slowed, restrained, or revealed.</div>
-                            <div class="rule"><strong>Tracker — Level 7 Ghost on the Trail:</strong> Gain Advantage on Stealth and Notice while pursuing a quarry. Hidden enemies do not gain Advantage against you unless they beat your Notice by 5 or more.</div>
-                            <div class="rule"><strong>Tracker — Level 10 Unerring Hunt:</strong> Once you have studied a quarry for at least one scene, the GM must tell you one of the following truthfully: where they would flee, what they fear, what protects them, or who they trust.</div>
-
-                            <div class="rule"><strong>Bruiser — Level 3 Shock Entry:</strong> When you move into melee and hit a target, you may push or stagger them without spending Edge.</div>
-                            <div class="rule"><strong>Bruiser — Level 7 Iron Frame:</strong> Gain +1 Armor or reduce one incoming physical hit by 2 each round.</div>
-                            <div class="rule"><strong>Bruiser — Level 10 Bring Them In:</strong> When you reduce a target to 0 Health in melee, you may choose to automatically incapacitate instead of kill, even if the weapon would normally be lethal.</div>
-                        </div>
-                    </div>
-                </details>
-
-                <details style="margin-top:12px;">
-                    <summary>Operative</summary>
-                    <div class="grid-2">
-                        <div class="card">
-                            <div class="tag-row">
-                                <span class="tag">Spies</span>
-                                <span class="tag">Infiltrators</span>
-                                <span class="tag">Slicer-thieves</span>
-                                <span class="tag">Saboteurs</span>
-                                <span class="tag">Assassins</span>
-                            </div>
-                            <p><strong>Trained Skills:</strong> Stealth, Deceive, Hacking, Notice.</p>
-                            <ul>
-                                <li><strong>Level 1 — Sneak Attack:</strong> Once per turn, deal +1d6 damage when you have Advantage on the attack, or an ally is engaging the target at close range.</li>
-                                <li><strong>Level 1 — Ghost Step:</strong> Difficult terrain does not slow you when moving cautiously or while hidden.</li>
-                                <li><strong>Level 5 — Tradecraft:</strong> Once per scene, reroll a failed Stealth, Hacking, or Deceive check.</li>
-                                <li><strong>Level 9 — Fade Out:</strong> When an enemy misses you, you may immediately move to nearby cover or attempt to Hide as a Reaction.</li>
-                            </ul>
-                        </div>
-                        <div class="card">
-                            <h3 class="mini-title">Operative Paths</h3>
-                            <div class="rule"><strong>Infiltrator — Level 3 False Face:</strong> Gain Advantage on Deceive checks involving disguise, cover identity, forged access, or impersonation.</div>
-                            <div class="rule"><strong>Infiltrator — Level 7 Silent Entry:</strong> You may Hide as a bonus action, and the first attack you make from hiding deals +1d6 extra damage.</div>
-                            <div class="rule"><strong>Infiltrator — Level 10 Untouchable:</strong> Once per scene, you may automatically pass through a guarded checkpoint, surveillance gap, or locked access point if there is any plausible method to do so. The GM decides the cost or consequence, but you get through.</div>
-
-                            <div class="rule"><strong>Slicer — Level 3 Fast Slice:</strong> Your first Hacking attempt each scene is a bonus action.</div>
-                            <div class="rule"><strong>Slicer — Level 7 System Puppet:</strong> Once per scene, on a successful Hacking check, you may do one extra thing for free: open a door, disable a camera, lock a target out, spoof credentials, or pull simple data.</div>
-                            <div class="rule"><strong>Slicer — Level 10 Ghost in the Grid:</strong> You cannot be trivially traced through local systems. When you trigger a digital alarm, you may cause it to be delayed, misdirected, or partially concealed.</div>
-                            <div class="rule"><strong>Saboteur — Level 3 Demolitions Kit:</strong> You can prepare charges, traps, and disruptions from common gear. Gain Advantage on rolls to breach, sabotage, or disable infrastructure.</div>
-                            <div class="rule"><strong>Saboteur — Level 7 Chain Reaction:</strong> When you damage machinery, generators, doors, or vehicles, roll +1d8 damage and create a complication for enemies nearby.</div>
-                            <div class="rule"><strong>Saboteur — Level 10 Planned Collapse:</strong> Once per mission, declare that you prepared a fallback sabotage point earlier. It may be an explosive line, severed support, blackout trigger, or hidden trap, subject to the GM's approval.</div>
-                        </div>
-                    </div>
-                </details>
-
-                <details style="margin-top:12px;">
-                    <summary>Marshal</summary>
-                    <div class="grid-2">
-                        <div class="card">
-                            <div class="tag-row">
-                                <span class="tag">Officers</span>
-                                <span class="tag">Rebel leaders</span>
-                                <span class="tag">Diplomats</span>
-                                <span class="tag">Field commanders</span>
-                                <span class="tag">Front-liners</span>
-                            </div>
-                            <p><strong>Trained Skills:</strong> Command, Charm, Ranged, Discipline.</p>
-                            <ul>
-                                <li><strong>Level 1 — Command Ally:</strong> As a bonus action, choose one ally who can see or hear you. They may move a short distance or gain +2 on their next roll before the end of their next turn.</li>
-                                <li><strong>Level 1 — Hold the Line:</strong> Allies near you gain +1 on Discipline checks and saves against fear, panic, or suppression.</li>
-                                <li><strong>Level 5 — Field Presence:</strong> Once per round, when an ally within sight misses, fails a Discipline check, or is forced into cover, you may let them reroll.</li>
-                                <li><strong>Level 9 — Stand Fast:</strong> At the start of a fight, choose up to three allies. Until one of them drops to 0 Health, each chosen ally gains +1 Defense while they can see you.</li>
-                            </ul>
-                        </div>
-                        <div class="card">
-                            <h3 class="mini-title">Marshal Paths</h3>
-                            <div class="rule"><strong>Officer — Level 3 Coordinated Fire:</strong> If two allies attack the same target after you call the shot, the second gains +2 to hit.</div>
-                            <div class="rule"><strong>Officer — Level 7 Tactical Shift:</strong> Once per round, move one ally into nearby cover or let them swap places with another ally.</div>
-                            <div class="rule"><strong>Officer — Level 10 Battle Rhythm:</strong> The first time each round an ally spends Edge, they regain it if the action directly follows your command.</div>
-
-                            <div class="rule"><strong>Diplomat — Level 3 Voice of Reason:</strong> Gain Advantage on Charm when calming tension, securing passage, or persuading uncertain neutrals.</div>
-                            <div class="rule"><strong>Diplomat — Level 7 Read the Room:</strong> Once per scene, ask the GM who has leverage, what people fear, or which deal would work here.</div>
-                            <div class="rule"><strong>Diplomat — Level 10 Ceasefire:</strong> Once per mission, if violence has not yet fully broken out, you may force a short negotiation pause unless a major villain chooses to break it publicly.</div>
-                            <div class="rule"><strong>Vanguard — Level 3 Shield Advance:</strong> While in medium or heavy armor, adjacent allies gain +1 Defense.</div>
-                            <div class="rule"><strong>Vanguard — Level 7 Intercept:</strong> Reaction. When an ally within reach is hit, move adjacent and take the hit instead, reducing damage by your Will or armor value.</div>
-                            <div class="rule"><strong>Vanguard — Level 10 Unbroken Front:</strong> Once per scene, you and nearby allies ignore fear, suppression, and forced movement for one full round.</div>
-                        </div>
-                    </div>
-                </details>
-
-                <details style="margin-top:12px;">
-                    <summary>Gearhead</summary>
-                    <div class="grid-2">
-                        <div class="card">
-                            <div class="tag-row">
-                                <span class="tag">Mechanics</span>
-                                <span class="tag">Medics</span>
-                                <span class="tag">Techs</span>
-                                <span class="tag">Drone operators</span>
-                                <span class="tag">Field support</span>
-                            </div>
-                            <p><strong>Trained Skills:</strong> Engineering, Hacking, Medicine, and one of Notice or Pilot.</p>
-                            <ul>
-                                <li><strong>Level 1 — Bypass:</strong> Gain +2 on Hacking or Engineering checks to bypass locks, doors, seals, or security.</li>
-                                <li><strong>Level 1 — Patch Kit:</strong> Once per Short Rest, restore 1d8 + Tech Health to an ally or repair 1 point of armor wear.</li>
-                                <li><strong>Level 5 — Field Fix:</strong> As an Action, remove one of the following from a nearby ally or item: jammed weapon, disabled gear, armor wear, light system failure, med-complication chosen by GM.</li>
-                                <li><strong>Level 9 — Always a Tool for It:</strong> Once per scene, produce a plausible technical tool, spare part, injector, cable, sealant, or interface from your kit.</li>
-                            </ul>
-                        </div>
-                        <div class="card">
-                            <h3 class="mini-title">Gearhead Paths</h3>
-                            <div class="rule"><strong>Mechanic — Level 3 Jury-Rig:</strong> In minutes rather than hours, you can make unstable but useful repairs that last until the end of the mission.</div>
-                            <div class="rule"><strong>Mechanic — Level 7 Overclock:</strong> Once per scene, boost a weapon, tool, or vehicle for one roll with Advantage or +1 damage die.</div>
-                            <div class="rule"><strong>Mechanic — Level 10 Master Retrofit:</strong> A vehicle, armor suit, or signature device you maintain gains one permanent custom module approved by the GM.</div>
-
-                            <div class="rule"><strong>Medic — Level 3 Combat Stabilizer:</strong> Stabilizing a Downed ally is a bonus action for you.</div>
-                            <div class="rule"><strong>Medic — Level 7 Stim Surge:</strong> Once per scene, give an ally +2 Initiative, +2 Move, or immediate recovery of 1 Resolve.</div>
-                            <div class="rule"><strong>Medic — Level 10 Trauma Expert:</strong> The first time each mission an ally would gain a Wound, they do not.</div>
-
-                            <div class="rule"><strong>Dronewright — Level 3 Support Drone:</strong> You gain a small drone. Each round it may grant +2 to one Notice, Hacking, or Engineering check, or deliver a small item.</div>
-                            <div class="rule"><strong>Dronewright — Level 7 Armed Chassis:</strong> Your drone can make a light attack, apply a shock, or project a sensor mark once per round.</div>
-                            <div class="rule"><strong>Dronewright — Level 10 Networked Control:</strong> Your drone can act at long range and can maintain two simple tasks at once.</div>
-                        </div>
-                    </div>
-                </details>
-
-                <details style="margin-top:12px;">
-                    <summary>Ace</summary>
-                    <div class="grid-2">
-                        <div class="card">
-                            <div class="tag-row">
-                                <span class="tag">Pilots</span>
-                                <span class="tag">Drivers</span>
-                                <span class="tag">Hotshots</span>
-                                <span class="tag">Gunners</span>
-                                <span class="tag">Smugglers</span>
-                            </div>
-                            <p><strong>Trained Skills:</strong> Pilot, Ranged, Notice, and one of Deceive or Engineering.</p>
-                            <ul>
-                                <li><strong>Level 1 — Push the Vehicle:</strong> Once per scene, gain Advantage on a Pilot roll, evade, or vehicle stunt.</li>
-                                <li><strong>Level 1 — Quick Reflexes:</strong> Gain +2 Initiative.</li>
-                                <li><strong>Level 5 — Never Tell Me the Odds:</strong> Ignore one major environmental penalty each scene when piloting, driving, or gunning.</li>
-                                <li><strong>Level 9 — Outfly Them:</strong> When you win a chase or dogfight roll by 5 or more, gain 1 Edge and may reposition your vehicle for free.</li>
-                            </ul>
-                        </div>
-                        <div class="card">
-                            <h3 class="mini-title">Ace Paths</h3>
-                            <div class="rule"><strong>Interceptor Pilot — Level 3 Tight Turn:</strong> Once per round in a chase or dogfight, improve your position without spending your full Action.</div>
-                            <div class="rule"><strong>Interceptor Pilot — Level 7 Evasion Pattern:</strong> Enemy ship attacks against you have Disadvantage once per scene until they score a hit.</div>
-                            <div class="rule"><strong>Interceptor Pilot — Level 10 Ace of Aces:</strong> Once per dogfight, automatically win one contested Pilot roll.</div>
-
-                            <div class="rule"><strong>Hotshot Gunner — Level 3 Called Shot:</strong> When you Aim, you may target engines, sensors, weapons, or exposed gear.</div>
-                            <div class="rule"><strong>Hotshot Gunner — Level 7 Gunline Focus:</strong> Mounted and heavy weapons you use ignore Half Cover.</div>
-                            <div class="rule"><strong>Hotshot Gunner — Level 10 Firestorm:</strong> Once per scene, make one extra attack with a vehicle or heavy weapon.</div>
-
-                            <div class="rule"><strong>Smuggler Driver — Level 3 Fly Casual:</strong> Gain Advantage on Deceive and Pilot checks involving inspections, pursuit escapes, and suspicious traffic control.</div>
-                            <div class="rule"><strong>Smuggler Driver — Level 7 Hidden Compartments:</strong> You always have room for a small contraband cache, hidden passenger, or concealed sidearm locker.</div>
-                            <div class="rule"><strong>Smuggler Driver — Level 10 Fast Exit:</strong> Once per mission, you may declare your ship or vehicle already staged for a clean getaway.</div>
-                        </div>
-                    </div>
-                </details>
-
-                <details style="margin-top:12px;">
-                    <summary>Adept</summary>
-                    <div class="grid-2">
-                        <div class="card">
-                            <div class="tag-row">
-                                <span class="tag">Psionic-sensitive</span>
-                                <span class="tag">Seekers</span>
-                                <span class="tag">Guardians</span>
-                                <span class="tag">Strikers</span>
-                                <span class="tag">Mystics</span>
-                            </div>
-                            <p><strong>Trained Skills:</strong> Psionic, Discipline, and two of Melee, Notice, Lore, Charm.</p>
-                            <ul>
-                                <li><strong>Level 1 — Psionic Training:</strong> Learn 2 Psionic powers.</li>
-                                <li><strong>Level 1 — Centered Mind:</strong> Once per Short Rest, recover 1 Resolve when Initiative is rolled.</li>
-                                <li><strong>Level 5 — Deep Attunement:</strong> Learn 1 additional Psionic power and gain +1 on Psionic rolls while you still have at least 1 Resolve.</li>
-                                <li><strong>Level 9 — Calm in Motion:</strong> Once per round, after using a Psionic power, gain either +2 Defense or move a short distance.</li>
-                            </ul>
-                        </div>
-                        <div class="card">
-                            <h3 class="mini-title">Adept Paths</h3>
-                            <div class="rule"><strong>Guardian — Level 3 Psionic Guard:</strong> While wielding a melee weapon, gain +1 Defense.</div>
-                            <div class="rule"><strong>Guardian — Level 7 Redirected Fury:</strong> When you reduce ranged damage to 0 with Deflect, your redirected attack gains +1d6 damage.</div>
-                            <div class="rule"><strong>Guardian — Level 10 Living Bulwark:</strong> Once per scene, shield nearby allies with Psionics for one round; allies near you gain resistance to ranged damage.</div>
-
-                            <div class="rule"><strong>Seer — Level 3 Premonition:</strong> Once per scene, ask the GM for a warning, omen, or likely danger before acting.</div>
-                            <div class="rule"><strong>Seer — Level 7 Mind Reach:</strong> Your Mind Trick and Sense may affect or read targets at longer range.</div>
-                            <div class="rule"><strong>Seer — Level 10 Thread the Future:</strong> Once per mission, force a reroll of any one roll you can perceive.</div>
-
-                            <div class="rule"><strong>Striker — Level 3 Psionic Surge:</strong> When you hit with a melee attack, you may spend 1 Resolve to add +1d8 damage and push the target.</div>
-                            <div class="rule"><strong>Striker — Level 7 Impossible Motion:</strong> Ignore difficult terrain and gain Advantage on Leap-related movement.</div>
-                            <div class="rule"><strong>Striker — Level 10 Blur Strike:</strong> Once per scene, move through multiple enemies, making one melee attack against each valid target you pass.</div>
-                        </div>
-                    </div>
-                </details>
-            </section>
-
-            <section class="panel" >
-                <p><a id="talents"> </a></p>
-                <div class="section-header">
-                    <div class="section-title-wrap">
-                        <div class="section-number">Section 9</div>
-                        <h2>Talents</h2>
-                        <p>Talents may be taken whenever your level grants one, or when the GM offers one as a special reward.</p>
-                    </div>
-                </div>
-
-                <div class="grid-2">
-                    <div class="card">
-                        <h3 class="mini-title">Combat Talents</h3>
-                        <ul>
-                            <li><strong>Deadeye:</strong> Ignore Half Cover with ranged attacks.</li>
-                            <li><strong>Duelist:</strong> Gain +1 Defense while wielding a one-handed melee weapon with your off-hand empty.</li>
-                            <li><strong>Two-Gun Style:</strong> When attacking with a Light pistol, make one off-hand shot at -2.</li>
-                            <li><strong>Executioner:</strong> Deal +2 damage to wounded targets.</li>
-                            <li><strong>Quick Draw:</strong> Draw or ready a weapon for free. Gain Advantage on Initiative if combat starts suddenly.</li>
-                            <li><strong>Suppressive Fire:</strong> When using Autofire, targets struck suffer -2 on their next attack unless they take cover.</li>
-                            <li><strong>Close Quarters:</strong> No penalty for firing ranged weapons while engaged in melee.</li>
-                            <li><strong>Heavy Hitter:</strong> Once per turn, reroll one melee damage die.</li>
-                            <li><strong>Breacher:</strong> Ignore 1 point of armor when using shotguns, heavy melee weapons, or breaching tools.</li>
-                            <li><strong>Pinning Shot:</strong> When you spend Edge on a ranged attack, the target must also choose: drop prone, move to cover, or lose their Reaction.</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Mobility Talents</h3>
-                        <ul>
-                            <li><strong>Zero-G Training:</strong> Ignore penalties in low gravity or zero gravity.</li>
-                            <li><strong>Escape Artist:</strong> Gain Advantage to break restraints, cuffs, or grapples.</li>
-                            <li><strong>Parkour:</strong> Climbing and vaulting do not cost extra movement.</li>
-                            <li><strong>Jet Discipline:</strong> Gain Advantage when using jump packs, grav rigs, or aerial harnesses.</li>
-                            <li><strong>Combat Roll:</strong> Once per round, after taking ranged damage, move a short distance to cover if any is available.</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Social Talents</h3>
-                        <ul>
-                            <li><strong>Cool Under Fire:</strong> Gain Advantage on Discipline against fear, interrogation, or intimidation.</li>
-                            <li><strong>Silver Tongue:</strong> Once per scene, reroll a failed Charm or Deceive check.</li>
-                            <li><strong>Underworld Contacts:</strong> At the start of each mission, ask the GM for one black-market lead, rumor, or safehouse contact.</li>
-                            <li><strong>Authority Voice:</strong> Gain +2 Command when ordering low-tier NPCs, guards, or frightened crowds.</li>
-                            <li><strong>Sympathetic Face:</strong> Gain Advantage when trying to win trust from civilians, refugees, or uncertain recruits.</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Tech Talents</h3>
-                        <ul>
-                            <li><strong>Field Repair:</strong> Repair armor or a damaged weapon during combat as an Action.</li>
-                            <li><strong>Fast Slice:</strong> Your first successful Hacking check each scene also gives one minor extra benefit chosen by the GM.</li>
-                            <li><strong>Drone Link:</strong> Gain a small support drone if you do not already have one. If you already have a drone, improve its durability or range.</li>
-                            <li><strong>Cyber Affinity:</strong> Increase your safe Cyber Load by 1.</li>
-                            <li><strong>Tinkerer:</strong> During downtime, mod one weapon, gadget, or armor piece without needing outside help.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="card" style="margin-top:12px;">
-                    <h3 class="mini-title">Psionic Talents</h3>
-                    <ul>
-                        <li><strong>Psionic Adept:</strong> Learn one extra Psionic power.</li>
-                        <li><strong>Defensive Flow:</strong> Once per round after using a Psionic power, gain +2 Defense until the start of your next turn.</li>
-                        <li><strong>Psionic Leap Mastery:</strong> Leap costs no Resolve once per scene.</li>
-                        <li><strong>Dark Pull:</strong> When you defeat a target with a Psionic power, recover 1 Resolve but take 1 Strain.</li>
-                        <li><strong>Centered Breath:</strong> Once per scene, remove 1 Strain as an Action.</li>
-                        <li><strong>Quiet Presence:</strong> Gain Advantage on checks to hide or conceal your use of Psionics.</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="panel">
-                <p><a id="equipment"> </a></p>
-                <div class="section-header">
-                    <div class="section-title-wrap">
-                        <div class="section-number">Section 10</div>
-                        <h2>Weapons, Armor, and Equipment</h2>
-                        <p>Gear for bounty hunting, rebellion, infiltration, and survival.</p>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h3 class="mini-title">Weapon Tags</h3>
-                    <div class="grid-auto" style="margin-top:10px;">
-                        <div class="rule"><strong>Light:</strong> concealable, easy to draw, and can be equipped and used as part of the same Action</div>
-                        <div class="rule"><strong>Heavy:</strong> bulky or hard to conceal; follows the non-light equip rule and usually requires bracing, both hands, or obvious carry</div>
-                        <div class="rule"><strong>Stun:</strong> can be used to incapacitate instead of kill</div>
-                        <div class="rule"><strong>Piercing:</strong> ignores 1 armor</div>
-                        <div class="rule"><strong>Autofire:</strong> can suppress or spray targets</div>
-                        <div class="rule"><strong>Concussive:</strong> can push or stagger</div>
-                        <div class="rule"><strong>Thrown:</strong> can be thrown</div>
-                        <div class="rule"><strong>Reach:</strong> extends melee range</div>
-                        <div class="rule"><strong>Silent:</strong> unusually quiet</div>
-                        <div class="rule"><strong>Two-Handed:</strong> requires two hands</div>
-                        <div class="rule"><strong>Aim-required:</strong> best used after aiming</div>
-                        <div class="rule"><strong>Anti-tech:</strong> better against droids, shields, or vehicles</div>
-                    </div>
-                </div>
-
-                <div class="table-wrap" style="margin-top:12px;">
-                    <table>
-                        <thead>
-                        <tr><th>Melee Weapon</th><th>Damage</th><th>Tags / Notes</th></tr>
-                        </thead>
-                        <tbody>
-                        <tr><td>Combat Knife</td><td>1d4</td><td>Light, Silent, Thrown</td></tr>
-                        <tr><td>Shock Baton</td><td>1d6</td><td>Light, Stun</td></tr>
-                        <tr><td>Vibroknife</td><td>1d6</td><td>Light, Piercing</td></tr>
-                        <tr><td>Vibroblade</td><td>1d8</td><td>Piercing</td></tr>
-                        <tr><td>Electrostaff</td><td>1d8</td><td>Reach, Stun, Two-Handed</td></tr>
-                        <tr><td>Breach Axe</td><td>1d10</td><td>Heavy, Two-Handed</td></tr>
-                        <tr><td>Psionic Blade / Energy Sword</td><td>1d8</td><td>Piercing; counts as energy and relic-grade</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="table-wrap" style="margin-top:12px;">
-                    <table>
-                        <thead>
-                        <tr><th>Ranged Weapon</th><th>Damage</th><th>Range</th><th>Tags / Notes</th></tr>
-                        </thead>
-                        <tbody>
-                        <tr><td>Holdout Pistol</td><td>1d4</td><td>Short</td><td>Light</td></tr>
-                        <tr><td>Blaster Pistol</td><td>1d6</td><td>Medium</td><td>—</td></tr>
-                        <tr><td>Heavy Pistol</td><td>1d8</td><td>Medium</td><td>Light, Piercing</td></tr>
-                        <tr><td>Stun Pistol</td><td>1d6</td><td>Short</td><td>Stun</td></tr>
-                        <tr><td>Blaster Carbine</td><td>1d8</td><td>Medium</td><td>Two-Handed</td></tr>
-                        <tr><td>Blaster Rifle</td><td>1d10</td><td>Long</td><td>Two-Handed</td></tr>
-                        <tr><td>Repeater / Auto Rifle</td><td>1d8</td><td>Medium</td><td>Autofire, Heavy, Two-Handed</td></tr>
-                        <tr><td>Scattergun</td><td>2d6 at Engaged, 1d6 at Short</td><td>Short</td><td>Concussive, Two-Handed</td></tr>
-                        <tr><td>Long Rifle</td><td>1d10</td><td>Extreme</td><td>Two-Handed, Aim-required</td></tr>
-                        <tr><td>Ion Carbine</td><td>1d8</td><td>Medium</td><td>Anti-tech, Two-Handed; +2 damage vs droids, shields, drones, light vehicles</td></tr>
-                        <tr><td>Wrist Launcher</td><td>1d6</td><td>Short</td><td>Light; can fire grapple, dart, smoke, micro-charge, or tracking payload depending on ammo</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="grid-2" style="margin-top:12px;">
-                    <div class="table-wrap">
-                        <table>
-                            <thead>
-                            <tr><th>Armor</th><th>Defense Bonus</th><th>Notes</th></tr>
-                            </thead>
-                            <tbody>
-                            <tr><td>Light Armor</td><td>+1</td><td>padded coat, scout suit, light tactical weave</td></tr>
-                            <tr><td>Medium Armor</td><td>+2</td><td>combat vest, plated field gear, patrol harness</td></tr>
-                            <tr><td>Heavy Armor</td><td>+3</td><td>Disadvantage on Stealth; assault shell, trooper armor, boarding rig</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Armor Wear (Optional)</h3>
-                        <p>If you want more grit, armor loses 1 point of bonus until repaired when a character:</p>
-                        <ul>
-                            <li>takes 10 or more damage from a single hit, or</li>
-                            <li>suffers a critical hit.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="grid-2" style="margin-top:12px;">
-                    <div class="card">
-                        <h3 class="mini-title">Explosives and Special Weapons</h3>
-                        <ul>
-                            <li><strong>Frag Charge:</strong> 2d6 damage in a small area.</li>
-                            <li><strong>Smoke Charge:</strong> Creates visual cover and confusion in a small area.</li>
-                            <li><strong>Ion Charge:</strong> Deals 2d6 anti-tech damage in a small area.</li>
-                            <li><strong>Shock Net:</strong> On a hit, target must beat Athletics 14 or become Restrained.</li>
-                            <li><strong>Breach Charge:</strong> Destroys locks, doors, weak walls, and light vehicles.</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Common Equipment</h3>
-                        <p class="two-column-text">medkit, slicing kit, repair kit, binders, stun cuffs, comms, scanner, tracker beacon, breather mask, grapple line, holo-decoy, smoke charges, forged ID, shield projector, signal scrambler, data spike, glow rod, ration pack, survival blanket, portable tool roll, spare power cells, restraint cable, surveillance bug, field cloak.</p>
-                    </div>
-                </div>
-
-                <div class="card" style="margin-top:12px;">
-                    <h3 class="mini-title">Weapon and Gear Upgrades</h3>
-                    <ul>
-                        <li><strong>Overcharger:</strong> Once per scene, increase one shot by +1 damage die, then the weapon overheats or needs resetting.</li>
-                        <li><strong>Silencer Package:</strong> Removes visible flash and reduces sound for compatible pistols or carbines.</li>
-                        <li><strong>Stabilizer Stock:</strong> Gain +1 to attacks made after aiming.</li>
-                        <li><strong>Stun Setting:</strong> Compatible weapon may deal nonlethal damage.</li>
-                        <li><strong>Underbarrel Launcher:</strong> Adds smoke, frag, ion, or utility payloads.</li>
-                        <li><strong>Hidden Holster:</strong> Gain Advantage to conceal a Light weapon.</li>
-                        <li><strong>Reinforced Grip:</strong> Ignore one penalty from recoil, rough motion, or poor footing.</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="panel">
-                <p><a id="cyberware-list"> </a></p>
-                <div class="section-header">
-                    <div class="section-title-wrap">
-                        <div class="section-number">Section 11</div>
-                        <h2>Cyberware List</h2>
-                        <p>Common implants and tactical enhancements.</p>
-                    </div>
-                </div>
-
-                <div class="grid-auto">
-                    <div class="card"><span class="rule-title">Target Eye (Load 1)</span><p>Once per scene, gain Advantage on a ranged attack.</p></div>
-                    <div class="card"><span class="rule-title">Reflex Jack (Load 1)</span><p>Gain +2 Initiative.</p></div>
-                    <div class="card"><span class="rule-title">Neural Port (Load 1)</span><p>Gain +2 on relevant Hacking or Pilot checks when directly interfacing.</p></div>
-                    <div class="card"><span class="rule-title">Subdermal Mesh (Load 2)</span><p>Gain +1 Armor while unarmored.</p></div>
-                    <div class="card"><span class="rule-title">Ghoststep Soles (Load 1)</span><p>Gain Advantage on quiet movement.</p></div>
-                    <div class="card"><span class="rule-title">Smartlink (Load 1)</span><p>When using a linked firearm, ignore Disadvantage at Medium range under poor conditions.</p></div>
-                    <div class="card"><span class="rule-title">Threat Scanner (Load 1)</span><p>Once per encounter, ask the GM which visible enemy is currently the greatest tactical threat.</p></div>
-                    <div class="card"><span class="rule-title">Med-Weave (Load 2)</span><p>Whenever you receive healing, recover +1d6 additional Health.</p></div>
-                    <div class="card"><span class="rule-title">Servo Arm (Load 2)</span><p>Gain +2 on Athletics checks involving lifting, forcing entry, or holding something in place.</p></div>
-                    <div class="card"><span class="rule-title">Cortex Buffer (Load 2)</span><p>Once per Short Rest, ignore 1 Strain or reroll a failed Hacking check.</p></div>
-                    <div class="card"><span class="rule-title">Dermal Plating (Load 2)</span><p>Reduce one instance of physical damage by 2 each round.</p></div>
-                    <div class="card"><span class="rule-title">Drone Socket (Load 1)</span><p>Operating a support drone takes less attention; once per round, your drone may perform a simple assist without costing your full Action.</p></div>
-                </div>
-            </section>
-
-            <section class="panel" >
-                <p><a id="vehicles-ships"> </a></p>
-                <div class="section-header">
-                    <div class="section-title-wrap">
-                        <div class="section-number">Section 12</div>
-                        <h2>Vehicles and Ships</h2>
-                        <p>Fast stat blocks for chases, dogfights, and boarding actions.</p>
-                    </div>
-                </div>
-
-                <div class="grid-3">
-                    <div class="card">
-                        <span class="rule-title">Core Ship Stats</span>
-                        <p><strong>Hull</strong> = overall durability</p>
-                        <p><strong>Shields</strong> = temporary protection</p>
-                        <p><strong>Defense</strong> = how hard it is to hit</p>
-                        <p><strong>Handling</strong> = bonus to Pilot checks</p>
-                        <p><strong>Speed</strong> = 1 slow, 2 normal, 3 fast, 4 interceptor</p>
-                        <p><strong>Weapons</strong>, <strong>Crew</strong>, and <strong>Modules / Traits</strong> round out the stat block.</p>
-                    </div>                    <div class="card"><span class="rule-title">Ship Attacks</span><p>Roll <strong>1d20 + Pilot + ship weapon bonus</strong> against the target ship's Defense. Damage removes Shields first, then Hull.</p></div>
-                    <div class="card"><span class="rule-title">Common Ship Actions</span><p>attack, evade, boost speed, take cover in debris or terrain, lock target, board, reroute power, spool jump.</p></div>
-                </div>
-
-                <div class="grid-2" style="margin-top:12px;">
-                    <div class="card">
-                        <h3 class="mini-title">System Strain</h3>
-                        <p>When a ship is reduced to half Hull, it gains 1 System Strain. At one-quarter Hull, it gains another.</p>
-                        <p>For each System Strain, choose or roll one effect:</p>
-                        <ul>
-                            <li>−1 Defense</li>
-                            <li>−1 weapon attacks</li>
-                            <li>engines damaged</li>
-                            <li>sensors failing</li>
-                            <li>comms cut</li>
-                            <li>life support compromised</li>
-                            <li>hyperdrive unstable</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Reroute Power</h3>
-                        <p>Choose one benefit until next turn:</p>
-                        <ul>
-                            <li>+2 Defense</li>
-                            <li>+2 damage</li>
-                            <li>restore 1d6 Shields</li>
-                            <li>ignore one System Strain penalty for a round</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="table-wrap" style="margin-top:12px;">
-                    <table>
-                        <thead>
-                        <tr><th>Ship</th><th>Stats</th><th>Weapons / Crew</th><th>Trait</th></tr>
-                        </thead>
-                        <tbody>
-                        <tr><td>Light Courier / Smuggler Ship</td><td>Hull 20, Shields 8, Defense 14, Handling +3, Speed 3</td><td>light cannon 1d8, turret 1d6; Crew 1–4</td><td>Fast Exit — Advantage to flee, evade, or break sensor lock.</td></tr>
-                        <tr><td>Patrol Fighter</td><td>Hull 12, Shields 6, Defense 15, Handling +4, Speed 4</td><td>twin cannons 1d8; Crew 1</td><td>Interceptor — +2 to pursue or block escape.</td></tr>
-                        <tr><td>Heavy Bounty Skiff / Gunship</td><td>Hull 24, Shields 10, Defense 13, Handling +2, Speed 2</td><td>cannon 1d10, ion gun 1d8 anti-tech, boarding harpoon; Crew 2–6</td><td>Prison Cells — built for captures and boarding.</td></tr>
-                        <tr><td>Rebel Strike Craft</td><td>Hull 16, Shields 8, Defense 14, Handling +3, Speed 3</td><td>laser cannons 1d8, torpedo 2d6 limited ammo; Crew 1–2</td><td>Hit and Fade — after attacking, may move without return fire once per fight.</td></tr>
-                        <tr><td>Imperial Corvette</td><td>Hull 40, Shields 18, Defense 13, Handling +1, Speed 2</td><td>heavy battery 2d6, point defense 1d8, ion array 1d10; Crew 20+</td><td><strong>Boarding Teams</strong> — may deploy troops mid-combat. <strong>Sensor Lock</strong> — target loses stealth/evasion bonuses.</td></tr>                        <tr><td>Freighter</td><td>Hull 28, Shields 6, Defense 11, Handling +1, Speed 2</td><td>light turret 1d6; Crew 2–8</td><td>Cargo Hold — can carry vehicles, contraband, refugees, or mission cargo.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <section class="panel" >
-                <p><a id="npcs-enemies"> </a></p>
-                <div class="section-header">
-                    <div class="section-title-wrap">
-                        <div class="section-number">Section 13</div>
-                        <h2>Common NPCs and Enemies</h2>
-                        <p>Ready-to-run stat blocks for opposition and allies.</p>
-                    </div>
-                </div>
-
-                <div class="grid-auto">
-                    <div class="card"><span class="rule-title">Street Thug / Pirate Minion</span><p>Health 6, Defense 11, Move 6, Attack +3, pistol 1d6 or knife 1d4. <strong>Pack Nerves:</strong> +1 to hit if adjacent to an ally.</p></div>
-                    <div class="card"><span class="rule-title">Imperial Trooper</span><p>Health 10, Defense 13, Move 6, Attack +4, rifle 1d8. <strong>Formation Fire:</strong> +2 damage if another trooper attacked the same target this round.</p></div>
-                    <div class="card"><span class="rule-title">Rebel Cell Fighter</span><p>Health 9, Defense 12, Move 6, Attack +4, carbine 1d8 or pistol 1d6. <strong>Desperate Resolve:</strong> once per fight, reroll a missed attack or failed Discipline check.</p></div>
-                    <div class="card"><span class="rule-title">Bounty Guild Hunter</span><p>Health 14, Defense 14, Move 6, Attack +5, heavy pistol 1d8, vibroblade 1d8, shock net. <strong>Marked Prey:</strong> +2 damage to one chosen target. <strong>Restraint Gear:</strong> once per fight, target within Short range must beat Athletics or Agility 14 or become Restrained.</p></div>
-                    <div class="card"><span class="rule-title">Syndicate Enforcer</span><p>Health 16, Defense 14, Move 5, Attack +5, scattergun 2d6 close, baton 1d6 Stun. <strong>Brutal:</strong> +1d6 damage against wounded targets once per turn.</p></div>
-                    <div class="card"><span class="rule-title">Imperial Inquisitor / Dark Adept</span><p>Health 22, Defense 15, Move 6, Attack +6, Psionic blade 1d8+3, Psionic +6. Powers: Push / Pull, Bind, Deflect, Sense. <strong>Terrifying Presence:</strong> enemies within Short range take -2 Discipline until they succeed once. <strong>Deflect:</strong> Reaction reduces ranged damage by 1d8+2.</p></div>
-                    <div class="card"><span class="rule-title">Combat Droid</span><p>Health 12, Defense 13, Move 5, Attack +4, carbine 1d8. <strong>Machine Logic:</strong> immune to fear, poison, and mind trick effects unless specially affected. <strong>Predictable:</strong> attackers gain +1 after observing it for one full round.</p></div>
-                    <div class="card"><span class="rule-title">Assassin Droid</span><p>Health 18, Defense 15, Move 7, Attack +6, rifle 1d10, blade 1d8. <strong>Target Lock:</strong> after aiming, next attack gains Advantage. <strong>Cold Finish:</strong> +1d6 damage against isolated targets.</p></div>
-                    <div class="card"><span class="rule-title">Crime Boss / Sector Warlord</span><p>Health 30, Defense 14, Move 6, Attack +6, ornate pistol 1d8. <strong>Bodyguards:</strong> the first hit each round is taken by a nearby minion if possible. <strong>Command the Room:</strong> once per round, one ally may move or attack immediately.</p></div>
-                    <div class="card"><span class="rule-title">Simple Beast / Tracker Hound</span><p>Health 8, Defense 12, Move 8, Attack +4, bite 1d6. <strong>Scent Lock:</strong> Advantage to track living targets.</p></div>
-                    <div class="card"><span class="rule-title">Elite Guard</span><p>Health 20, Defense 15, Move 6, Attack +6, shock pike 1d8 or rifle 1d8. <strong>Protect the Principal:</strong> when adjacent to a VIP, gain +2 Defense and may intercept one hit per round.</p></div>
-                </div>
-            </section>
-
-            <section class="panel" >
-                <p><a id="gm-guide"> </a></p>
-                <div class="section-header">
-                    <div class="section-title-wrap">
-                        <div class="section-number">Section 14</div>
-                        <h2>GM Guide</h2>
-                        <p>Scene pacing, balance guidance, campaign pressure, and downtime.</p>
-                    </div>
-                    <span class="tag gm-tag">GM-facing</span>
-                </div>
-
-                <div class="grid-2">
-                    <div class="card">
-                        <h3 class="mini-title">What the GM Does</h3>
-                        <p>The GM describes the world, plays NPCs, sets difficulties, tracks Threat, and decides consequences. A good GM in this game keeps things moving and treats action as cinematic but dangerous.</p>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Setting Difficulties</h3>
-                        <ul>
-                            <li>10 for something routine under pressure</li>
-                            <li>12 for competent opposition or a decent lock</li>
-                            <li>15 for skilled resistance or dangerous terrain</li>
-                            <li>18 for elite guards, military systems, or advanced maneuvers</li>
-                            <li>22 for legendary feats or impossible odds</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="grid-2" style="margin-top:12px;">
-                    <div class="card">
-                        <h3 class="mini-title">Using Threat Well</h3>
-                        <p><strong>Threat should complicate, not negate.</strong></p>
-                        <ul>
-                            <li>the alarm triggers after the players succeed</li>
-                            <li>a patrol rounds the corner at the worst time</li>
-                            <li>the bounty target flees through a crowd</li>
-                            <li>the locked door opens, but the hall beyond is occupied</li>
-                            <li>the players get the data, but the trace is active</li>
-                        </ul>
-                        <p><strong>Bad uses:</strong> undoing success entirely, nullifying smart preparation every time, or punishing players for taking risks in a genre built on risks.</p>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Encounter Building</h3>
-                        <ul>
-                            <li>1 Standard enemy per PC = fair fight</li>
-                            <li>2 Minions = 1 Standard</li>
-                            <li>1 Elite = 2 Standards</li>
-                            <li>1 Boss = 3–4 Standards</li>
-                        </ul>
-                        <p>A strong encounter often includes some cover, one time pressure or objective, one enemy with a special role, and one complication if the fight drags on.</p>
-                    </div>
-                </div>
-
-                <div class="grid-2" style="margin-top:12px;">
-                    <div class="card">
-                        <h3 class="mini-title">Improvised NPC Formula</h3>
-                        <ul>
-                            <li><strong>Weak NPC:</strong> Health 6, Defense 11, Attack +3, Damage 1d6</li>
-                            <li><strong>Trained NPC:</strong> Health 10, Defense 13, Attack +4, Damage 1d8</li>
-                            <li><strong>Dangerous NPC:</strong> Health 16, Defense 14, Attack +5, Damage 1d8+2</li>
-                            <li><strong>Elite NPC:</strong> Health 22, Defense 15, Attack +6, Damage 1d10+2, one Reaction or special rule</li>
-                        </ul>
-                        <p>Add an identity such as sniper, duelist, commander, slicer, heavy gunner, Psionic user, assassin, riot trooper, or elite guard.</p>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Heat and Reputation</h3>
-                        <p><strong>Reputation:</strong> Track separately with major groups: −2 enemy, −1 hostile, 0 neutral, +1 friendly, +2 allied.</p>
-                        <p><strong>Heat:</strong> 0 unknown, 1 noticed, 2 watched, 3 hunted, 4 sector alert, 5 kill/capture priority.</p>
-                        <p>Increase Heat when the crew acts publicly, leaves witnesses, destroys expensive property, attacks a major faction, or botches a clean escape. Reduce Heat when the crew changes routes, identities, or ships, lays low, frames others, bribes officials, or wins local protection.</p>
-                    </div>
-                </div>
-
-                <div class="grid-2" style="margin-top:12px;">
-                    <div class="card">
-                        <h3 class="mini-title">Captures and Prisoners</h3>
-                        <p>When a target reaches 0 Health, the attacker may declare <strong>kill</strong>, <strong>incapacitate</strong>, or <strong>capture</strong>.</p>
-                        <p>A target can only be captured cleanly if they are restrained, stunned, surprised, downed, or fully overpowered narratively. Bosses may require special cuffs, sedation, disabling cyberware, or multiple successful checks.</p>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Downtime</h3>
-                        <p>Between missions, allow characters to repair gear, install cyberware, buy or trade equipment, lower Heat, gather intel, cultivate contacts, train a talent narratively, and upgrade a ship. Downtime is where rebellion cells grow and bounty networks react.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="panel">
-                <p><a id="species-identity"> </a></p>
-                <div class="section-header">
-                    <div class="section-title-wrap">
-                        <div class="section-number">Section 15</div>
-                        <h2>Species and Character Identity</h2>
-                        <p>Identity-rich species design without turning species into a second class system.</p>
-                    </div>
-                </div>
-
-                <div class="callout">
-                    <span class="rule-title">Species in Remnants of the Far Galaxy</span>
-                    <p>Species are meant to be important for identity, appearance, culture, and roleplay, but not so mechanically heavy that they overshadow Callings, Talents, gear, or Psionics.</p>
-                </div>
-
-                <div class="card" style="margin-top:12px;">
-                    <h3 class="mini-title">Default Assumption</h3>
-                    <ul>
-                        <li>most people across the galaxy are mechanically similar enough to use the same core character rules</li>
-                        <li>species differences are usually represented through one small trait, one situational edge, and fictional permissions</li>
-                        <li>your Calling matters more than your biology for combat power and class role</li>
-                    </ul>
-                    <p>This keeps the game easy to balance and easy to learn.</p>
-                </div>
-
-                <div class="grid-2" style="margin-top:12px;">
-                    <div class="card">
-                        <h3 class="mini-title">The Default Species Rule</h3>
-                        <p>Each species grants:</p>
-                        <ul>
-                            <li>one minor trait</li>
-                            <li>one flavor feature or movement/sense adjustment</li>
-                            <li>sometimes one complication, social hook, or environmental note</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Species should not usually grant</h3>
-                        <ul>
-                            <li>big Attribute bonuses</li>
-                            <li>extra full actions</li>
-                            <li>large damage boosts</li>
-                            <li>multiple stacked combat powers</li>
-                            <li>broad immunity to whole sections of the game</li>
-                        </ul>
-                        <p>A species should feel meaningful without becoming a second class system.</p>
-                    </div>
-                </div>
-
-                <div class="card" style="margin-top:12px;">
-                    <h3 class="mini-title">Building a Species</h3>
-                    <p>A simple species write-up should answer four things:</p>
-                    <ul>
-                        <li>What do they look or feel like in play?</li>
-                        <li>What are they slightly better at?</li>
-                        <li>What is one interesting limitation, social complication, or vulnerability?</li>
-                        <li>How do they shape roleplay without replacing the character's Calling?</li>
-                    </ul>
-                </div>
-
-                <details open style="margin-top:12px;">
-                    <summary>Sample Species Frameworks</summary>
-                    <div class="grid-auto">
-                        <div class="card">
-                            <span class="rule-title">Baseline Human</span>
-                            <p><strong>Trait — Adaptable:</strong> Gain one extra trained skill of your choice at character creation.</p>
-                            <p>Humans are the baseline for the system and are intentionally flexible.</p>
-                        </div>
-
-                        <div class="card">
-                            <span class="rule-title">Agile Lithe Species</span>
-                            <p><strong>Trait — Quick Balance:</strong> Gain Advantage on checks to keep footing, squeeze through tight spaces, or avoid being knocked prone.</p>
-                            <p>These species are suited to scouts, operatives, and pilots, but this bonus stays small enough not to define the whole character.</p>
-                        </div>
-
-                        <div class="card">
-                            <span class="rule-title">Large Hardy Species</span>
-                            <p><strong>Trait — Massive Frame:</strong> Gain +2 on Athletics checks to shove, carry, break, or hold position.</p>
-                            <p><strong>Drawback:</strong> Standard civilian gear, seats, or disguises may be awkward or costly to adapt.</p>
-                            <p>This gives presence and utility without just handing out raw combat dominance.</p>
-                        </div>
-
-                        <div class="card">
-                            <span class="rule-title">Keen-Sense Species</span>
-                            <p><strong>Trait — Sharp Senses:</strong> Gain +2 to one kind of Notice check chosen at creation, such as scent, low-light vision, vibration, or distant sound.</p>
-                            <p>This should help with scouting and tracking without invalidating the Notice skill.</p>
-                        </div>
-
-                        <div class="card">
-                            <span class="rule-title">Amphibious or Vacuum-Adapted Species</span>
-                            <p><strong>Trait — Environmental Tolerance:</strong> Choose one environment your species handles unusually well, such as underwater, toxic air, high cold, thin atmosphere, or low gravity.</p>
-                            <p>This works best as a narrative advantage that occasionally provides Advantage or ignores a penalty.</p>
-                        </div>
-
-                        <div class="card">
-                            <span class="rule-title">Long-Lived Mystic Species</span>
-                            <p><strong>Trait — Deep Memory:</strong> Gain Advantage on one kind of Lore check tied to history, ancient rituals, or relics.</p>
-                            <p>This supports tone and background, especially for Psionic traditions, without making them stronger in battle by default.</p>
-                        </div>
-
-                        <div class="card">
-                            <span class="rule-title">Small Species</span>
-                            <p><strong>Trait — Unassuming:</strong> Gain Advantage to hide in crowds, slip into maintenance spaces, or conceal yourself behind partial cover.</p>
-                            <p><strong>Drawback:</strong> Some heavy weapons, armor, mounts, and brute-Psionic tasks are harder to use at the GM's discretion.</p>
-                        </div>
-
-                        <div class="card">
-                            <span class="rule-title">Synthetic or Artificial Species</span>
-                            <p><strong>Trait — Constructed Mind:</strong> Gain Advantage against poison, disease, and some fear effects.</p>
-                            <p><strong>Drawback:</strong> Healing may require Engineering instead of Medicine in some cases, and anti-tech weapons may affect you.</p>
-                            <p>This version works for droid-like or synthetic characters without making them immune to too much.</p>
-                        </div>
-                    </div>
-                </details>
-
-                <div class="grid-3" style="margin-top:12px;">
-                    <div class="card">
-                        <span class="rule-title">Species and Attributes</span>
-                        <p>By default, species do not change Attribute modifiers.</p>
-                    </div>
-                    <div class="card">
-                        <span class="rule-title">Light Adjustment Rule</span>
-                        <p>A species may shift one Attribute up by +1 and one different Attribute down by -1.</p>
-                        <p>This keeps balance tight and avoids runaway optimization.</p>
-                    </div>
-                    <div class="card">
-                        <span class="rule-title">No Adjustment Rule</span>
-                        <p>Species provide only traits and narrative identity.</p>
-                        <p>This is the easiest version to run and is the default recommendation.</p>
-                    </div>
-                </div>
-
-                <div class="grid-2" style="margin-top:12px;">
-                    <div class="card">
-                        <h3 class="mini-title">Species and Psionics</h3>
-                        <p>Species do not usually grant Psionic powers by default.</p>
-                        <p>A species may have stronger traditions around Psionics, myths, taboos, or training styles, or unusual ways of perceiving Psionics.</p>
-                        <p>But actual Psionic use should still come from the Adept Calling, a rare talent, or special training allowed by the GM.</p>
-                        <p>That keeps Psionics special and prevents species choice from deciding your whole build.</p>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Species and Equipment</h3>
-                        <p>Species shape what gear looks like more than what gear does.</p>
-                        <ul>
-                            <li>larger species may need custom armor</li>
-                            <li>smaller species may conceal weapons more easily</li>
-                            <li>nonhuman body shapes may change how cyberware or clothing is fitted</li>
-                            <li>synthetic characters may use different repair or healing procedures</li>
-                        </ul>
-                        <p>Most of the time, keep this cosmetic or situational unless the story makes it important.</p>
-                    </div>
-                </div>
-
-                <div class="note" style="margin-top:12px;">
-                    <strong>Best Practice for Play:</strong> Treat species as a strong roleplay anchor, a source of one memorable mechanical trait, and a way to imply galactic variety. Do not make species the main source of power. In this game, a Hunter is dangerous because they are a Hunter, an Operative is dangerous because they are an Operative, and a Psionic user is dangerous because they have training and Resolve. That keeps the game readable and fair.
-                </div>
-            </section>
-
-            <section class="panel" >
-                <p><a id="reference-sheets"> </a></p>
-                <div class="section-header">
-                    <div class="section-title-wrap">
-                        <div class="section-number">Section 16</div>
-                        <h2>Reference Sheets</h2>
-                        <p>One-page style reminders for play at the table.</p>
-                    </div>
-                </div>
-
-                <div class="callout">
-                    <span class="rule-title">Player Rules Summary</span>
-                    <p>Roll <strong>1d20 + Attribute + Skill</strong>. Beat the Difficulty or Defense. Succeed by 5+ or roll a natural 20 to gain Edge. Fail by 5+ or roll a natural 1 and the GM gains Threat.</p>
-                </div>
-
-                <div class="grid-4" style="margin-top:12px;">
-                    <div class="card"><span class="rule-title">On Your Turn</span><p>1 Action, 1 Move, 1 Reaction.</p></div>
-                    <div class="card"><span class="rule-title">Common Actions</span><p>Attack, Dash, Aim, Hide, Assist, Use Item, Hack, Stabilize, Use Psionic, Ready.</p></div>
-                    <div class="card"><span class="rule-title">Damage and Death</span><p>At 0 Health, you are Downed. Roll 1d20 each turn. 10+ hold on. 9 or less gain 1 Wound. At 3 Wounds, you die.</p></div>
-                    <div class="card"><span class="rule-title">Edge and Threat</span><p>Edge boosts player momentum. Threat fuels complications and escalation.</p></div>
-                </div>
-
-                <div class="grid-2" style="margin-top:12px;">
-                    <div class="card">
-                        <h3 class="mini-title">Edge Uses</h3>
-                        <ul>
-                            <li>+1d6 damage</li>
-                            <li>extra movement</li>
-                            <li>disarm / shove / trip / pin</li>
-                            <li>gain cover</li>
-                            <li>help ally</li>
-                            <li>reduce time</li>
-                            <li>avoid collateral</li>
-                            <li>spot useful detail</li>
-                            <li>avoid weapon jam</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3 class="mini-title">Threat Uses</h3>
-                        <ul>
-                            <li>alarm triggered</li>
-                            <li>reinforcements</li>
-                            <li>bad position</li>
-                            <li>escape route closes</li>
-                            <li>social suspicion</li>
-                            <li>weapon overheats</li>
-                            <li>target flees</li>
-                            <li>collateral danger</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="table-wrap" style="margin-top:12px;">
-                    <table>
-                        <thead>
-                        <tr><th>Starting Gear Template</th><th>Suggested Loadout</th></tr>
-                        </thead>
-                        <tbody>
-                        <tr><td>Hunter</td><td>Heavy pistol, vibroblade, medium armor, binders, tracker beacon.</td></tr>
-                        <tr><td>Operative</td><td>Blaster pistol, knife, light armor, slicing kit, forged ID.</td></tr>
-                        <tr><td>Marshal</td><td>Blaster carbine, medium armor, command comms, medkit.</td></tr>
-                        <tr><td>Gearhead</td><td>Holdout pistol, tool roll, repair kit, light armor, scanner.</td></tr>
-                        <tr><td>Ace</td><td>Blaster pistol or carbine, pilot gear, flight harness, comms, toolkit.</td></tr>
-                        <tr><td>Adept</td><td>Psionic blade or staff, robes or light armor, relic token, meditative focus.</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-
-            <section class="panel" >
-                <p><a id="final-guidance"> </a></p>
-                <div class="section-header">
-                    <div class="section-title-wrap">
-                        <div class="section-number">Section 17</div>
-                        <h2>Final Guidance for Play</h2>
-                        <p>The tone and pacing the game wants at the table.</p>
-                    </div>
-                </div>
-
-                <div class="grid-2">
-                    <div class="card">
-                        <h3 class="mini-title">This game runs best when</h3>
-                        <ul>
-                            <li>every mission has a goal, a complication, and a consequence</li>
-                            <li>the players are allowed to be competent and bold</li>
-                            <li>the GM uses Threat to escalate scenes, not block them</li>
-                            <li>Heat and Reputation matter between sessions</li>
-                            <li>Psionics feels rare, dangerous, and emotional</li>
-                            <li>blaster fights include movement, cover, and changing objectives</li>
-                        </ul>
-                    </div>
-                    <div class="callout">
-                        <span class="rule-title">Play Principle</span>
-                        <p>If you are unsure how to rule something, choose the faster option that keeps the scene moving.</p>
-                        <p><strong>Remnants of the Far Galaxy</strong> should feel like a story about survivors and strivers living in the ruins of greater powers, where a single crew can still change the fate of worlds.</p>
-                    </div>
-                </div>
+                <p class="footer-note">
+                    Remnants of the Far Galaxy — system hub, rules gateway, and setting index.
+                </p>
             </section>
         </main>
     </div>
-
 </div>
 </body>
 </html>

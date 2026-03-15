@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remnants of the Far Galaxy — World Canon (Player Facing)</title>
+    <style>
+        :root {
+          --bg: #171a20;
+          --panel: #232833;
+          --panel2: #2b3140;
+          --line: #4e5c74;
+          --text: #ecedf0;
+          --muted: #b6becc;
+          --accent: #9bc3ff;
+          --accent2: #d8b36a;
+          --good: #8fd5aa;
+          --shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
+          --radius: 14px;
+          --content-width: 1360px;
+        }
+
+        * { box-sizing: border-box; }
+
+        html {
+          scroll-behavior: smooth;
+          background: var(--bg);
+        }
+
+        body {
+          margin: 0;
+          font-family: Arial, Helvetica, sans-serif;
+          background:
+            radial-gradient(circle at top, rgba(84, 110, 163, 0.18), transparent 28%),
+            linear-gradient(180deg, #14181e 0%, #171a20 100%);
+          color: var(--text);
+          line-height: 1.55;
+        }
+
+        a {
+          color: var(--accent);
+          text-decoration: none;
+        }
+
+        a:hover { text-decoration: underline; }
+
+        .page {
+          width: min(var(--content-width), calc(100% - 32px));
+          margin: 0 auto;
+          padding: 24px 0 48px;
+        }
+
+        .banner {
+          background: linear-gradient(135deg, #1f2632, #30394a);
+          border: 1px solid var(--line);
+          border-radius: 18px;
+          padding: 26px 28px;
+          box-shadow: var(--shadow);
+          margin-bottom: 18px;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .banner::after {
+          content: "";
+          position: absolute;
+          inset: auto -100px -100px auto;
+          width: 280px;
+          height: 280px;
+          background: radial-gradient(circle, rgba(155, 195, 255, 0.18), transparent 65%);
+          pointer-events: none;
+        }
+
+        .eyebrow {
+          display: inline-block;
+          margin-bottom: 10px;
+          padding: 5px 10px;
+          border: 1px solid rgba(143, 213, 170, 0.34);
+          border-radius: 999px;
+          color: var(--muted);
+          font-size: 11px;
+          text-transform: uppercase;
+          letter-spacing: 0.14em;
+          background: rgba(16, 20, 27, 0.45);
+        }
+
+        h1 {
+          margin: 0;
+          font-size: clamp(2rem, 4vw, 3.1rem);
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+          color: var(--accent);
+          line-height: 1.06;
+        }
+
+        .subtitle {
+          margin: 12px 0 18px;
+          max-width: 920px;
+          color: var(--muted);
+          font-size: 1rem;
+        }
+
+        .banner-grid {
+          display: grid;
+          grid-template-columns: 2.2fr 1fr;
+          gap: 18px;
+          align-items: start;
+        }
+
+        .hero-pills,
+        .quick-links,
+        .tag-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+        }
+
+        .pill,
+        .quick-link,
+        .tag {
+          background: rgba(14, 18, 24, 0.7);
+          border: 1px solid var(--line);
+          border-radius: 999px;
+          padding: 8px 12px;
+          font-size: 12px;
+          color: var(--text);
+        }
+
+        .quick-link {
+          color: var(--accent);
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          font-weight: 700;
+        }
+
+        .player-tag {
+          border-color: rgba(143, 213, 170, 0.35);
+          color: #cfeedd;
+        }
+
+        .layout {
+          display: grid;
+          grid-template-columns: minmax(260px, 300px) minmax(0, 1fr);
+          gap: 18px;
+          align-items: start;
+        }
+
+        .toc,
+        .panel,
+        .callout,
+        .card,
+        .note {
+          background: var(--panel);
+          border: 1px solid var(--line);
+          border-radius: var(--radius);
+          box-shadow: var(--shadow);
+        }
+
+        .toc {
+          position: sticky;
+          top: 16px;
+          padding: 18px;
+        }
+
+        .toc h2,
+        .section-header h2,
+        .mini-title {
+          margin: 0;
+          font-size: 14px;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: var(--accent2);
+        }
+
+        .toc-list {
+          list-style: none;
+          padding: 0;
+          margin: 14px 0 0;
+          display: grid;
+          gap: 8px;
+        }
+
+        .toc-list a {
+          display: block;
+          padding: 9px 10px;
+          border-radius: 10px;
+          background: rgba(43, 49, 64, 0.75);
+          border: 1px solid rgba(78, 92, 116, 0.7);
+          color: var(--text);
+          font-size: 13px;
+        }
+
+        .toc-list a:hover {
+          background: rgba(61, 70, 91, 0.95);
+          text-decoration: none;
+        }
+
+        .content {
+          display: grid;
+          gap: 18px;
+        }
+
+        section.panel {
+          padding: 20px;
+        }
+
+        .section-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: end;
+          gap: 14px;
+          padding-bottom: 12px;
+          margin-bottom: 16px;
+          border-bottom: 1px solid rgba(78, 92, 116, 0.75);
+          flex-wrap: wrap;
+        }
+
+        .section-number {
+          color: var(--muted);
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 0.12em;
+        }
+
+        .section-title-wrap p {
+          margin: 6px 0 0;
+          color: var(--muted);
+          font-size: 14px;
+        }
+
+        p { margin: 0 0 12px; }
+        ul, ol { margin: 0 0 14px 18px; padding: 0; }
+        li + li { margin-top: 5px; }
+
+        .grid-2,
+        .grid-3,
+        .grid-auto {
+          display: grid;
+          gap: 12px;
+        }
+
+        .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .grid-auto { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+        .card,
+        .callout,
+        .note {
+          padding: 14px;
+        }
+
+        .card {
+          background: linear-gradient(180deg, rgba(43, 49, 64, 0.98), rgba(35, 40, 51, 0.98));
+        }
+
+        .callout {
+          background: linear-gradient(180deg, rgba(30, 52, 78, 0.9), rgba(35, 40, 51, 0.98));
+        }
+
+        .callout strong,
+        .note strong,
+        .rule strong { color: var(--accent); }
+
+        .rule {
+          padding: 10px 12px;
+          background: rgba(16, 20, 27, 0.45);
+          border: 1px solid rgba(78, 92, 116, 0.55);
+          border-radius: 10px;
+        }
+
+        .rule + .rule { margin-top: 8px; }
+
+        .rule-title {
+          display: block;
+          color: var(--accent);
+          font-size: 13px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          margin-bottom: 6px;
+        }
+
+        .stat-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+          gap: 10px;
+        }
+
+        .stat {
+          background: rgba(16, 20, 27, 0.55);
+          border: 1px solid rgba(78, 92, 116, 0.7);
+          border-radius: 12px;
+          padding: 10px 12px;
+        }
+
+        .stat-label {
+          display: block;
+          font-size: 11px;
+          text-transform: uppercase;
+          color: var(--muted);
+          letter-spacing: 0.08em;
+          margin-bottom: 6px;
+        }
+
+        .stat-value {
+          display: block;
+          color: var(--accent);
+          font-size: 18px;
+          font-weight: 700;
+          line-height: 1.1;
+        }
+
+        .footer-note {
+          margin-top: 18px;
+          color: var(--muted);
+          font-size: 13px;
+          text-align: center;
+        }
+
+        @media (max-width: 1080px) {
+          .layout,
+          .banner-grid,
+          .grid-3,
+          .grid-2 {
+            grid-template-columns: 1fr;
+          }
+
+          .toc {
+            position: static;
+          }
+        }
+
+        @media (max-width: 720px) {
+          .page {
+            width: calc(100% - 16px);
+            max-width: 100%;
+            padding-top: 10px;
+          }
+
+          .banner,
+          section.panel,
+          .toc {
+            padding: 16px;
+          }
+        }
+
+        html,
+        body {
+          max-width: 100%;
+          overflow-x: hidden;
+        }
+
+        p,
+        li,
+        a,
+        .pill,
+        .tag,
+        .quick-link,
+        .stat-value {
+          overflow-wrap: anywhere;
+          word-break: break-word;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <header class="banner" id="top">
+        <div class="banner-grid">
+            <div>
+                <div class="eyebrow">World Canon • Player Facing</div>
+                <h1>Far Sector Common Knowledge</h1>
+                <p class="subtitle">
+                    This page presents the setting as ordinary people, drifters, recruits, laborers,
+                    guild hunters, and travelers would understand it. It is meant for player use.
+                </p>
+                <div class="hero-pills">
+                    <span class="pill">Player Safe</span>
+                    <span class="pill">Common Knowledge</span>
+                    <span class="pill">Sector Overview</span>
+                    <span class="pill">Origins & Factions</span>
+                    <span class="pill">Character Anchors</span>
+                </div>
+            </div>
+            <div>
+                <div class="callout">
+                    <div class="tag-row">
+                        <span class="tag player-tag">Player Facing</span>
+                        <span class="tag">In-Setting Knowledge</span>
+                    </div>
+                    <p>
+                        <strong>Use this page during character creation and early play.</strong>
+                        It gives players a shared baseline for what the Far Sector feels like,
+                        what people believe, and what kinds of lives characters come from.
+                    </p>
+                    <div class="quick-links" style="margin-top:12px;">
+                        <a class="quick-link" href="#far-sector">The Sector</a>
+                        <a class="quick-link" href="#union">The Union</a>
+                        <a class="quick-link" href="#origins">Origins</a>
+                        <a class="quick-link" href="#questions">Character Questions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="toc">
+            <h2>Contents</h2>
+            <ol class="toc-list">
+                <li><a href="#what-most-people-know">1. What Most People Know</a></li>
+                <li><a href="#far-sector">2. The Far Sector</a></li>
+                <li><a href="#systems-worlds">3. Systems and Worlds</a></li>
+                <li><a href="#union">4. The Galactic Union</a></li>
+                <li><a href="#psionics">5. Psionics</a></li>
+                <li><a href="#cyberware">6. Cyberware</a></li>
+                <li><a href="#origins">7. Common Origins</a></li>
+                <li><a href="#factions">8. Public Factions</a></li>
+                <li><a href="#places">9. Famous Places</a></li>
+                <li><a href="#social-reality">10. Social Reality</a></li>
+                <li><a href="#questions">11. Character Questions & Seeds</a></li>
+            </ol>
+        </aside>
+
+        <main class="content">
+            <section class="panel" id="what-most-people-know">
+                <div class="section-header">
+                    <div class="section-title-wrap">
+                        <div class="section-number">Section 1</div>
+                        <h2>What Most People Know</h2>
+                        <p>The broad truths, rumors, and assumptions ordinary people live with.</p>
+                    </div>
+                </div>
+
+                <div class="callout">
+                    <span class="rule-title">The Basic Truth</span>
+                    <p>
+                        You grow up learning the Union saved the sector. Maybe that is true. Maybe it is only true
+                        if you live high enough above the street. Most people do not get the whole truth. They get
+                        a version that keeps them working, paying, saluting, and staying out of restricted lanes.
+                    </p>
+                </div>
+
+                <div class="grid-2" style="margin-top:12px;">
+                    <div class="card">
+                        <h3 class="mini-title">Most people know</h3>
+                        <ul>
+                            <li>the Union runs most of the sector, at least officially</li>
+                            <li>trade lanes, docks, and quotas shape daily life</li>
+                            <li>every system has a black market and a rumor network</li>
+                            <li>Psionics is real, feared, and politically dangerous</li>
+                            <li>cyberware is common, but some implants mean trouble</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3 class="mini-title">Most people feel</h3>
+                        <ul>
+                            <li>life gets harsher the closer you are to debt or labor quotas</li>
+                            <li>laws protect order before they protect ordinary people</li>
+                            <li>official history leaves out too much</li>
+                            <li>every world has its own version of survival</li>
+                            <li>the sector is too big to ever fully control</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" id="far-sector">
+                <div class="section-header">
+                    <div class="section-title-wrap">
+                        <div class="section-number">Section 2</div>
+                        <h2>The Far Sector</h2>
+                        <p>A region held together by routes, stations, industry, and pressure.</p>
+                    </div>
+                </div>
+
+                <p>
+                    The Far Sector is five major systems and countless smaller places tied together by freight routes,
+                    station law, fuel schedules, contracts, and people too stubborn to quit. You can make a life here
+                    if you can keep moving, keep useful, and stay off the wrong list.
+                </p>
+
+                <div class="grid-3" style="margin-top:12px;">
+                    <div class="card"><span class="rule-title">Cortega</span><p>The administrative heart of the sector. Towers, bureaucracy, fleets, lower districts, surveillance, and power.</p></div>
+                    <div class="card"><span class="rule-title">Lilith</span><p>Frontier territory. Colonies, wild zones, extraction sites, bad weather, and contracts with terrible odds.</p></div>
+                    <div class="card"><span class="rule-title">Indego</span><p>Cold worlds, tide cities, seasonal cycles, strange traditions, and old stories that do not die easily.</p></div>
+                    <div class="card"><span class="rule-title">Embargo</span><p>Industrial backbone. Shipyards, foundries, labor barracks, cyberware contracts, and class divisions made visible.</p></div>
+                    <div class="card"><span class="rule-title">Riftessar</span><p>The far edge. Exiles, mercenaries, salvage fields, false names, and places where the law gets thin.</p></div>
+                    <div class="card"><span class="rule-title">The Smaller Routes</span><p>Freighters, freeports, depot stations, mining shelves, shrine worlds, and forgotten outposts fill the gaps between power centers.</p></div>
+                </div>
+            </section>
+
+            <section class="panel" id="systems-worlds">
+                <div class="section-header">
+                    <div class="section-title-wrap">
+                        <div class="section-number">Section 3</div>
+                        <h2>Systems and Worlds</h2>
+                        <p>A player-facing guide to the major systems, worlds, stations, and routes people talk about across the Far Sector.</p>
+                    </div>
+                </div>
+
+                <div class="callout">
+                    <span class="rule-title">How to Read This Section</span>
+                    <p>
+                        Not every traveler knows every detail, and not every rumor is true. But if you grew up in the Far Sector,
+                        worked its routes, listened in bars, hauled cargo, served a contract, or paid attention to the newsfeeds,
+                        you have probably heard at least some version of what follows.
+                    </p>
+                </div>
+
+                <div class="grid-2" style="margin-top:12px;">
+                    <div class="card">
+                        <h3 class="mini-title">Cortega System</h3>
+                        <p>
+                            Cortega is the political and administrative heart of the sector. It is where the Union looks strongest,
+                            most polished, and most certain of itself. To some, it represents civilization. To others, it represents
+                            distance, bureaucracy, and the comfortable face of power.
+                        </p>
+
+                        <div class="rule"><strong>Cortega Prime:</strong> The famous city-world of towers, transit layers, government districts, media hubs, luxury arcologies, and densely packed lower levels. Most people know it as the place where laws are written and where those laws somehow get harsher the farther from the sunlight you live.</div>
+                        <div class="rule"><strong>Halcyon Spire:</strong> A ceremonial district and political symbol more than a separate world in the public imagination. Known for fleet parades, state addresses, tribunals, memorial architecture, and heavily controlled public events.</div>
+                        <div class="rule"><strong>Station Crown:</strong> The orbital dock network around Cortega Prime. Merchants know it for customs delays, military presence, diplomatic traffic, and constant inspection risk. Spacer types know it as a place where paperwork can kill a deal faster than a gunfight.</div>
+                        <div class="rule"><strong>Blackline Levels:</strong> Not a formal world name, but a term most people have heard. Refers to deep infrastructure zones, neglected lower districts, sealed tunnels, utility sectors, and off-grid communities beneath the polished surface.</div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="mini-title">What people say about Cortega</h3>
+                        <ul>
+                            <li>if something is legal there, it is probably profitable for someone powerful</li>
+                            <li>if something is illegal there, it is probably still happening three levels down</li>
+                            <li>Cortega produces officials the way other worlds produce ore or grain</li>
+                            <li>the higher you go, the cleaner the Union looks</li>
+                            <li>the lower you go, the more people vanish into paperwork, debt, or silence</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="grid-2" style="margin-top:12px;">
+                    <div class="card">
+                        <h3 class="mini-title">Lilith System</h3>
+                        <p>
+                            Lilith is frontier territory in the popular imagination: wild, half-mapped, dangerous, and full of opportunity
+                            for the kind of people who mistake danger for a lifestyle. It is where survey contracts, colonial ventures,
+                            hunting work, and extraction schemes tend to go wrong in memorable ways.
+                        </p>
+
+                        <div class="rule"><strong>Greenreach:</strong> The best-known world in Lilith. Dense jungle, violent storms, aggressive wildlife, and settlements that always feel one bad week away from failure. Outsiders know it as beautiful and deadly in equal measure.</div>
+                        <div class="rule"><strong>Cinder Wake:</strong> A mining world of quarry shelves, fissure towns, industrial rigs, and dust-hung settlements. Known for harsh contracts, dangerous labor, and people who learn quickly that a mining company’s rescue promise usually has conditions attached.</div>
+                        <div class="rule"><strong>Harrow Station:</strong> Officially a remote survey and logistics outpost. Publicly, people know it as the kind of place rumors cling to: rerouted cargo, restricted decks, missing personnel, strange screenings, and assignments no one volunteers for twice.</div>
+                        <div class="rule"><strong>Widow’s Belt:</strong> An asteroid zone rather than a single world, but famous enough to count. Known for pirate caches, hidden docks, old rigs, scavenger traffic, and ambushes disguised as salvage opportunity.</div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="mini-title">What people say about Lilith</h3>
+                        <ul>
+                            <li>maps are suggestions, not promises</li>
+                            <li>the weather kills more cleanly than most governments</li>
+                            <li>every contract in Lilith leaves out at least one important detail</li>
+                            <li>frontier settlements look temporary until they survive long enough to become stubborn</li>
+                            <li>the things that live in Greenreach do not care who filed the land claim</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="grid-2" style="margin-top:12px;">
+                    <div class="card">
+                        <h3 class="mini-title">Indego System</h3>
+                        <p>
+                            Indego is the system most outsiders describe as cold, strange, or beautiful before they learn enough to become
+                            more respectful. Its worlds are shaped by ice, tides, long cycles, and traditions that make perfect sense to
+                            locals and very little sense to hurried off-worlders.
+                        </p>
+
+                        <div class="rule"><strong>Nacre:</strong> A water-ice world known for floating cities, thaw seasons, reflective seas, and cultures that track time through light, tide, and return. Many people across the sector think of it as mystical, though locals usually think of themselves as practical first.</div>
+                        <div class="rule"><strong>Duskmere:</strong> A dim glacial world of trench settlements, ice caverns, salvage sites, and long dark horizons. People know it as a place of endurance, old ruins, and communities that survive by patience rather than noise.</div>
+                        <div class="rule"><strong>The Lantern Path:</strong> Not a planet but a famous route associated with Indego’s seasonal cycles. Pilgrims, navigators, scholars, traders, and opportunists all care about it for different reasons.</div>
+                        <div class="rule"><strong>Pilgrim Arrays:</strong> Orbital structures connected to Indego’s long memory and ritual importance. Most ordinary people only know they are old, significant, and the subject of more stories than clear explanations.</div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="mini-title">What people say about Indego</h3>
+                        <ul>
+                            <li>you do not schedule Indego; you wait for it</li>
+                            <li>locals measure time in ways the rest of the sector pretends to understand</li>
+                            <li>the ice remembers things people forget</li>
+                            <li>outsiders arrive looking for beauty and leave with respect or frostbite</li>
+                            <li>half the stories told about Nacre are wrong, but the wrong ones spread faster</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="grid-2" style="margin-top:12px;">
+                    <div class="card">
+                        <h3 class="mini-title">Embargo System</h3>
+                        <p>
+                            Embargo is the industrial engine of the sector. If something flies, shoots, docks, breaks, gets repaired,
+                            gets replaced, or gets fitted with expensive hardware, some part of that process probably passed through Embargo.
+                            It is rich in output and poor in mercy.
+                        </p>
+
+                        <div class="rule"><strong>Brass Meridian:</strong> The most famous industrial station-city in the sector. Shipyards, foundries, cyberware clinics, labor barracks, machine noise, contract halls, and sharp class lines. People come here to work, to disappear into the workforce, or to make fortunes off the ones who do.</div>
+                        <div class="rule"><strong>The Cincture:</strong> A linked chain of factory and dock stations producing fleet components, industrial hardware, weapons systems, and military contracts. Most civilians think of it as the place where the Union manufactures its patience into steel.</div>
+                        <div class="rule"><strong>Ashfall:</strong> A poisoned reclamation world of ash storms, slag plains, extraction towers, and desperate settlements. Official feeds call it recovering. Most workers call it survivable on a good day.</div>
+                        <div class="rule"><strong>Morrow’s Drop:</strong> A half-denied freeport threaded through salvage platforms and ruined refinery shells. Smugglers, brokers, mechanics, and off-book merchants speak of it like a location and a rumor at the same time.</div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="mini-title">What people say about Embargo</h3>
+                        <ul>
+                            <li>everything in Embargo has a price, including being left alone</li>
+                            <li>Brass Meridian can repair your ship or grind your life flat</li>
+                            <li>nobody breathes Ashfall air voluntarily</li>
+                            <li>if a combine says a contract is generous, read it twice</li>
+                            <li>Morrow’s Drop is where respectable people go under false names</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="grid-2" style="margin-top:12px;">
+                    <div class="card">
+                        <h3 class="mini-title">Riftessar System</h3>
+                        <p>
+                            Riftessar is the far edge of the sector in most people’s minds: distant, law-thin, salvage-rich,
+                            and full of the kinds of communities that emerge wherever official power weakens but need does not.
+                            It attracts exiles, mercenaries, prospectors, pilgrims, and anyone hoping distance can become reinvention.
+                        </p>
+
+                        <div class="rule"><strong>Redwake:</strong> The best-known port in the system. Mercenary docks, black auctions, transit bars, syndicate deals, false names, desperate pilgrims, and ships that always seem one inspection away from trouble.</div>
+                        <div class="rule"><strong>Vanta Grave:</strong> A salvage world covered in wreckage, battlefield debris, dead hulls, and long memories. Prospectors dream of relics here. Veterans tend to go quiet when it comes up.</div>
+                        <div class="rule"><strong>Hush Colony Nine:</strong> One of those places people describe carefully. Some say it is a sanctuary for people starting over. Some say it is where inconvenient records go to die. Most people agree it is easier to reach than to understand.</div>
+                        <div class="rule"><strong>The Far Choir:</strong> A rumored zone of dead stations, signal distortion, old relays, and stories nobody tells the same way twice. Most people know it as one of those places you laugh about until someone swears they have actually been near it.</div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="mini-title">What people say about Riftessar</h3>
+                        <ul>
+                            <li>distance changes what counts as official</li>
+                            <li>Redwake is where names go to become temporary</li>
+                            <li>salvage crews either get rich, disappear, or lie about both</li>
+                            <li>some colonies out there are free, and some are just forgotten</li>
+                            <li>every third story from the Far Choir is nonsense, which still leaves too many true ones</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="note" style="margin-top:12px;">
+                    <strong>Player-facing rule of thumb:</strong>
+                    a system tells you what kind of pressure shapes daily life there, and a world tells you what kind of person survives it well.
+                    Cortega makes bureaucrats, climbers, and ghosts. Lilith makes scouts, colonists, and hard cases.
+                    Indego makes patient people. Embargo makes workers, fixers, and strivers. Riftessar makes drifters, mercenaries, and reinventions.
+                </div>
+            </section>
+
+            <section class="panel" id="union">
+                <div class="section-header">
+                    <div class="section-title-wrap">
+                        <div class="section-number">Section 3</div>
+                        <h2>The Galactic Union</h2>
+                        <p>The central state, depending on who is telling the story.</p>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h3 class="mini-title">What supporters say</h3>
+                        <ul>
+                            <li>the Union ended the old wars</li>
+                            <li>the Union protects trade and transport</li>
+                            <li>the Union keeps piracy, famine, and collapse in check</li>
+                            <li>strict oversight is necessary in a dangerous sector</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="mini-title">What critics say</h3>
+                        <ul>
+                            <li>the Union taxes worlds dry</li>
+                            <li>law protects contracts before people</li>
+                            <li>security often means raids, checkpoints, and disappearances</li>
+                            <li>the Union lies about the past and calls it order</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="note" style="margin-top:12px;">
+                    <strong>Both views can be true at once.</strong>
+                    The Union can look efficient, lawful, and stabilizing from above while feeling extractive and brutal from below.
+                </div>
+            </section>
+
+            <section class="panel" id="psionics">
+                <div class="section-header">
+                    <div class="section-title-wrap">
+                        <div class="section-number">Section 4</div>
+                        <h2>Psionics</h2>
+                        <p>Feared, regulated, mythologized, and never openly simple.</p>
+                    </div>
+                </div>
+
+                <div class="callout">
+                    <span class="rule-title">What people say</span>
+                    <p>
+                        Everybody knows a story. Old families remember Psionic bloodlines, sects, and teachers with reverence,
+                        fear, or resentment. Official channels say that uncontrolled Psionic users are dangerous and that
+                        oversight protects the public.
+                    </p>
+                </div>
+
+                <div class="grid-2" style="margin-top:12px;">
+                    <div class="card">
+                        <h3 class="mini-title">Common knowledge</h3>
+                        <ul>
+                            <li>independent Psionic training is dangerous or illegal in many places</li>
+                            <li>the Union takes interest in anyone showing real talent</li>
+                            <li>some Psionic users vanish into induction or oversight programs</li>
+                            <li>open discussion around Psionics can attract the wrong attention</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="mini-title">What people suspect</h3>
+                        <ul>
+                            <li>not all official stories about Psionics are true</li>
+                            <li>rich families still seek out hidden Psionic help</li>
+                            <li>old traditions were not fully erased</li>
+                            <li>the state fears what it cannot fully standardize</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" id="cyberware">
+                <div class="section-header">
+                    <div class="section-title-wrap">
+                        <div class="section-number">Section 5</div>
+                        <h2>Cyberware</h2>
+                        <p>Common enough to be ordinary, powerful enough to be political.</p>
+                    </div>
+                </div>
+
+                <p>
+                    Cyberware is part of ordinary life across much of the sector. Dockhands use reinforcement, pilots use neural ports,
+                    med-techs use precision implants, and security forces use tactical upgrades. People do not stare unless the work is unusual.
+                </p>
+
+                <div class="grid-2" style="margin-top:12px;">
+                    <div class="card">
+                        <h3 class="mini-title">Ordinary cyberware</h3>
+                        <ul>
+                            <li>pilot or vehicle interface ports</li>
+                            <li>industrial tendon or grip reinforcement</li>
+                            <li>retinal targeting or work overlays</li>
+                            <li>subdermal protection or med-support systems</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="mini-title">What draws attention</h3>
+                        <ul>
+                            <li>military-grade implants</li>
+                            <li>visible restraint or control hardware</li>
+                            <li>black-clinic modifications</li>
+                            <li>bodies that look more state-owned than self-owned</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="note" style="margin-top:12px;">
+                    <strong>People understand the difference between augmentation and ownership.</strong>
+                    In the Far Sector, that difference matters.
+                </div>
+            </section>
+
+            <section class="panel" id="origins">
+                <div class="section-header">
+                    <div class="section-title-wrap">
+                        <div class="section-number">Section 6</div>
+                        <h2>Common Origins</h2>
+                        <p>The kinds of lives player characters often come from.</p>
+                    </div>
+                </div>
+
+                <div class="grid-auto">
+                    <div class="card"><span class="rule-title">Union Trained</span><p>You grew up in structure, regulation, and official systems. You may still believe, partially believe, or have fled them.</p></div>
+                    <div class="card"><span class="rule-title">Stationborn</span><p>You were raised around docks, corridors, freight traffic, ration counters, and transient crews.</p></div>
+                    <div class="card"><span class="rule-title">Undercity Raised</span><p>You learned black markets, service tunnels, gang lines, informal debts, and survival below the polished levels.</p></div>
+                    <div class="card"><span class="rule-title">Frontier Bred</span><p>You come from places where storms, distance, beasts, and extraction rights matter more than official promises.</p></div>
+                    <div class="card"><span class="rule-title">Guild Affiliated</span><p>You lived around warrants, contracts, claims, transports, or licensed violence.</p></div>
+                    <div class="card"><span class="rule-title">Rebel Touched</span><p>Your family hid runners, moved supplies, resisted openly, or suffered because someone thought they did.</p></div>
+                    <div class="card"><span class="rule-title">Shrine or Archive Raised</span><p>You were taught old names, old stories, and truths that did not come from official schooling.</p></div>
+                    <div class="card"><span class="rule-title">Corporate Defector</span><p>You worked inside industrial systems long enough to understand what the numbers really cost.</p></div>
+                </div>
+            </section>
+
+            <section class="panel" id="factions">
+                <div class="section-header">
+                    <div class="section-title-wrap">
+                        <div class="section-number">Section 7</div>
+                        <h2>Public Factions</h2>
+                        <p>Groups ordinary people recognize well enough to name on sight.</p>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h3 class="mini-title">Galactic Union</h3>
+                        <p>The state: fleets, bureaucracy, internal order, industrial regulation, and official law.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="mini-title">Rebel Cells</h3>
+                        <p>Loose anti-Union networks ranging from local militias to couriers, organizers, and safehouse operators.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="mini-title">Bounty Hunters Guildship</h3>
+                        <p>A contract authority that licenses, verifies, posts, and arbitrates bounty work.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="mini-title">Veil Market</h3>
+                        <p>The underworld economy of forged papers, illicit goods, stolen tech, and quiet jobs.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="mini-title">Pilgrim Archive</h3>
+                        <p>Historians, relic keepers, oral recorders, shrine wardens, and preservers of inconvenient memory.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="mini-title">Major Combines</h3>
+                        <p>Industrial and cyberware corporations tied to shipyards, contracts, logistics, and military supply.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" id="places">
+                <div class="section-header">
+                    <div class="section-title-wrap">
+                        <div class="section-number">Section 8</div>
+                        <h2>Famous Places</h2>
+                        <p>Locations most people in the sector have at least heard of.</p>
+                    </div>
+                </div>
+
+                <div class="grid-auto">
+                    <div class="card"><span class="rule-title">Cortega Prime</span><p>Layered towers, fleet broadcasts, power, bureaucracy, lower districts, and everything they do not show on public feeds.</p></div>
+                    <div class="card"><span class="rule-title">Brass Meridian</span><p>Factory station, shipyard city, cyberware market, labor pressure point, and industrial powerhouse.</p></div>
+                    <div class="card"><span class="rule-title">Morrow’s Drop</span><p>A semi-legendary freeport where off-books work, quiet sales, and hidden meetings find room to breathe.</p></div>
+                    <div class="card"><span class="rule-title">Redwake</span><p>A far-system port for mercenaries, exiles, drifters, and people trying to disappear under new names.</p></div>
+                    <div class="card"><span class="rule-title">Greenreach</span><p>Frontier world known for dangerous contracts, wild territory, and stories that get worse every time they are retold.</p></div>
+                    <div class="card"><span class="rule-title">Nacre</span><p>Ice-ocean world of tide cities, thaw seasons, and old traditions outsiders rarely understand on first contact.</p></div>
+                    <div class="card"><span class="rule-title">Ashfall</span><p>The poisoned reclamation world everybody knows exists and nobody powerful describes honestly.</p></div>
+                    <div class="card"><span class="rule-title">Harrow Station</span><p>Officially a survey outpost. Unofficially the kind of place people mention quietly and never for good reasons.</p></div>
+                </div>
+            </section>
+
+            <section class="panel" id="social-reality">
+                <div class="section-header">
+                    <div class="section-title-wrap">
+                        <div class="section-number">Section 9</div>
+                        <h2>Social Reality</h2>
+                        <p>The truths people learn without needing them printed in a textbook.</p>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h3 class="mini-title">The unwritten rules</h3>
+                        <ul>
+                            <li>the higher you live, the kinder the Union feels</li>
+                            <li>the lower you live, the more every rule feels like a trap</li>
+                            <li>permits matter until money matters more</li>
+                            <li>justice and legality are not the same thing</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="mini-title">The quiet truths</h3>
+                        <ul>
+                            <li>if a world is resource-rich, someone is already lying about who owns it</li>
+                            <li>every station has a black market</li>
+                            <li>every system has a rebel rumor</li>
+                            <li>every family has one story they do not tell in public</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" id="questions">
+                <div class="section-header">
+                    <div class="section-title-wrap">
+                        <div class="section-number">Section 10</div>
+                        <h2>Character Questions & Seeds</h2>
+                        <p>Useful prompts for building characters who belong in the sector.</p>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h3 class="mini-title">Questions to answer</h3>
+                        <ul>
+                            <li>What system raised you?</li>
+                            <li>Did the Union protect your people, use them, or abandon them?</li>
+                            <li>What did your family believe about Psionics?</li>
+                            <li>What job first taught you how to survive?</li>
+                            <li>What faction do you still have ties to?</li>
+                            <li>What place do you never want to go back to?</li>
+                            <li>What lie did you grow up believing?</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="mini-title">Character seeds</h3>
+                        <ul>
+                            <li><strong>Ex-Union Trooper:</strong> you know what the machine sounds like from inside</li>
+                            <li><strong>Guild Hunter:</strong> every contract turns political sooner or later</li>
+                            <li><strong>Undercity Slicer:</strong> systems are made by people, and people can be fooled</li>
+                            <li><strong>Frontier Tracker:</strong> weather and instinct matter more than maps</li>
+                            <li><strong>Archive Adept:</strong> you inherited fragments powerful people tried to erase</li>
+                            <li><strong>Corporate Defector:</strong> you finally understood what the numbers meant</li>
+                            <li><strong>Rebel Courier:</strong> you carried secrets long before you carried weapons</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="note" style="margin-top:12px;">
+                    <strong>Best player use:</strong>
+                    treat this page as shared knowledge, not absolute truth. In the Far Sector, what people believe,
+                    what institutions claim, and what is actually true are not always the same thing.
+                </div>
+
+                <p class="footer-note">
+                    Player-facing world canon for Remnants of the Far Galaxy.
+                </p>
+            </section>
+        </main>
+    </div>
+</div>
+</body>
+</html>
