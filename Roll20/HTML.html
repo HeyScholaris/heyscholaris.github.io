@@ -712,7 +712,7 @@
                 const armor = asInt(values.armor);
                 const cyberLoadTotal = asInt(values.cyber_load_total);
 
-                const healthMax = 10 + body + level;
+                const healthMax = 10 + (body * level);
                 const resolveMax = 3 + will;
                 const defense = 10 + agility + armor;
                 const cyberLoadMax = 2 + tech;
