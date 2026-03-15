@@ -820,6 +820,15 @@
                             <li>If using a grid, Move is <strong>6 squares</strong>.</li>
                         </ul>
                     </div>
+                    <div class="card" style="margin-top:12px;">
+                        <h3 class="mini-title">Equipping and Using Weapons</h3>
+                        <ul>
+                            <li><strong>Light weapons:</strong> You may equip or draw the weapon and use it as part of the same Action.</li>
+                            <li><strong>Non-Light weapons:</strong> Equipping or readying the weapon takes your Action. Attacking or firing with it takes a separate Action.</li>
+                            <li><strong>Heavy weapons:</strong> Heavy weapons follow the non-light rule unless a feature says otherwise.</li>
+                            <li>If a weapon is already in hand and ready, using it only takes the normal attack Action.</li>
+                        </ul>
+                    </div>
                     <div class="card">
                         <h3 class="mini-title">Common Actions</h3>
                         <div class="tag-row">
@@ -845,8 +854,7 @@
                         <ul>
                             <li>On a hit, roll the weapon's damage.</li>
                             <li>On a natural 20, deal maximum normal damage, then roll the weapon damage dice again and add the result.</li>
-                            <li>Optional critical effects: disarm target, knock target prone, Psionic target into cover, destroy carried gear, or inflict 1 extra Wound on a Downed target.</li>
-                        </ul>
+                            <li>Optional critical effects: disarm target, knock target prone, shove target into cover, destroy carried gear, or inflict 1 extra Wound on a Downed target.</li>                        </ul>
                     </div>
                     <div class="card">
                         <h3 class="mini-title">Cover</h3>
@@ -864,11 +872,11 @@
                         <tr><th>Range Band</th><th>Meaning</th></tr>
                         </thead>
                         <tbody>
-                        <tr><td>Engaged</td><td>close enough for melee</td></tr>
-                        <tr><td>Short</td><td>same room or close lane</td></tr>
-                        <tr><td>Medium</td><td>across a street, hangar, or long hall</td></tr>
-                        <tr><td>Long</td><td>rooftop to rooftop, sniper line, open field</td></tr>
-                        <tr><td>Extreme</td><td>specialized weapons or ship scale</td></tr>
+                        <tr><td>Engaged</td><td>close enough for melee  - (1-2 Grid)</td></tr>
+                        <tr><td>Short</td><td>same room or close lane  - (6-12 Grid)</td></tr>
+                        <tr><td>Medium</td><td>across a street, hangar, or long hall - (12-24 Grid)</td></tr>
+                        <tr><td>Long</td><td>rooftop to rooftop, sniper line, open field - (>30 Grid)</td></tr>
+                        <tr><td>Extreme</td><td>specialized weapons or ship scale - (>100 Grid)</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -977,8 +985,7 @@
                         <div class="rule"><strong>Sense — Cost 1 Resolve:</strong> Ask one question Psionics might answer, such as: Is danger near? Is there life nearby? Is someone hiding hostile intent? Has Psionics been used here recently? The GM should answer truthfully, though not always completely.</div>                        <div class="rule"><strong>Leap — Cost 1 Resolve:</strong> Make an impossible jump or fall safely this turn.</div>
                         <div class="rule"><strong>Bind — Cost 1 Resolve:</strong> Roll Psionic vs target Defense or Discipline. On a success, the target is restrained until the end of your next turn.</div>
                         <div class="rule"><strong>Deflect — Cost 1 Resolve, Reaction:</strong> Reduce incoming ranged damage by 1d8 + Will. If damage is reduced to 0, you may redirect the shot at a valid target within Short range.</div>
-                        <div class="rule"><strong>Mind Trick — Cost 1 Resolve:</strong> Roll Psionic vs target Discipline. On success, plant a short, plausible suggestion. The request cannot obviously Psionic self-destruction unless the GM allows a powerful narrative moment.</div>
-                        <div class="rule"><strong>Surge — Cost 1 Resolve:</strong> Deal 1d8 energy damage to a nearby target, or add +1d8 to a melee attack this turn.</div>
+                        <div class="rule"><strong>Mind Trick — Cost 1 Resolve:</strong> Roll Psionic vs target Discipline. On success, plant a short, plausible suggestion. The request cannot obviously compel self-destruction unless the GM allows a powerful narrative moment.</div>                        <div class="rule"><strong>Surge — Cost 1 Resolve:</strong> Deal 1d8 energy damage to a nearby target, or add +1d8 to a melee attack this turn.</div>
                         <div class="rule"><strong>Heal — Cost 1 Resolve:</strong> Restore 1d8 + Will Health to a touched target. Each target can benefit from Heal once per Short Rest unless a feature says otherwise.</div>
                         <div class="rule"><strong>Cloak — Cost 1 Resolve:</strong> Gain Advantage on Stealth and become difficult to track until you attack, shout, or take obvious hostile action.</div>
                     </div>
@@ -1116,8 +1123,7 @@
 
                             <div class="rule"><strong>Slicer — Level 3 Fast Slice:</strong> Your first Hacking attempt each scene is a bonus action.</div>
                             <div class="rule"><strong>Slicer — Level 7 System Puppet:</strong> Once per scene, on a successful Hacking check, you may do one extra thing for free: open a door, disable a camera, lock a target out, spoof credentials, or pull simple data.</div>
-                            <div class="rule"><strong>Slicer — Level 10 Ghost in the Grid:</strong> You cannot be trivially traced through local systems. When you trigger a digital alarm, you may Psionic the GM to delay, misdirect, or partially conceal it.</div>
-
+                            <div class="rule"><strong>Slicer — Level 10 Ghost in the Grid:</strong> You cannot be trivially traced through local systems. When you trigger a digital alarm, you may cause it to be delayed, misdirected, or partially concealed.</div>
                             <div class="rule"><strong>Saboteur — Level 3 Demolitions Kit:</strong> You can prepare charges, traps, and disruptions from common gear. Gain Advantage on rolls to breach, sabotage, or disable infrastructure.</div>
                             <div class="rule"><strong>Saboteur — Level 7 Chain Reaction:</strong> When you damage machinery, generators, doors, or vehicles, roll +1d8 damage and create a complication for enemies nearby.</div>
                             <div class="rule"><strong>Saboteur — Level 10 Planned Collapse:</strong> Once per mission, declare that you prepared a fallback sabotage point earlier. It may be an explosive line, severed support, blackout trigger, or hidden trap, subject to the GM's approval.</div>
@@ -1152,8 +1158,7 @@
 
                             <div class="rule"><strong>Diplomat — Level 3 Voice of Reason:</strong> Gain Advantage on Charm when calming tension, securing passage, or persuading uncertain neutrals.</div>
                             <div class="rule"><strong>Diplomat — Level 7 Read the Room:</strong> Once per scene, ask the GM who has leverage, what people fear, or which deal would work here.</div>
-                            <div class="rule"><strong>Diplomat — Level 10 Ceasefire:</strong> Once per mission, if violence has not yet fully broken out, you may Psionic a short negotiation pause unless a major villain chooses to break it publicly.</div>
-
+                            <div class="rule"><strong>Diplomat — Level 10 Ceasefire:</strong> Once per mission, if violence has not yet fully broken out, you may force a short negotiation pause unless a major villain chooses to break it publicly.</div>
                             <div class="rule"><strong>Vanguard — Level 3 Shield Advance:</strong> While in medium or heavy armor, adjacent allies gain +1 Defense.</div>
                             <div class="rule"><strong>Vanguard — Level 7 Intercept:</strong> Reaction. When an ally within reach is hit, move adjacent and take the hit instead, reducing damage by your Will or armor value.</div>
                             <div class="rule"><strong>Vanguard — Level 10 Unbroken Front:</strong> Once per scene, you and nearby allies ignore fear, suppression, and forced movement for one full round.</div>
@@ -1260,7 +1265,7 @@
 
                             <div class="rule"><strong>Seer — Level 3 Premonition:</strong> Once per scene, ask the GM for a warning, omen, or likely danger before acting.</div>
                             <div class="rule"><strong>Seer — Level 7 Mind Reach:</strong> Your Mind Trick and Sense may affect or read targets at longer range.</div>
-                            <div class="rule"><strong>Seer — Level 10 Thread the Future:</strong> Once per mission, Psionic a reroll of any one roll you can perceive.</div>
+                            <div class="rule"><strong>Seer — Level 10 Thread the Future:</strong> Once per mission, force a reroll of any one roll you can perceive.</div>
 
                             <div class="rule"><strong>Striker — Level 3 Psionic Surge:</strong> When you hit with a melee attack, you may spend 1 Resolve to add +1d8 damage and push the target.</div>
                             <div class="rule"><strong>Striker — Level 7 Impossible Motion:</strong> Ignore difficult terrain and gain Advantage on Leap-related movement.</div>
@@ -1354,8 +1359,8 @@
                 <div class="card">
                     <h3 class="mini-title">Weapon Tags</h3>
                     <div class="grid-auto" style="margin-top:10px;">
-                        <div class="rule"><strong>Light:</strong> concealable, easy to draw</div>
-                        <div class="rule"><strong>Heavy:</strong> bulky or hard to conceal</div>
+                        <div class="rule"><strong>Light:</strong> concealable, easy to draw, and can be equipped and used as part of the same Action</div>
+                        <div class="rule"><strong>Heavy:</strong> bulky or hard to conceal; follows the non-light equip rule and usually requires bracing, both hands, or obvious carry</div>
                         <div class="rule"><strong>Stun:</strong> can be used to incapacitate instead of kill</div>
                         <div class="rule"><strong>Piercing:</strong> ignores 1 armor</div>
                         <div class="rule"><strong>Autofire:</strong> can suppress or spray targets</div>

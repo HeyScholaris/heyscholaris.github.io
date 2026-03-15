@@ -1,5 +1,6 @@
 <div class="sheet-rtfg">
-    <input type="hidden" name="attr_sheet_version" value="3" />
+    <input type="hidden" name="attr_sheet_version" value="5" />
+    <input type="hidden" name="attr_roll_formula" value="1d20" />
 
     <div class="sheet-banner">
         <div class="sheet-title">Remnants of the Far Galaxy</div>
@@ -18,7 +19,6 @@
 
     <input type="radio" id="rtfg-tab-datalog" name="attr_sheet_tab" class="sheet-tab sheet-tab4" value="datalog">
     <label for="rtfg-tab-datalog" class="sheet-tab-label sheet-tab-label4">Datalog</label>
-
 
     <div class="sheet-tab-wrap">
 
@@ -85,13 +85,14 @@
 
                     <div class="sheet-panel">
                         <h3>Resources</h3>
-                        <div class="sheet-grid sheet-grid-4">
+
+                        <div class="sheet-grid sheet-grid-5">
                             <label>
                                 <span>Health</span>
                                 <div class="sheet-pair">
-                                    <input type="number" name="attr_health" value="11" />
+                                    <input type="number" name="attr_health" value="10" />
                                     <span>/</span>
-                                    <input type="number" name="attr_health_max" value="10+@{body}+@{level}" disabled="true" />
+                                    <input type="number" name="attr_health_max" value="11" readonly="readonly" />
                                 </div>
                             </label>
 
@@ -100,37 +101,41 @@
                                 <div class="sheet-pair">
                                     <input type="number" name="attr_resolve" value="3" />
                                     <span>/</span>
-                                    <input type="number" name="attr_resolve_max" value="3+@{will}" disabled="true" />
+                                    <input type="number" name="attr_resolve_max" value="3" readonly="readonly" />
                                 </div>
                             </label>
 
                             <label>
                                 <span>Defense</span>
-                                <input type="number" name="attr_defense" value="10+@{agility}+@{armor}" disabled="true" />
-                            </label>
-
-                            <label>
-                                <span>Initiative</span>
-                                <button type="roll" name="roll_initiative" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Initiative}} {{roll=[[1d20+@{agility}]]}} {{detail=Agility}}">Roll</button>
+                                <input type="number" name="attr_defense" value="10" readonly="readonly" />
                             </label>
 
                             <label>
                                 <span>Cyber Load</span>
                                 <div class="sheet-pair">
-                                    <input type="number" name="attr_cyber_load_total" value="0" />
+                                    <input type="number" name="attr_cyber_load_total" value="0" readonly="readonly" />
                                     <span>/</span>
-                                    <input type="number" name="attr_cyber_load_max" value="2+@{tech}" disabled="true" />
+                                    <input type="number" name="attr_cyber_load_max" value="2" readonly="readonly" />
+                                </div>
+                            </label>
+
+                            <label>
+                                <span>Edge</span>
+                                <div class="sheet-counter-row">
+                                    <button type="action" name="act_edge_spend" class="sheet-mini-btn">-</button>
+                                    <input type="number" name="attr_edge" value="0" />
+                                    <button type="action" name="act_edge_gain" class="sheet-mini-btn">+</button>
                                 </div>
                             </label>
 
                             <label>
                                 <span>Overload</span>
-                                <input type="number" name="attr_cyber_overload" value="0" />
+                                <input type="number" name="attr_cyber_overload" value="0" readonly="readonly" />
                             </label>
 
                             <label>
-                                <span>Psionic Cyber Penalty</span>
-                                <input type="number" name="attr_psionic_cyber_penalty" value="0" />
+                                <span>Psionics Cyber Penalty</span>
+                                <input type="number" name="attr_psionics_cyber_penalty" value="0" readonly="readonly" />
                             </label>
 
                             <label>
@@ -154,8 +159,14 @@
                             <label><span>Wound 2</span><input type="checkbox" name="attr_wound_2" value="1" /></label>
                             <label><span>Wound 3</span><input type="checkbox" name="attr_wound_3" value="1" /></label>
                         </div>
-                    </div>
 
+                        <div class="sheet-grid sheet-grid-4 sheet-action-row">
+                            <button type="roll" name="roll_initiative" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Initiative}} {{kind=Initiative}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + @{agility} ]]}} {{attackbonus=[[@{agility}]]}} {{detail=Agility}} {{mode=@{roll_mode}}}">Initiative</button>
+                            <button type="action" name="act_short_rest">Short Rest</button>
+                            <button type="action" name="act_full_rest">Full Rest</button>
+                            <button type="action" name="act_edge_reset">Clear Edge</button>
+                        </div>
+                    </div>
 
                     <div class="sheet-panel">
                         <h3>Skills</h3>
@@ -166,105 +177,140 @@
 
                             <div class="sheet-skill-name">Athletics (Body)</div>
                             <select name="attr_skill_athletics"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
-                            <button type="roll" name="roll_athletics" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Athletics}} {{roll=[[1d20+@{body}+@{skill_athletics}]]}} {{detail=Body + Skill}}">Roll</button>
+                            <button type="roll" name="roll_athletics" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Athletics}} {{kind=Skill Check}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + @{body} + @{skill_athletics} ]]}} {{attackbonus=[[@{body}+@{skill_athletics}]]}} {{detail=Body + Skill}} {{mode=@{roll_mode}}}">Roll</button>
 
                             <div class="sheet-skill-name">Melee (Body/Agility)</div>
                             <select name="attr_skill_melee"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
-                            <button type="roll" name="roll_melee" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Melee}} {{roll=[[1d20+?{Use which attribute?|Body,@{body}|Agility,@{agility}}+@{skill_melee}]]}} {{detail=Chosen Attribute + Skill}}">Roll</button>
+                            <button type="roll" name="roll_melee" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Melee}} {{kind=Skill Check}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + ?{Use which attribute?|Body,@{body}|Agility,@{agility}} + @{skill_melee} ]]}} {{detail=Body or Agility + Melee}} {{mode=@{roll_mode}}} {{notes=Choose Body or Agility when you roll.}}">Roll</button>
 
                             <div class="sheet-skill-name">Ranged (Agility)</div>
                             <select name="attr_skill_ranged"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
-                            <button type="roll" name="roll_ranged" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Ranged}} {{roll=[[1d20+@{agility}+@{skill_ranged}]]}} {{detail=Agility + Skill}}">Roll</button>
+                            <button type="roll" name="roll_ranged" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Ranged}} {{kind=Skill Check}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + @{agility} + @{skill_ranged} ]]}} {{attackbonus=[[@{agility}+@{skill_ranged}]]}} {{detail=Agility + Skill}} {{mode=@{roll_mode}}}">Roll</button>
 
                             <div class="sheet-skill-name">Stealth (Agility)</div>
                             <select name="attr_skill_stealth"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
-                            <button type="roll" name="roll_stealth" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Stealth}} {{roll=[[1d20+@{agility}+@{skill_stealth}]]}} {{detail=Agility + Skill}}">Roll</button>
+                            <button type="roll" name="roll_stealth" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Stealth}} {{kind=Skill Check}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + @{agility} + @{skill_stealth} ]]}} {{attackbonus=[[@{agility}+@{skill_stealth}]]}} {{detail=Agility + Skill}} {{mode=@{roll_mode}}}">Roll</button>
 
                             <div class="sheet-skill-name">Pilot (Agility)</div>
                             <select name="attr_skill_pilot"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
-                            <button type="roll" name="roll_pilot" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Pilot}} {{roll=[[1d20+@{agility}+@{skill_pilot}]]}} {{detail=Agility + Skill}}">Roll</button>
+                            <button type="roll" name="roll_pilot" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Pilot}} {{kind=Skill Check}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + @{agility} + @{skill_pilot} ]]}} {{attackbonus=[[@{agility}+@{skill_pilot}]]}} {{detail=Agility + Skill}} {{mode=@{roll_mode}}}">Roll</button>
 
                             <div class="sheet-skill-name">Notice (Mind)</div>
                             <select name="attr_skill_notice"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
-                            <button type="roll" name="roll_notice" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Notice}} {{roll=[[1d20+@{mind}+@{skill_notice}]]}} {{detail=Mind + Skill}}">Roll</button>
+                            <button type="roll" name="roll_notice" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Notice}} {{kind=Skill Check}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + @{mind} + @{skill_notice} ]]}} {{attackbonus=[[@{mind}+@{skill_notice}]]}} {{detail=Mind + Skill}} {{mode=@{roll_mode}}}">Roll</button>
 
                             <div class="sheet-skill-name">Lore (Mind)</div>
                             <select name="attr_skill_lore"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
-                            <button type="roll" name="roll_lore" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Lore}} {{roll=[[1d20+@{mind}+@{skill_lore}]]}} {{detail=Mind + Skill}}">Roll</button>
+                            <button type="roll" name="roll_lore" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Lore}} {{kind=Skill Check}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + @{mind} + @{skill_lore} ]]}} {{attackbonus=[[@{mind}+@{skill_lore}]]}} {{detail=Mind + Skill}} {{mode=@{roll_mode}}}">Roll</button>
 
                             <div class="sheet-skill-name">Medicine (Mind)</div>
                             <select name="attr_skill_medicine"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
-                            <button type="roll" name="roll_medicine" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Medicine}} {{roll=[[1d20+@{mind}+@{skill_medicine}]]}} {{detail=Mind + Skill}}">Roll</button>
+                            <button type="roll" name="roll_medicine" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Medicine}} {{kind=Skill Check}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + @{mind} + @{skill_medicine} ]]}} {{attackbonus=[[@{mind}+@{skill_medicine}]]}} {{detail=Mind + Skill}} {{mode=@{roll_mode}}}">Roll</button>
 
                             <div class="sheet-skill-name">Hacking (Tech)</div>
                             <select name="attr_skill_hacking"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
-                            <button type="roll" name="roll_hacking" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Hacking}} {{roll=[[1d20+@{tech}+@{skill_hacking}]]}} {{detail=Tech + Skill}}">Roll</button>
+                            <button type="roll" name="roll_hacking" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Hacking}} {{kind=Skill Check}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + @{tech} + @{skill_hacking} ]]}} {{attackbonus=[[@{tech}+@{skill_hacking}]]}} {{detail=Tech + Skill}} {{mode=@{roll_mode}}}">Roll</button>
 
                             <div class="sheet-skill-name">Engineering (Tech)</div>
                             <select name="attr_skill_engineering"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
-                            <button type="roll" name="roll_engineering" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Engineering}} {{roll=[[1d20+@{tech}+@{skill_engineering}]]}} {{detail=Tech + Skill}}">Roll</button>
+                            <button type="roll" name="roll_engineering" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Engineering}} {{kind=Skill Check}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + @{tech} + @{skill_engineering} ]]}} {{attackbonus=[[@{tech}+@{skill_engineering}]]}} {{detail=Tech + Skill}} {{mode=@{roll_mode}}}">Roll</button>
 
                             <div class="sheet-skill-name">Charm (Presence)</div>
                             <select name="attr_skill_charm"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
-                            <button type="roll" name="roll_charm" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Charm}} {{roll=[[1d20+@{presence}+@{skill_charm}]]}} {{detail=Presence + Skill}}">Roll</button>
+                            <button type="roll" name="roll_charm" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Charm}} {{kind=Skill Check}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + @{presence} + @{skill_charm} ]]}} {{attackbonus=[[@{presence}+@{skill_charm}]]}} {{detail=Presence + Skill}} {{mode=@{roll_mode}}}">Roll</button>
 
                             <div class="sheet-skill-name">Deceive (Presence)</div>
                             <select name="attr_skill_deceive"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
-                            <button type="roll" name="roll_deceive" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Deceive}} {{roll=[[1d20+@{presence}+@{skill_deceive}]]}} {{detail=Presence + Skill}}">Roll</button>
+                            <button type="roll" name="roll_deceive" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Deceive}} {{kind=Skill Check}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + @{presence} + @{skill_deceive} ]]}} {{attackbonus=[[@{presence}+@{skill_deceive}]]}} {{detail=Presence + Skill}} {{mode=@{roll_mode}}}">Roll</button>
 
                             <div class="sheet-skill-name">Command (Presence)</div>
                             <select name="attr_skill_command"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
-                            <button type="roll" name="roll_command" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Command}} {{roll=[[1d20+@{presence}+@{skill_command}]]}} {{detail=Presence + Skill}}">Roll</button>
+                            <button type="roll" name="roll_command" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Command}} {{kind=Skill Check}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + @{presence} + @{skill_command} ]]}} {{attackbonus=[[@{presence}+@{skill_command}]]}} {{detail=Presence + Skill}} {{mode=@{roll_mode}}}">Roll</button>
 
                             <div class="sheet-skill-name">Discipline (Will)</div>
                             <select name="attr_skill_discipline"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
-                            <button type="roll" name="roll_discipline" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Discipline}} {{roll=[[1d20+@{will}+@{skill_discipline}-@{cyber_overload}]]}} {{detail=Will + Skill - Overload}}">Roll</button>
+                            <button type="roll" name="roll_discipline" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Discipline}} {{kind=Skill Check}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + @{will} + @{skill_discipline} - @{cyber_overload} ]]}} {{attackbonus=[[@{will}+@{skill_discipline}-@{cyber_overload}]]}} {{detail=Will + Skill - Overload}} {{mode=@{roll_mode}}}">Roll</button>
 
-                            <div class="sheet-skill-name">Psionic (Will)</div>
-                            <select name="attr_skill_psionic"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
-                            <button type="roll" name="roll_psionic" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Psionic}} {{roll=[[1d20+@{will}+@{skill_psionic}-@{strain}-@{psionic_cyber_penalty}]]}} {{detail=Will + Skill - Strain - Cyber Penalty}}">Roll</button>
+                            <div class="sheet-skill-name">Psionics (Will)</div>
+                            <select name="attr_skill_psionics"><option value="0" selected="selected">Untrained - 0</option><option value="2">Trained - 2</option><option value="4">Expert - 4</option></select>
+                            <button type="roll" name="roll_psionics" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=Psionics}} {{kind=Skill Check}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + @{will} + @{skill_psionics} - @{strain} - @{psionics_cyber_penalty} ]]}} {{attackbonus=[[@{will}+@{skill_psionics}-@{strain}-@{psionics_cyber_penalty}]]}} {{detail=Will + Skill - Strain - Cyber Penalty}} {{mode=@{roll_mode}}}">Roll</button>
                         </div>
                     </div>
 
                     <div class="sheet-panel">
                         <h3>Weapons</h3>
                         <fieldset class="repeating_weapons">
-                            <div class="sheet-repeat-row">
+                            <div class="sheet-repeat-row sheet-repeat-weapon">
                                 <label>
                                     <span>Name</span>
                                     <input type="text" name="attr_weapon_name" />
                                 </label>
+
                                 <label>
                                     <span>Type</span>
                                     <select name="attr_weapon_type">
                                         <option value="Melee" selected="selected">Melee</option>
                                         <option value="Ranged">Ranged</option>
-                                        <option value="Psionic">Psionic</option>
+                                        <option value="Psionics">Psionics</option>
+                                        <option value="Custom">Custom</option>
                                     </select>
                                 </label>
+
+                                <label>
+                                    <span>Melee Attribute</span>
+                                    <select name="attr_weapon_melee_attr">
+                                        <option value="body" selected="selected">Body</option>
+                                        <option value="agility">Agility</option>
+                                    </select>
+                                </label>
+
                                 <label>
                                     <span>Range</span>
                                     <input type="text" name="attr_weapon_range" placeholder="Engaged / Short / Medium" />
                                 </label>
+
                                 <label>
-                                    <span>Attack Bonus</span>
-                                    <input type="number" name="attr_weapon_attack" value="0" />
+                                    <span>Damage Dice</span>
+                                    <input type="text" name="attr_weapon_damage" placeholder="1d8" />
                                 </label>
+
                                 <label>
-                                    <span>Damage</span>
-                                    <input type="text" name="attr_weapon_damage" placeholder="1d8+2" />
+                                    <span>Damage Mod</span>
+                                    <input type="number" name="attr_weapon_damage_mod" value="0" />
                                 </label>
+
+                                <label>
+                                    <span>Base To Hit</span>
+                                    <input type="number" name="attr_weapon_attack_base" value="0" readonly="readonly" />
+                                </label>
+
+                                <label>
+                                    <span>Custom Hit Mod</span>
+                                    <input type="number" name="attr_weapon_attack_mod" value="0" />
+                                </label>
+
+                                <label>
+                                    <span>Total To Hit</span>
+                                    <input type="number" name="attr_weapon_attack_total" value="0" readonly="readonly" />
+                                </label>
+
+                                <label class="sheet-wide">
+                                    <span>Attack Breakdown</span>
+                                    <input type="text" name="attr_weapon_attack_breakdown" value="" readonly="readonly" />
+                                </label>
+
                                 <label class="sheet-wide">
                                     <span>Tags / Notes</span>
                                     <input type="text" name="attr_weapon_notes" />
                                 </label>
-                                <button type="roll" name="roll_weapon" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=@{weapon_name}}} {{roll=[[1d20+@{weapon_attack}]]}} {{damage=[[@{weapon_damage}]]}} {{detail=@{weapon_type} | @{weapon_range}}} {{notes=@{weapon_notes}}}">Attack</button>
+
+                                <button type="roll" name="roll_weapon" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=@{weapon_name}}} {{kind=@{weapon_type} Attack}} {{attacklabel=To Hit}} {{attack=[[ @{roll_formula} + @{weapon_attack_total} ]]}} {{attackbonus=[[@{weapon_attack_total}]]}} {{damagelabel=Damage}} {{damage=[[@{weapon_damage} + @{weapon_damage_mod}]]}} {{detail=@{weapon_attack_breakdown}}} {{range=@{weapon_range}}} {{mode=@{roll_mode}}} {{notes=@{weapon_notes}}}">Attack</button>
                             </div>
                         </fieldset>
                     </div>
 
                     <div class="sheet-panel">
-                        <h3>Psionic Powers</h3>
+                        <h3>Psionics Powers</h3>
                         <fieldset class="repeating_powers">
                             <div class="sheet-repeat-row">
                                 <label>
@@ -283,7 +329,7 @@
                                     <span>Effect / Notes</span>
                                     <input type="text" name="attr_power_notes" />
                                 </label>
-                                <button type="roll" name="roll_power" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=@{power_name}}} {{roll=[[1d20+@{will}+@{skill_psionic}-@{strain}-@{psionic_cyber_penalty}]]}} {{detail=Psionic check | Cost @{power_cost} Resolve | @{power_range}}} {{notes=@{power_notes}}}">Use</button>
+                                <button type="roll" name="roll_power" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=@{power_name}}} {{kind=Psionics Power}} {{attacklabel=Psionics Roll}} {{attack=[[ @{roll_formula} + @{will} + @{skill_psionics} - @{strain} - @{psionics_cyber_penalty} ]]}} {{attackbonus=[[@{will}+@{skill_psionics}-@{strain}-@{psionics_cyber_penalty}]]}} {{detail=Cost @{power_cost} Resolve}} {{range=@{power_range}}} {{mode=@{roll_mode}}} {{notes=@{power_notes}}}">Use</button>
                             </div>
                         </fieldset>
                     </div>
@@ -291,6 +337,39 @@
                 </div>
 
                 <div class="sheet-col-side">
+
+                    <div class="sheet-panel">
+                        <h3>Roll Tools</h3>
+                        <div class="sheet-grid sheet-grid-2">
+                            <label>
+                                <span>Roll Mode</span>
+                                <select name="attr_roll_mode">
+                                    <option value="normal" selected="selected">Normal</option>
+                                    <option value="advantage">Advantage</option>
+                                    <option value="disadvantage">Disadvantage</option>
+                                </select>
+                            </label>
+
+                            <label>
+                                <span>Check Bonus</span>
+                                <input type="number" name="attr_check_mod" value="0" />
+                            </label>
+
+                            <label class="sheet-wide">
+                                <span>Check Label</span>
+                                <input type="text" name="attr_check_label" value="Custom Check" />
+                            </label>
+
+                            <label class="sheet-wide">
+                                <span>Target / Difficulty</span>
+                                <input type="text" name="attr_check_target" placeholder="Optional" />
+                            </label>
+                        </div>
+
+                        <div class="sheet-grid sheet-grid-1">
+                            <button type="roll" name="roll_custom_check" value="&{template:rtfg} {{title=@{character_name}}} {{subtitle=@{check_label}}} {{kind=Check}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + @{check_mod} ]]}} {{attackbonus=[[@{check_mod}]]}} {{target=@{check_target}}} {{mode=@{roll_mode}}}">Roll Check</button>
+                        </div>
+                    </div>
 
                     <div class="sheet-panel">
                         <h3>Talents & Features</h3>
@@ -445,10 +524,13 @@
             <div class="sheet-panel">
                 <h3>Ship Actions</h3>
                 <div class="sheet-grid sheet-grid-4">
-                    <button type="roll" name="roll_ship_pilot" value="&{template:rtfg} {{title=@{ship_name}}} {{subtitle=Pilot / Maneuver}} {{roll=[[1d20+@{agility}+@{skill_pilot}+@{ship_handling}]]}} {{detail=Agility + Pilot + Handling}}">Pilot</button>
-                    <button type="roll" name="roll_ship_attack" value="&{template:rtfg} {{title=@{ship_name}}} {{subtitle=Ship Attack}} {{roll=[[1d20+@{agility}+@{skill_pilot}+@{ship_handling}]]}} {{detail=Pilot + Handling + Weapon Bonus if applicable}}">Attack</button>
-                    <button type="roll" name="roll_ship_evade" value="&{template:rtfg} {{title=@{ship_name}}} {{subtitle=Evade}} {{roll=[[1d20+@{agility}+@{skill_pilot}+@{ship_handling}]]}} {{detail=Pilot + Handling}}">Evade</button>
-                    <button type="roll" name="roll_ship_reroute" value="&{template:rtfg} {{title=@{ship_name}}} {{subtitle=Reroute Power}} {{roll=[[1d20+@{tech}+@{skill_engineering}]]}} {{detail=Tech + Engineering}}">Reroute</button>
+                    <button type="roll" name="roll_ship_pilot" value="&{template:rtfg} {{title=@{ship_name}}} {{subtitle=Pilot / Maneuver}} {{kind=Ship Action}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + @{agility} + @{skill_pilot} + @{ship_handling} ]]}} {{attackbonus=[[@{agility}+@{skill_pilot}+@{ship_handling}]]}} {{detail=Agility + Pilot + Handling}} {{mode=@{roll_mode}}}">Pilot</button>
+
+                    <button type="roll" name="roll_ship_attack" value="&{template:rtfg} {{title=@{ship_name}}} {{subtitle=Ship Attack}} {{kind=Ship Action}} {{attacklabel=To Hit}} {{attack=[[ @{roll_formula} + @{agility} + @{skill_pilot} + @{ship_handling} ]]}} {{attackbonus=[[@{agility}+@{skill_pilot}+@{ship_handling}]]}} {{detail=Pilot + Handling + Weapon Bonus}} {{mode=@{roll_mode}}}">Attack</button>
+
+                    <button type="roll" name="roll_ship_evade" value="&{template:rtfg} {{title=@{ship_name}}} {{subtitle=Evade}} {{kind=Ship Action}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + @{agility} + @{skill_pilot} + @{ship_handling} ]]}} {{attackbonus=[[@{agility}+@{skill_pilot}+@{ship_handling}]]}} {{detail=Pilot + Handling}} {{mode=@{roll_mode}}}">Evade</button>
+
+                    <button type="roll" name="roll_ship_reroute" value="&{template:rtfg} {{title=@{ship_name}}} {{subtitle=Reroute Power}} {{kind=Ship Action}} {{attacklabel=Result}} {{attack=[[ @{roll_formula} + @{tech} + @{skill_engineering} ]]}} {{attackbonus=[[@{tech}+@{skill_engineering}]]}} {{detail=Tech + Engineering}} {{mode=@{roll_mode}}}">Reroute</button>
                 </div>
             </div>
 
@@ -476,7 +558,7 @@
                             <span>Notes</span>
                             <input type="text" name="attr_system_notes" />
                         </label>
-                        <button type="roll" name="roll_system" value="&{template:rtfg} {{title=@{ship_name}}} {{subtitle=@{system_name}}} {{roll=[[1d20+@{agility}+@{skill_pilot}+@{ship_handling}+@{system_attack}]]}} {{damage=@{system_damage}}} {{notes=@{system_notes}}}">Use</button>
+                        <button type="roll" name="roll_system" value="&{template:rtfg} {{title=@{ship_name}}} {{subtitle=@{system_name}}} {{kind=@{system_type}}} {{attacklabel=Roll}} {{attack=[[ @{roll_formula} + @{agility} + @{skill_pilot} + @{ship_handling} + @{system_attack} ]]}} {{attackbonus=[[@{agility}+@{skill_pilot}+@{ship_handling}+@{system_attack}]]}} {{damagelabel=Damage / Effect}} {{damage=@{system_damage}}} {{mode=@{roll_mode}}} {{notes=@{system_notes}}}">Use</button>
                     </div>
                 </fieldset>
             </div>
@@ -523,16 +605,232 @@
 
     </div>
 
+    <script type="text/worker">
+        const RTFG_SHEET_VERSION = 5;
+
+        const asInt = (value) => parseInt(value, 10) || 0;
+        const signed = (value) => `${value >= 0 ? '+' : ''}${value}`;
+
+        const modeToFormula = (mode) => {
+            switch ((mode || 'normal').toLowerCase()) {
+                case 'advantage':
+                    return '2d20kh1';
+                case 'disadvantage':
+                    return '2d20kl1';
+                default:
+                    return '1d20';
+            }
+        };
+
+        const recalcWeapons = () => {
+            getSectionIDs('repeating_weapons', (ids) => {
+                if (!ids || !ids.length) {
+                    return;
+                }
+
+                const fields = [
+                    'body',
+                    'agility',
+                    'will',
+                    'skill_melee',
+                    'skill_ranged',
+                    'skill_psionics',
+                    'strain',
+                    'psionics_cyber_penalty'
+                ];
+
+                ids.forEach((id) => {
+                    const prefix = `repeating_weapons_${id}_`;
+                    fields.push(`${prefix}weapon_type`);
+                    fields.push(`${prefix}weapon_melee_attr`);
+                    fields.push(`${prefix}weapon_attack_mod`);
+                });
+
+                getAttrs(fields, (values) => {
+                    const body = asInt(values.body);
+                    const agility = asInt(values.agility);
+                    const will = asInt(values.will);
+                    const skillMelee = asInt(values.skill_melee);
+                    const skillRanged = asInt(values.skill_ranged);
+                    const skillPsionics = asInt(values.skill_psionics);
+                    const strain = asInt(values.strain);
+                    const psionicsPenalty = asInt(values.psionics_cyber_penalty);
+
+                    const setters = {};
+
+                    ids.forEach((id) => {
+                        const prefix = `repeating_weapons_${id}_`;
+                        const type = (values[`${prefix}weapon_type`] || 'Melee').toLowerCase();
+                        const meleeAttr = (values[`${prefix}weapon_melee_attr`] || 'body').toLowerCase();
+                        const customMod = asInt(values[`${prefix}weapon_attack_mod`]);
+
+                        let base = 0;
+                        let breakdown = 'Set Custom Hit Mod';
+
+                        if (type === 'melee') {
+                            const attrValue = meleeAttr === 'agility' ? agility : body;
+                            const attrLabel = meleeAttr === 'agility' ? 'Agility' : 'Body';
+                            base = attrValue + skillMelee;
+                            breakdown = `${attrLabel} ${signed(attrValue)} + Melee ${signed(skillMelee)}`;
+                        } else if (type === 'ranged') {
+                            base = agility + skillRanged;
+                            breakdown = `Agility ${signed(agility)} + Ranged ${signed(skillRanged)}`;
+                        } else if (type === 'psionics') {
+                            base = will + skillPsionics - strain - psionicsPenalty;
+                            breakdown = `Will ${signed(will)} + Psionics ${signed(skillPsionics)} - Strain ${strain} - Cyber ${psionicsPenalty}`;
+                        }
+
+                        setters[`${prefix}weapon_attack_base`] = base;
+                        setters[`${prefix}weapon_attack_total`] = base + customMod;
+                        setters[`${prefix}weapon_attack_breakdown`] = customMod
+                            ? `${breakdown} + Mod ${signed(customMod)}`
+                            : breakdown;
+                    });
+
+                    setAttrs(setters, { silent: true });
+                });
+            });
+        };
+
+        const recalcDerived = () => {
+            getAttrs([
+                'sheet_version',
+                'body',
+                'agility',
+                'will',
+                'tech',
+                'level',
+                'armor',
+                'cyber_load_total',
+                'roll_mode'
+            ], (values) => {
+                const body = asInt(values.body);
+                const agility = asInt(values.agility);
+                const will = asInt(values.will);
+                const tech = asInt(values.tech);
+                const level = Math.max(1, asInt(values.level) || 1);
+                const armor = asInt(values.armor);
+                const cyberLoadTotal = asInt(values.cyber_load_total);
+
+                const healthMax = 10 + body + level;
+                const resolveMax = 3 + will;
+                const defense = 10 + agility + armor;
+                const cyberLoadMax = 2 + tech;
+                const cyberOverload = Math.max(0, cyberLoadTotal - cyberLoadMax);
+                const psionicsCyberPenalty = Math.floor(cyberOverload / 2);
+                const rollFormula = modeToFormula(values.roll_mode);
+
+                const setters = {
+                    health_max: healthMax,
+                    resolve_max: resolveMax,
+                    defense: defense,
+                    cyber_load_max: cyberLoadMax,
+                    cyber_overload: cyberOverload,
+                    psionics_cyber_penalty: psionicsCyberPenalty,
+                    roll_formula: rollFormula
+                };
+
+                if (asInt(values.sheet_version) < RTFG_SHEET_VERSION) {
+                    setters.sheet_version = RTFG_SHEET_VERSION;
+                }
+
+                setAttrs(setters, { silent: true }, recalcWeapons);
+            });
+        };
+
+        const recalcCyberLoad = () => {
+            getSectionIDs('repeating_cyberware', (ids) => {
+                if (!ids || !ids.length) {
+                    setAttrs({ cyber_load_total: 0 }, { silent: true }, recalcDerived);
+                    return;
+                }
+
+                const fields = ids.map((id) => `repeating_cyberware_${id}_cyber_load`);
+
+                getAttrs(fields, (values) => {
+                    const total = fields.reduce((sum, field) => sum + asInt(values[field]), 0);
+                    setAttrs({ cyber_load_total: total }, { silent: true }, recalcDerived);
+                });
+            });
+        };
+
+        const adjustEdge = (delta) => {
+            getAttrs(['edge'], (values) => {
+                const nextValue = Math.max(0, asInt(values.edge) + delta);
+                setAttrs({ edge: nextValue });
+            });
+        };
+
+        on('sheet:opened', () => {
+            recalcCyberLoad();
+            recalcWeapons();
+        });
+
+        on('change:body change:agility change:will change:tech change:level change:armor change:roll_mode', recalcDerived);
+        on('change:cyber_load_total', recalcDerived);
+
+        on('change:strain change:skill_melee change:skill_ranged change:skill_psionics change:psionics_cyber_penalty', recalcWeapons);
+        on('change:repeating_weapons change:repeating_weapons:weapon_type change:repeating_weapons:weapon_melee_attr change:repeating_weapons:weapon_attack_mod', recalcWeapons);
+
+        on('change:repeating_cyberware change:repeating_cyberware:cyber_load remove:repeating_cyberware', recalcCyberLoad);
+
+        on('clicked:edge_gain', () => adjustEdge(1));
+        on('clicked:edge_spend', () => adjustEdge(-1));
+        on('clicked:edge_reset', () => setAttrs({ edge: 0 }));
+
+        on('clicked:short_rest', () => {
+            getAttrs(['resolve_max'], (values) => {
+                setAttrs({
+                    resolve: asInt(values.resolve_max),
+                    edge: 0
+                });
+            });
+        });
+
+        on('clicked:full_rest', () => {
+            getAttrs(['health_max', 'resolve_max'], (values) => {
+                setAttrs({
+                    health: asInt(values.health_max),
+                    resolve: asInt(values.resolve_max),
+                    strain: 0,
+                    edge: 0
+                }, { silent: true }, recalcWeapons);
+            });
+        });
+    </script>
+
     <rolltemplate class="sheet-rolltemplate-rtfg">
         <div class="sheet-template">
-            <div class="sheet-template-header">{{title}}</div>
-            {{#subtitle}}<div class="sheet-template-sub">{{subtitle}}</div>{{/subtitle}}
-            {{#roll}}<div class="sheet-template-roll">{{roll}}</div>{{/roll}}
-            {{#damage}}<div class="sheet-template-row"><strong>Damage:</strong> {{damage}}</div>{{/damage}}
-            {{#detail}}<div class="sheet-template-row"><strong>Detail:</strong> {{detail}}</div>{{/detail}}
-            {{#notes}}<div class="sheet-template-row"><strong>Notes:</strong> {{notes}}</div>{{/notes}}
+            <div class="sheet-template-header">
+                <div class="sheet-template-title">{{title}}</div>
+                {{#subtitle}}<div class="sheet-template-sub">{{subtitle}}</div>{{/subtitle}}
+                {{#kind}}<div class="sheet-template-kind">{{kind}}</div>{{/kind}}
+            </div>
+
+            <div class="sheet-template-body">
+                <div class="sheet-template-grid">
+                    {{#attack}}
+                    <div class="sheet-template-block">
+                        {{#attacklabel}}<div class="sheet-template-label">{{attacklabel}}</div>{{/attacklabel}}
+                        <div class="sheet-template-value">{{attack}}</div>
+                        {{#attackbonus}}<div class="sheet-template-meta">Bonus {{attackbonus}}</div>{{/attackbonus}}
+                    </div>
+                    {{/attack}}
+
+                    {{#damage}}
+                    <div class="sheet-template-block">
+                        {{#damagelabel}}<div class="sheet-template-label">{{damagelabel}}</div>{{/damagelabel}}
+                        <div class="sheet-template-value">{{damage}}</div>
+                    </div>
+                    {{/damage}}
+                </div>
+
+                {{#detail}}<div class="sheet-template-row"><span>Detail</span><strong>{{detail}}</strong></div>{{/detail}}
+                {{#range}}<div class="sheet-template-row"><span>Range</span><strong>{{range}}</strong></div>{{/range}}
+                {{#target}}<div class="sheet-template-row"><span>Target</span><strong>{{target}}</strong></div>{{/target}}
+                {{#mode}}<div class="sheet-template-row"><span>Mode</span><strong>{{mode}}</strong></div>{{/mode}}
+                {{#notes}}<div class="sheet-template-row"><span>Notes</span><strong>{{notes}}</strong></div>{{/notes}}
+            </div>
         </div>
     </rolltemplate>
-
-
 </div>

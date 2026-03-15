@@ -87,9 +87,11 @@
   margin: 0;
 }
 
-.charsheet .sheet-rtfg input[disabled] {
+.charsheet .sheet-rtfg input[readonly],
+.charsheet .sheet-rtfg textarea[readonly] {
   background: #151a22;
   color: #d8dee9;
+  font-weight: 700;
 }
 
 .charsheet .sheet-rtfg textarea {
@@ -114,9 +116,30 @@
   background: #42649a;
 }
 
+.charsheet .sheet-rtfg button[type="action"] {
+  width: 100%;
+  background: #4d3a22;
+  color: #fff;
+  border: 1px solid #d8b36a;
+  border-radius: 6px;
+  padding: 7px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.charsheet .sheet-rtfg button[type="action"]:hover {
+  background: #644b2b;
+}
+
 .charsheet .sheet-rtfg .sheet-grid {
   display: grid;
   gap: 10px;
+}
+
+.charsheet .sheet-rtfg .sheet-grid-1 {
+  grid-template-columns: 1fr;
 }
 
 .charsheet .sheet-rtfg .sheet-grid-2 {
@@ -129,6 +152,10 @@
 
 .charsheet .sheet-rtfg .sheet-grid-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.charsheet .sheet-rtfg .sheet-grid-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .charsheet .sheet-rtfg .sheet-grid-6 {
@@ -154,6 +181,23 @@
 
 .charsheet .sheet-rtfg .sheet-pair span {
   color: var(--muted);
+}
+
+.charsheet .sheet-rtfg .sheet-counter-row {
+  display: grid;
+  grid-template-columns: 34px 1fr 34px;
+  gap: 6px;
+  align-items: center;
+}
+
+.charsheet .sheet-rtfg .sheet-mini-btn {
+  padding: 0;
+  height: 34px;
+  line-height: 34px;
+}
+
+.charsheet .sheet-rtfg .sheet-action-row {
+  margin-top: 10px;
 }
 
 .charsheet .sheet-rtfg .sheet-skill-table {
@@ -205,6 +249,10 @@
   gap: 8px;
 }
 
+.charsheet .sheet-rtfg .sheet-repeat-weapon {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .charsheet .sheet-rtfg .sheet-wide {
   grid-column: 1 / -1;
 }
@@ -221,10 +269,11 @@
   background: #202633;
   color: var(--muted);
   border: 1px solid var(--line);
-  border-bottom: 3;
-  border-radius: 8px 8px 8px 8px;
+  border-bottom: 3px solid transparent;
+  border-radius: 8px 8px 0 0;
   padding: 8px 12px;
   margin-right: 4px;
+  margin-bottom: -1px;
   cursor: pointer;
   font-size: 12px;
   text-transform: uppercase;
@@ -232,8 +281,10 @@
 }
 
 .charsheet .sheet-rtfg .sheet-tab-wrap {
-  border-top: 1px solid var(--line);
-  padding-top: 12px;
+  border: 1px solid var(--line);
+  border-radius: 0 10px 10px 10px;
+  padding: 12px;
+  background: #1b2029;
 }
 
 .charsheet .sheet-rtfg .sheet-tab-content {
@@ -247,6 +298,7 @@
   background: #2b3140;
   color: #ffffff;
   border-color: #89a6d7;
+  border-bottom-color: #2b3140;
 }
 
 .charsheet .sheet-rtfg .sheet-tab1:checked ~ .sheet-tab-wrap .sheet-character-tab {
@@ -265,9 +317,8 @@
   display: block;
 }
 
-
 /* Roll template */
-.charsheet .sheet-rolltemplate-rtfg .sheet-template {
+.sheet-rolltemplate-rtfg .sheet-template {
   background: #232833;
   border: 1px solid #4e5c74;
   border-radius: 10px;
@@ -276,34 +327,128 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.charsheet .sheet-rolltemplate-rtfg .sheet-template-header {
-  background: #36527f;
-  color: #fff;
-  padding: 8px 10px;
-  font-weight: 700;
-  font-size: 15px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+.sheet-rolltemplate-rtfg .sheet-template-header {
+  background: linear-gradient(135deg, #36527f, #2b3e5f);
+  padding: 10px 12px;
 }
 
-.charsheet .sheet-rolltemplate-rtfg .sheet-template-sub {
-  background: #2a3445;
+.sheet-rolltemplate-rtfg .sheet-template-title {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sheet-rolltemplate-rtfg .sheet-template-sub {
   color: #d8b36a;
-  padding: 6px 10px;
+  margin-top: 3px;
   font-size: 12px;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
-.charsheet .sheet-rolltemplate-rtfg .sheet-template-roll {
-  padding: 12px 10px;
-  font-size: 22px;
-  font-weight: 700;
+.sheet-rolltemplate-rtfg .sheet-template-kind {
+  display: inline-block;
+  margin-top: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  color: #cfe0ff;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.sheet-rolltemplate-rtfg .sheet-template-body {
+  padding: 10px;
+}
+
+.sheet-rolltemplate-rtfg .sheet-template-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.sheet-rolltemplate-rtfg .sheet-template-block {
+  background: #1a1f28;
+  border: 1px solid #3f4d63;
+  border-radius: 8px;
+  padding: 8px;
   text-align: center;
-  border-bottom: 1px solid #4e5c74;
 }
 
-.charsheet .sheet-rolltemplate-rtfg .sheet-template-row {
-  padding: 7px 10px;
+.sheet-rolltemplate-rtfg .sheet-template-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9bc3ff;
+}
+
+.sheet-rolltemplate-rtfg .sheet-template-value {
+  margin-top: 4px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.sheet-rolltemplate-rtfg .sheet-template-meta {
+  margin-top: 4px;
+  font-size: 11px;
+  color: #cfd5df;
+}
+
+.sheet-rolltemplate-rtfg .sheet-template-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 0;
   border-top: 1px solid #394556;
   font-size: 12px;
+}
+
+.sheet-rolltemplate-rtfg .sheet-template-row span {
+  color: #9aa7bb;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 10px;
+}
+
+.sheet-rolltemplate-rtfg .sheet-template-row strong {
+  text-align: right;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .charsheet .sheet-rtfg .sheet-grid-5,
+  .charsheet .sheet-rtfg .sheet-grid-6 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .charsheet .sheet-rtfg .sheet-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .charsheet .sheet-rtfg .sheet-grid-4,
+  .charsheet .sheet-rtfg .sheet-grid-5,
+  .charsheet .sheet-rtfg .sheet-grid-6,
+  .charsheet .sheet-rtfg .sheet-repeat-weapon {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .charsheet .sheet-rtfg .sheet-grid-2,
+  .charsheet .sheet-rtfg .sheet-grid-3,
+  .charsheet .sheet-rtfg .sheet-grid-4,
+  .charsheet .sheet-rtfg .sheet-grid-5,
+  .charsheet .sheet-rtfg .sheet-grid-6,
+  .charsheet .sheet-rtfg .sheet-repeat-row,
+  .charsheet .sheet-rtfg .sheet-repeat-weapon,
+  .charsheet .sheet-rtfg .sheet-skill-table,
+  .sheet-rolltemplate-rtfg .sheet-template-grid {
+    grid-template-columns: 1fr;
+  }
 }
